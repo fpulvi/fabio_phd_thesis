@@ -1,0 +1,246 @@
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt, a4paper, oneside]{Thesis} % Paper size, default font size and one-sided paper
+\usepackage{lipsum}
+
+\usepackage[latin1]{inputenc}% per macchine Linux/Mac/UNIX/Windows; meglio utf8
+\usepackage[T1]{fontenc} % To insert directly < > =
+\usepackage{lmodern}
+
+\usepackage[expert]{mathdesign}
+
+\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\usepackage{graphicx} % to insert jpg pictures
+\usepackage{colortbl}
+
+%\usepackage{floatrow} % to put figure and table side by side, e.g. in Air pollution work.
+% Table float box with bottom caption, box width adjusted to content
+%\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+\usepackage{enumitem}
+\setlist{parsep=0pt,listparindent=\parindent}
+
+%-------------- from Bike sharing paper  -----------------------------------------------------------------------------
+%\usepackage{subcaption}
+
+\newcommand{\BIKEDef}{{\cal ST}ation {\cal O}ccupancy {\cal P}redictor} 
+\newcommand{\BIKE}{STOP} 
+%------------------------------------------------------------------------------------------------------------------------------
+
+
+%-------------- from ESWA paper ----------------------------------------------------------------------------------------
+\usepackage{amsmath} % for insert equation including \binom{}{}
+\usepackage{multirow} % to insert multi rows inside table
+\usepackage{booktabs}
+
+\usepackage[]{algorithm2e}
+\usepackage{subfigure}
+
+
+\newtheorem{Definition}{Definition}[section]
+%\newcommand{\MLC}{{\sc M}{\sc L}{\sc C}} 
+\newcommand{\MLDA}{{\sc M}{\sc L}{\sc D}{\sc A}} 
+\newcommand{\MLDAdef}{{\sc M}ultiplel-{\sc L}evel {\sc D}ata {\sc A}nalysis}
+\newcommand{\MLCDef}{{\sc M}ultiplel-{\sc L}evel {\sc C}lustering}
+
+\newcommand{\comment}[1]{}
+%------------------------------------------------------------------------------------------------------------------------------
+
+%-------------- from ICHI paper ----------------------------------------------------------------------------------------
+\usepackage{multirow} % to insert multi rows inside table
+%\usepackage{cite}
+%------------------------------------------------------------------------------------------------------------------------------
+
+%--------------from CBMS paper  ----------------------------------------------------------------------------------------
+\newcommand{\CARPE}{{\sc CRP}}
+\newcommand{\CARPEdef}{{\sc C}ardiopulmonary {\sc R}esponse {\sc P}rediction}
+
+\newcommand{\MWL}{W$_{peak}$}
+\newcommand{\MWLQ}{$\widehat{\mbox{W}}_{peak,Q}$}
+\newcommand{\MWLT}{W$_{peak,\theta}$}
+
+\newcommand{\individual}{\textit{single-test}}
+\newcommand{\community}{\textit{multiple-test}}
+%------------------------------------------------------------------------------------------------------------------------------
+
+%--------------from Air Pollution paper  ----------------------------------------------------------------------------------------
+\newcommand{\frameworkDef}{{\sc GE}neralized {\sc C}orrelation analyzer of p{\sc O}llution data}
+\newcommand{\framework}{{\sc GECkO}} 
+%------------------------------------------------------------------------------------------------------------------------------
+
+%--------------from Spatio-Temporal twitter paper  ----------------------------------------------------------------------------------------
+\newcommand{\TTTlong}{{\sc T}witter {\sc Miner}} 
+\newcommand{\TTT}{{\sc TMiner}} 
+%------------------------------------------------------------------------------------------------------------------------------
+
+%--------------from Patient Flow paper  ----------------------------------------------------------------------------------------
+\newcommand{\TTTlongP}{\textit{PA}tient \textit{TR}ansfer \textit{AN}alysis} 
+\newcommand{\TTTP}{{\sc PATRAN}} 
+%------------------------------------------------------------------------------------------------------------------------------
+
+\usepackage{float} % to control the position of the picture with [H] added after \begin{figure}
+
+\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+
+\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+\title{\ttitle} % Defines the thesis title - don't touch this
+
+\usepackage{indentfirst} 
+\usepackage{amssymb} % >= <=
+
+\usepackage{footnote} %to insert footnotes together with \begin{savenotes}. must be put after the color packages.
+
+%\renewcommand\bibname{References} %change Bibliography to References
+\begin{document}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\setstretch{1.3} % Line spacing of 1.3
+
+% Define the page headers using the FancyHdr package and set up for one-sided printing
+\fancyhead{} % Clears all page headers and footers
+\rhead{\thepage} % Sets the right side header to show the page number
+\lhead{} % Clears the left side page header
+
+\pagestyle{fancy} % Finally, use the "fancy" page style to implement the FancyHdr headers
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
+
+% PDF meta-data
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\subjectname}
+\hypersetup{pdfauthor=\authornames}
+\hypersetup{pdfkeywords=\keywordnames}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+\textsc{\LARGE \univname}\\[1.5cm] % University name
+
+%\large{\groupname}\\
+\large \DEPTNAME\\[1.3cm] % Research group name and department name
+
+\textsc{\Large PhD Thesis}\\[0.7cm] % Thesis type
+
+%\HRule \\[0.4cm] % Horizontal line
+{\huge \bfseries \ttitle}\\[4cm] % Thesis title
+%\HRule \\[1.5cm] % Horizontal line
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.3]{./Figures/Polito.jpg}
+\end{figure} 
+
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Supervisor:}\\
+{\supname} % Author name - remove the \href bracket to remove the link
+\end{flushleft}
+\end{minipage} 
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Author:} \\
+{\authornames} % Supervisor name - remove the \href bracket to remove the link  
+\end{flushright}
+\end{minipage}\\[3cm]
+
+ 
+{\large \today} % Date
+%\includegraphics{Logo} % University/department logo - uncomment to place it
+ 
+\vfill
+\end{center}
+
+\end{titlepage}
+
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\addtotoc{Abstract} % Add the "Abstract" page entry to the Contents
+
+\abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+
+
+
+}
+
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+
+
+
+}
+\clearpage % Start a new page
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy} % The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
+\lhead{\emph{Contents}} % Set the left side page header to "Contents"
+
+\setcounter{tocdepth}{2} % Set the depth of table of contents, 2 = till subsection
+\tableofcontents % generate the Table of Contents automatically
+\listoffigures
+\listoftables
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\pagestyle{fancy} % Return the page headers back to the "fancy" style
+
+\chapter{Introduction}
+\input{chapters/intro}
+\label{Introduction}
+
+
+
+\chapter{Frequent Itemset Mining}\label{FIM}
+\begin{enumerate}
+\item preliminaries and details
+\item Why FIM for Big Data
+\item Which are the challenges
+\end{enumerate}
+\chapter{Related works - Survey}
+Analysis of the state of the art
+\chapter {Frequent Itemset Mining for high dimensional data}
+PaMPa-HD
+\chapter{Applications of Frequent Itemset Mining to distributed frameworks}
+\begin{enumerate}
+\item{MGI-Cloud}
+\item{Nemico}
+\end{enumerate}
+
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\addcontentsline{toc}{chapter}{References}
+%%%%%% ESWA %%%%%%%%%
+\bibliographystyle{IEEEtran}
+\bibliography{BiblioESWA1,BiblioESWA2,BiblioICHI,BiblioCBMS,BiblioBikeSharing,BiblioAirPollution,BiblioSTtweets,BiblioPatientFlow}
+%%%%%%%%%%%%%%%%%%%
+\end{document}  
+\grid
+\grid

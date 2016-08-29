@@ -1,0 +1,13 @@
+\contentsline {chapter}{Abstract}{i}{dummy.1}
+\vspace {1em}
+\contentsline {chapter}{Acknowledgements}{ii}{dummy.2}
+\vspace {1em}
+\contentsline {chapter}{List of Figures}{iv}{dummy.4}
+\contentsline {chapter}{List of Tables}{v}{dummy.6}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.8}
+\contentsline {section}{\numberline {1.1}Data mining and Frequent Itemset Mining}{2}{section.9}
+\contentsline {section}{\numberline {1.2}Big Data and Distributed Frameworks}{3}{section.10}
+\contentsline {chapter}{\numberline {2}Frequent Itemset Mining}{5}{chapter.11}
+\contentsline {chapter}{\numberline {3}Related works - Survey}{6}{chapter.15}
+\contentsline {chapter}{\numberline {4}Frequent Itemset Mining for high dimensional data}{7}{chapter.16}
+\contentsline {chapter}{\numberline {5}Applications of Frequent Itemset Mining to distributed frameworks}{8}{chapter.17}
