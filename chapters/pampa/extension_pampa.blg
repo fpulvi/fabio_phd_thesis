@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: extension_pampa.aux
+The style file: elsarticle-num_modified.bst
+Database file #1: biblio.bib
+Warning--empty pages in pampa_v1
+Warning--empty pages in bigfim
+Warning--empty journal in citeulike:13636750
+You've used 38 entries,
+            2935 wiz_defined-function locations,
+            934 strings with 13704 characters,
+and the built_in function-call counts, 13366 in all, are:
+= -- 1285
+> -- 434
+< -- 12
++ -- 170
+- -- 132
+* -- 979
+:= -- 1757
+add.period$ -- 54
+call.type$ -- 38
+change.case$ -- 40
+chr.to.int$ -- 0
+cite$ -- 41
+duplicate$ -- 472
+empty$ -- 1523
+format.name$ -- 161
+if$ -- 3517
+int.to.chr$ -- 0
+int.to.str$ -- 38
+missing$ -- 32
+newline$ -- 142
+num.names$ -- 37
+pop$ -- 298
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 831
+stack$ -- 0
+substring$ -- 703
+swap$ -- 170
+text.length$ -- 12
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 94
+width$ -- 40
+write$ -- 350
+(There were 3 warnings)

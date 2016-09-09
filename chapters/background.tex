@@ -1,27 +1,236 @@
 \section{Data Mining and Frequent Itemset Mining}
-The goal of clustering and, more in general, supervised learning is to discover hidden structures in unlabeled data. Specifically, the aim of these set of techniques is grouping sets of objects in such a way that objects grouped together (in the same cluster) are more similar to each other than to those in other groups (clusters). The greater the homogeneity inside a group, and the greater the dissimilarity among different groups, the better the clustering results can be considered. The division into groups can be seen as an attempt to get the natural structure of the data.
+As already introduced, data mining represents a family of tools and technique aimed at extracting usable and effective knowledge from collections of data. It is possible to distinguish 3 main groups of techniques:
+\begin{itemize}
+\item Unsupervised Learning (Clustering)~\cite{Xu_2005SurveyClustering}
+\item Supervised Learning~\cite{AggarwalBookClassification}
+\item Frequent Itemset Mining and Correlation Discovery~\cite{Han_2007SurveyFIM}
+\end{itemize}
+
+The goal of clustering and, more in general, unsupervised learning is to discover hidden structures in unlabeled data. Specifically, the aim of this set of techniques is grouping sets of objects in such a way that objects grouped together (in the same cluster) are more similar to each other than to those in other groups (clusters). The greater the homogeneity inside a group and the dissimilarity among different groups, the better the clustering results can be considered. The division into groups can be seen as an attempt to get the natural structure of the data.
 
 Supervised Learning, starting from a set of labeled input data, aims at building a predictive model from it. This model, which is an inferred function, should approximate the distribution of the input dataset, called training set, with respect to the class labels. The built model, then, is used to classify new unlabeled samples. A very widespread trend in the age of big data and distributed computing, is to build many simple sub-models and then smartly merge them into a global predictive model.
 
 Frequent Itemset Mining is an exploratory data analysis method used to discover frequent co-occurrence among the items of a transactional dataset (attribute-value pairs). The itemset support is the number of transactions in which it is present. A set of items is considered frequent if its support is over a user-provided frequency threshold (minimum support).
 Frequent itemsets are often used as input to Association rules mining, a method to discover interesting relations between objects. They were first introduced analyzing retail transactions data from supermarkets. Each rule is organized on two members, respectively called antecedent and consequent. The rule concept is very straightforward and an example rule is: $\{bread, butter\} \rightarrow \{milk\}$. This rule means that customers who buy bread and butter usually buy also milk. Of course, the rules should considered statistically significant just if supported by a sufficient support and confidence (i.e. how often the rule has been found to be true).
+It is clear how association rules and, in general, the extracted knowledge in terms of correlations, could be considered very valuable information. For instance, a whole category of classifier or recommendation systems are based on rules. \textbf{(TO DO: add citations)}.
+
+Frequent Itemsets are very used also to summarize large collection of data since they output the most frequent patterns, which can be interpret as the most representative. \textbf{(TO DO: add citations)}. In a similar way, they can be leveraged to highlight patterns which do not respect the most common trend. They can hide interesting outliers which could worth to be investigated and deepened. \textbf{(TO DO: add citations)}. 
+In the following Subsection, a preliminary background, useful to better understands the content of this work, will be introduced. 
+
 \subsection{Frequent Itemset Mining - Preliminaries}
+
+
+\begin{figure}[!t]
+%\renewcommand{\arraystretch}{1.3}
+%\centerline
+{\subfloat[Horizontal representation of $\mathcal{D}$]{
+\label{back_horizontalexampledataset}
+\begin{tabular}{|c|l|}
+\hline
+\multicolumn{2}{|c|}{$\mathcal{D}$}\\
+\hline
+\hline
+	tid & items \\
+\hline
+	1 & a,b,c,l,o,s,v \\
+\hline
+	2 & a,d,e,h,l,p,r,v \\
+\hline
+	3 & a,c,e,h,o,q,t,v \\
+\hline
+	4 & a,f,v \\
+\hline
+	5 & a,b,d,f,g,l,q,s,t \\
+\hline
+\end{tabular}}}%
+\hfil
+{\subfloat[Transposed representation of $\mathcal{D}$]{
+\label{back_TTexampledataset}
+\begin{tabular}{|c|l|}
+\hline
+\multicolumn{2}{|c|}{$TT$}\\
+\hline
+\hline
+	item & tidlist \\ \hline
+	a & 1,2,3,4,5 \\ \hline
+	b & 1,5 \\ \hline
+	c & 1,3 \\ \hline
+	d & 2,5 \\ \hline
+	e & 2,3 \\ \hline
+	f & 4,5 \\ \hline
+	g & 5 \\ \hline
+	h & 2,3 \\ \hline
+	l & 1,2,5 \\ \hline
+	o & 1,3 \\ \hline
+	p & 2 \\ \hline
+	q & 3,5 \\ \hline
+	r & 2 \\ \hline
+	s & 1,5 \\ \hline
+	t & 3,5 \\ \hline
+	v & 1,2,3,4 \\ \hline
+\end{tabular}}}%
+%\hfil
+%{\subfloat[$TT|_{\{2,3\}}$: example of con\-di\-tio\-nal
+%tran\-spo\-sed table]{
+%\label{conditionalexampledataset}
+%\begin{tabular}{|l|l|}
+%\hline
+%\multicolumn{2}{|c|}{$TT|_{\{2,3\}}$}\\
+%\hline
+%\hline
+%item & tidlist \\ \hline
+%a &4,5 \\ \hline
+%e & - \\ \hline
+%h & -\\ \hline
+%v &4 \\ \hline
+%\end{tabular}}}%
+\caption{Running example dataset $\mathcal{D}$}
+\label{back_exampledataset}
+\end{figure}
+
+Let $\mathcal{I}$ be a set of items. A transactional dataset $\mathcal{D}$
+consists of a set of transactions $\{t_1, \dots, t_n\}$,
+where each transaction $t_i\in \mathcal{D}$ is a set of items (i.e.,
+$t_i\subseteq \mathcal{I}$)
+and it is identified by a transaction identifier ($tid_i$).
+Figure~\ref{back_horizontalexampledataset} reports an example of a transactional
+dataset with 5 transactions.
+
+An itemset $I$ is defined as a set of items (i.e., $I\subseteq\mathcal{I}$) and
+it is characterized by a tidlist and a support value.
+The tidlist of an itemset $I$, denoted by $tidlist(I)$, is defined as the set of
+tids of the transactions in $\mathcal{D}$ containing $I$,
+while the support of $I$ in $\mathcal{D}$, denoted by $sup(I)$, is defined as
+the ratio between the number of transactions in $\mathcal{D}$ containing $I$
+and the total number of transactions in $\mathcal{D}$ (i.e.,
+$|tidlist(I)|/|\mathcal{D}|$).
+For instance, the support of the itemset \textit{\{aco\}} in
+the running example dataset $\mathcal{D}$ is 2/5 and its tidlist is $\{1,3\}$.
+An itemset $I$ is considered frequent if its support is greater than a
+user-provided minimum support threshold $minsup$.
+
+Given a transactional dataset $\mathcal{D}$ and a minimum support threshold
+$minsup$, the Frequent Itemset Mining \cite{KumarBook} problem consists in
+extracting the complete set of frequent itemsets from $\mathcal{D}$.
+In this work, we focus also on a valuable subset of frequent itemsets called
+frequent closed itemsets~\cite{Zaki_Carpenter}. Closed itemsets
+allow representing the same information of traditional frequent itemsets in a
+more compact form.
+In addition, an item or itemset $I$ is closed in  $\mathcal{D}$ if there exists no superset that
+has the same support count as  $I$.\\
+For instance, in our running example, given a $minsup=2$, the itemset \textit{\{ab\}} is a frequent itemset (support=2), but it is not closed for the presence of the itemset \textit{\{abls\}} (support=2). 
+% %If an itemset is frequent, all of its subsets are frequent for the
+% \textit{monotonic property}.
+% %For the same rule, if an items or an itemset is not frequent, none of its
+% supersets are frequent. In addition, an items
+% % or itemset $I$ is closed in  $\mathcal{D}$ if there exists no superset that
+% has the same support count as  $I$.\\
+\\
+A transactional dataset can also be represented in a vertical format, which is
+usually a more effective representation of the dataset when the average number
+of items per transactions is orders of magnitudes larger than the number of
+transactions.
+In this representation, also called \textit{transposed table} $TT$, each
+row consists of an item $i$ and its list of transactions, i.e.,
+$tidlist(\{i\})$.
+Figure~\ref{back_TTexampledataset} reports the transposed representation of the
+running example reported in Figure~\ref{back_horizontalexampledataset}.
+
+%Given a transposed table $TT$ and a tidlist $X$, the conditional transposed
+%table of $TT$ on the tidlist $X$, denoted
+%by $TT|_{X}$, is defined as a transposed table such that:
+%(1) for each row $r_i\in TT$ such that $X\subseteq r_i.tidlist$ there exists one
+%tuple $r_i^{\prime}\in TT|_{X}$ and
+%(2) $r_i^{\prime}$ contains all tids in $r_i.tidlist$ whose tid is higher than
+%any tid in $X$.
+%For instance, consider the transposed table $TT$ reported in
+%Figure~\ref{TTexampledataset}. The
+%projection of $TT$ on the tidlist \textit{\{2,3\}} is the transposed table
+%reported in Figure~\ref{conditionalexampledataset}.
+%Each transposed table $TT|_{X}$ is associated with an itemset composed by the
+%items in $TT|_{X}$.
+%For instance, the itemset associated with $TT|_{\{2,3\}}$ is \textit{\{aehv\}}
+%(see Figure~\ref{conditionalexampledataset}).
+
+
+% %Given a row or a set of rows (in the sequel, \textit{row set}) $x$, $TT|_{x}$,
+% is the projection of the whole vertical datasets on the row set x. Each
+% transposed table is associated with an itemset composed of the items in the
+% table. For each item, the associated tidlist is composed of the tids greater
+% than any tid in the row set x. For instance, $TT|_{2,3}$ in tab 3 is the
+% transposed table of the row set \textit{2,3} and it represents the itemset
+% \textit{aehv}.
 
 
 
 \section{Big Data and Distributed Frameworks}
-Nowadays, the use of big data is widespread in both the academic and private sectors. Being able to analyze big data is a huge value from both an economic and social point of view. Unfortunately, traditional tools have demonstrated to be not reliable for dealing with such large amount of data.
-Starting from data storage, new solutions have to be developed to replace traditional relational database managements systems. For this reason, in the last decade we have witnessed the development of distributed file systems such as Google File System (cit) and its derivative Hadoop Distributed File System (HDFS cit.). For the computational issues, already well-known parallel frameworks have shown their limitations due to fault tolerance and resiliency lacks. In the meanwhile, new processing models spread out. 
-MapReduce is the most popular example of a generic batch-oriented distributed paradigm. With its reliable and fault-tolerant architecture, it allows to exploit the resources of more commodity machines (nodes). The ratio behind the spread of the paradigm is that 'shifts the computation to the data'.
+Today's shift towards horizontal scaling in hardware has highlighted the
+need of distributed algorithms. Being able to analyze big data is a huge value from both an economic and social point of view. Unfortunately, traditional tools have demonstrated to be not reliable for dealing with such large amount of data.
+Starting from data storage, new solutions have to be developed to replace traditional relational database managements systems. 
+ Thus, we
+are witnessing the explosion of distributed and parallel approaches, often
+accompanied with cloud-based services (e.g. Platform-as-a-Service
+tools)~\cite{ApilettiBCCG13}.
+
+Starting from data storage, new solutions had to be developed to replace traditional relational database managements systems. We have firstly witnessed the development of distributed file systems such as Google File System (cit) and its derivative Hadoop Distributed File System~\cite{HDFS}. For the computational issues, already well-known parallel frameworks have shown their limitations due to fault tolerance and resiliency lacks. In the meanwhile, new processing models spread out. 
+MapReduce~\cite{ArticoloMapReduceGoogle} is the most popular example of a generic batch-oriented distributed paradigm. With its reliable and fault-tolerant architecture, it allows to exploit the resources of more commodity machines (nodes). The ratio behind the spread of the paradigm is that 'shifts the computation to the data'.
 In fact, taking advantage of the data locality, allowing the nodes to process just the shard of the data they store.
 
 A MapReduce application consists of two main phases. In the first phase, called "map", each shard of the dataset is processed locally by each node of the commodity clusters, which output one or more key-values couples. Map results are exchanged among the cluster nodes and aggregate the tuples per key: this is the "shuffle" phase. This operation, which is very optimized, is one of the killer feature which a MapReduce-like algorithm should strongly exploit (it is also the unique communication among the nodes of the commodity cluster). Finally, the reduce phase is run for each unique keys and iterates through all the associated values.
 
-Designed to cope with very larg datasets, the Java based framework Hadoop (cit) is the most widely adopted MapReduce implementation. It allows programmers not to concern to low level details and to focus just on the algorithm design. This is maybe the key of the success; all the operations which can be done on Hadoop are technically possible with other parallel frameworks such as MPI. They are just less trivial and often requires low level programming such as C.
+Designed to cope with very larg datasets, the Java based framework Hadoop~\cite{HDFS} is the most widely adopted MapReduce implementation. It allows programmers not to concern to low level details and to focus just on the algorithm design.
 
-However, Hadoop and MapReduce paradigm does not fit at all iterative processes. In this case, each iteration would require a complete read and transmission (shuffle phase) of the input dataset, which is critical when dealing with huge datasets. This issue motivated the development of a new in-memory distributed platform called Apache Spark (cit). This framework, when possible, allows machines to cache data and intermediate results in memory, instead of reloading it from the disk at each iteration. Spark has also introduced a new type of data collection called RDD (Resilient Distributed Dataset). Every RDD modification is done just by the generation of another RDD, keeping trace of all the transformations in order to be able to regenerate data in case of failures. Furthermore, RDDs avoid on-disk materialization until not strictly mandatory, i.e. when an action requires a result to be returned to the driver program, saving resources in terms of communication and I/O costs. Spark supports both Graph-based and Streaming processes, demonstrating to be more flexible than Hadoop, still keeping full compatibility with the latter.
+However, Hadoop and MapReduce paradigm does not fit at all iterative processes. In this case, each iteration would require a complete read and transmission (shuffle phase) of the input dataset, which is critical when dealing with huge datasets. This issue motivated the development of a new in-memory distributed platform called Apache Spark~\cite{Zaharia_spark}. This framework, when possible, allows machines to cache data and intermediate results in memory, instead of reloading it from the disk at each iteration. Spark has also introduced a new type of data collection called RDD (Resilient Distributed Dataset). Every RDD modification is done just by the generation of another RDD, keeping trace of all the transformations in order to be able to regenerate data in case of failures. Furthermore, RDDs avoid on-disk materialization until not strictly mandatory, i.e. when an action requires a result to be returned to the driver program, saving resources in terms of communication and I/O costs. Spark supports both Graph-based and Streaming processes, demonstrating to be more flexible than Hadoop, still keeping full compatibility with the latter.
+
+Hadoop and Spark are
+not the only frameworks supporting the parallelization of Data mining
+algorithms. GraphLab~\cite{graphlab}, Google Pregel~\cite{pregel} and its
+open-source counterpart Giraph~\cite{giraph} are fault-tolerant, graph-based
+framework while SimSQL~\cite{simsql}, for instance, exploits an SQL-based
+approach. Distributed systems are popular also because they became very easy to
+use: as already stated, Message Passing Interface (MPI)~\cite{mpi}, one of the most adopted
+framework in academic environment, works efficiently only on very low level
+programming such as C.
+
+\subsection{Hadoop and Spark Machine Learning Libraries}
+In recent years the
+success of these distributed platforms was supported by the introduction of open
+source libraries of machine learning algorithms.
+%These are very precious for the academic world
+%since they allow researchers to save time for implementation or to use the
+%algorithms as reference baseline for further optimizations.
+% We strongly consider
+%the presence of these libraries as a real advantage of a framework.
+Mahout~\cite{Mahout} for Hadoop has represented one of the most popular
+collection of Machine Learning algorithms, containing implementations in the
+areas such as clustering, classification, recommendation systems, etc. All the
+current implementations are based on Hadoop MapReduce.
+MADlib~\cite{madlib},
+instead, provides a SQL toolkit of algorithms that run over Hadoop. Finally,
+MLLib~\cite{MLLib} is the Machine Learning library developed on Spark, and it is
+rapidly growing up. MLLib allows researchers to exploit Spark special features
+to implement all those applications that can benefit from them, e.g. fast
+iterative procedures.
 
 \section{Big Data and FIM}
+In this Section we will motivate the need of scalable frequent itemeset mining algorithm. After that, the problem statement and the related issues will be dicussed.
+
+As already largely discussed, we are witnessing an explosive increasing of data availability. Process and support this extremely large amount of data is very challenging. Data mining algorithms, for their nature, as better detailed in the last part of this Section, are among the hardest processes to parallelize.
+Frequent itemset mining extraction could be bottlenecked by two possible parameters. The first, as predictable, is the input data size, while the second is the minimum support threshold. The first issue is already intuitive since a bigger data collection is harder to analyze.
+
+The second is related to minimum support threshold, which, in our problem, is directly mirrored to the targeted depth of the analysis. 
+Even for datasets not belonging to big data environment, a very low support 
+extraction could require huge amount of resources. 
+The lower it is, the more challenging in terms of resource the mining will be. These two aspects are the main bottlenecks for dataset extraction. As we will see in Chapters \ref{survey} and \ref{pampa}, also data distribution has an impact. For the sake of clarity, for the moment, we ignore this feature, which is very dependent on the algorithms nature. 
+To recap, bigger dataset are hardest to be analyzed than smaller ones. Furthermore, a frequent itemset miner is easily able to complete the itemset extraction with a certain minimum support threshold, and running out of memory with the same input and a lower support. 
 
 
+The need of scalability in terms of support input dataset size is an obvious consequence of the need to analyze these huge data collections. In addition, frequent itemset techniques, for some aspects, fit very good big data environment. For instance, thinking about the summarization properties of frequent itemsets, we can assume that the larger is the dataset, the more crucial would be its summarization.
+
+Let us focus now on the need of lowering the minimum support threshold. As already mentioned, very low supports could represent very challenging mining processes. 
+This issue is caused by the nature of the frequent itemsets. Indeed, frequent itemset mining considers any possible items co-occurrency. It can easily happen that the output of the process exceeds the input data size.
+\textbf{qui aggiungere esempio}.
+At this point of the explanation, a question could arise by the readers. It would be related by the need of such amount of frequent itemsets, given that, one of the most intuitive usage examples are related to data summarization.
+However, in many applications, frequent pattern mining can be more likely considered as a preprocessing than a final step. On of the most intuitive context is the "unfrequent" itemset extraction, which can be considered among outlier detection algorithms. The need of a full extraction is also motivated by the hardness to include any other interestingness measures (apart from the support) into the extraction process. Hence, a very common behavior is to extract as many itemsets as possible and then apply any sort of interestingness filter. 
+Even in this dissertation will be introduced a work in which a special type of itemsets are mined from the whole set of frequent itemsets (see Chapter \ref{mgi} for further details).
 

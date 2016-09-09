@@ -1,0 +1,288 @@
+Given the complete enumeration tree (see Figure~\ref{running_1}), the
+centralized Carpenter algorithm
+extracts the whole set of closed itemsets by performing a depth first search
+(DFS) of the tree.
+%By tracing the set of closed itemsets encountered by traversing the tree,
+Carpenter also prunes part of the search space by applying the three pruning
+rules illustrated above.
+%described in Section~\ref{Carpenter algorithm}.
+The PaMPa-HD algorithm proposed in this paper splits the depth
+first search process in a set of (partially) independent
+sub-processes, that autonomously evaluate sub-trees of the search space.
+Specifically, the whole problem can be split by assigning
+each subtree rooted in $TT|_{X}$, where $X$ is a single transaction id in the
+initial dataset, to an independent sub-process.
+Each sub-process applies the centralized version of Carpenter on its conditional
+transposed table $TT|_{X}$ and extracts a subset of the final closed itemsets.
+The subsets of closed itemsets mined by each sub-process
+are merged to compute the whole closed itemset result.
+Since the sub-processes are independent, they can be executed in parallel by
+means of a distributed computing platform, e.g., Hadoop.
+Figure~\ref{running_2} shows the application of the proposed approach on the
+running example.
+Specifically, five independent sub-processes are executed in the case of the
+running example, one for each row (transaction) of the original dataset.
+
+Partitioning the enumeration tree in sub-trees allows processing bigger
+enumeration trees with respect to the centralized version. However, this
+approach does not allow fully exploiting pruning rule 3
+because each sub-process works independently and is not aware of the partial
+results (i.e., closed itemsets) already extracted by the other sub-processes.
+Hence, each sub-process can only prune part of its own search space by
+exploiting its ``local'' closed itemset list, while
+it cannot exploit the closed itemsets already mined by the other sub-processes.
+For instance, Task T2 in Figure~\ref{running_2} extracts the closed itemset $av$
+associated with node $TT|_{2, 3, 4}$.
+However, the same closed itemset is also mined by T1 while evaluating node
+$TT|_{1, 2, 3}$.
+In the centralized version of Carpenter, the duplicate version of $av$
+associated with node $TT|_{1, 2, 4}$ is not generated because $TT|_{1, 2, 4}$  follows
+$TT|_{1, 2, 3}$ in the depth first search, i.e., the tasks are serialized and
+not parallel.
+%\textbf{Fin qui vecchio con running example nuovo, rifrasare tutto?}
+Since pruning rule 3 has a high impact of the reduction of the search space, as detailed in Section~\ref{Experiments}, its
+inapplicability leads to a negative
+impact on the execution time of the distributed algorithm as described so far.
+To address this issue, we share partial results among the sub-processes.
+Each independent sub-process analyzes only a part of the search subspace, then, when a maximum number of visited node is reached, the partial results are synchronized through a synchronization phase. Of course, the exploration of the tree finishes also when the subspace has been completely explored.
+%Each sub-process analyzes only a part the search subspace, then, when memory is
+%full or when a maximum number of visited nodes is reached, it stores on disk
+%(e.g., in HDFS, the Hadoop distributed file system) the partial set of closed
+%itemset mined so far and the remaining sub-tree left to analyze.
+Specifically, the sync phase filters the partial results (i.e. nodes of the tree still to be analyzed and found closed itemsets) globally applying pruning rule 3. The pruning strategy consists of two phases.
+In the first one, all the transposed tables and the already found closed itemsets are analyzed. The transposed tables and the closed itemsets related to the same itemset are grouped together in a bucket. For instance, in our running example, each element of the bucket $B_{av}$ can be:
+\begin{itemize}
+\item a frequent closed itemset $av$ extracted during the subtree exploration of the node $TT_{3, 4}$, 
+\item a transposed table associated to the itemset $av$ among the ones that still have to be expanded (nodes  $TT_{1, 2, 3}$ and  $TT_{2, 3, 4}$).
+\end{itemize}
+We remind the readers that, because of the independent nature of the Carpenter subprocesses, the elements related to the same itemset can be numerous, because obtained in different subprocesses. Please note that all the extracted closed itemsets come toghether with the tidlist of the node in which they have been extracted.
+
+In the second phase, in order to respect the depth-first pruning strategy of the rule 3, for each bucket it is kept only the oldest element (transposed table or closed itemset) based on a depth-first order. The depth-first sorting of the elements can be easily obtained comparing the tidlists of the elements of the bucket. 
+Therefore, in our running example, as shown in Figure~\ref{running_3b}, from the bucket $B_{av}$, it is kept the node $TT_{1, 2, 3}$.
+
+
+Afterwards, a new set of sub-processes is defined from the filtered results, starting a new iteration of the algorithm. In the new iteration, the Carpenter tasks ignore the frequent closed itemsets obtained in the previous iteration, which are just processed in the synchronization phase. The Carpenter tasks process the remaining transposed tables, that are expanded, as before, until the maximum number of processed tables is reached. In order to enhance the effectiveness of the pruning rules related to the local Carpenter task, the tables are processed in a depth-first order. After that, as before, in the synchronization phase pruning rule 3 is applied.
+%A synchronization and pruning task works on the partial results
+%of the sub-processes to globally apply pruning rule 3
+%on the remaining search subspaces, i.e.,
+%on the remaining nodes of the enumeration tree.
+%After the application of the synchronization and pruning step,
+%a new set of sub-processes is defined,
+%for each remaining node of the enumeration tree.
+%that is a descendant of one of the nodes analyzed during the first iteration a
+%new process is instantiated and executed.
+The overall process is applied iteratively by instantiating new sub-processes
+and synchronizing their results,
+until there are no nodes left.
+The application of this approach to our running example is represented in 
+Figure~\ref{running_3}.
+The table related to the itemset \textit{av}
+associated with the tidlist/node \{2, 3, 4\} is pruned because the synchronization
+job discovers a previous table with the same itemset,
+i.e.  the node associated with the transaction ids combination \{1, 2, 3\}.
+The use of this approach allows the parallel execution of the mining process,
+providing at the same time a very high reliability dealing with heavy
+enumeration trees, which can be split and pruned according to pruning rule 3.
+
+% %\begin{comment}
+% %The base idea of our implementation is to partition the row enumeration tree in
+% separate chunks. Each chunk is processed by a different task allowing to explore
+% the tree in parallel. After a first phase in which the first level tables are
+% distributed to the tasks, in fact, all of them can expand the branches
+% independently to the end, running a local Carpenter implementation until all the
+% branches have been explored. A running example is illustrated in figure
+% \ref{running_2}. Unfortunately, this basic implementation carries out some
+% issues related to the pruning rules and robustness. Carpenter algorithm has two
+% features that makes it not perfectly suitable for a distributed implementation:
+% %\begin{enumerate}
+% %
+% %\item Pruning rule 3 supposes the presence of a global memory /
+% synchronization.
+% %\item The tree has to be explored in a depth first manner in order to exploit
+% the pruning rules.
+% %\end{enumerate}
+% %
+% %Both the issues are related to the pruning process. Precisely, the first issue
+% is related to a global synchronization among the nodes, which is not feasible in
+% a MapReduce environment. The second is related to the tree exploration manner:
+% even if each node expands each branch in a depth first fashion, the first level
+% of the tree (i.e. the tables that are distributed among the tasks) is mined in
+% parallel. The result is a not efficient exploitation of the pruning rules and,
+% consequently, the expansion of useless branches.
+% %The expansion of this type of branches leads to the mining of itemsets that
+% have already been found. The support of this set of itemset is not real because
+% each transposed tables keeps in the tidlists only the tids greater than the ones
+% on which the dataset is projected. The consequence is that time and memory are
+% wasted to produce redundant results. For example, in figure \ref{running_2},
+% Task T2 processes the itemset \textit{av} in the row set \{2 4\} which have been
+% already explored by Task T1 in row set \{1 2 3\}. Unfortunately, without a full
+% real time synchronization among the tasks (which is unfeasible in Hadoop), it is
+% not possible to completely solve these issues. \\
+% %Partitioning of the enumeration tree in chunks allows to process bigger
+% enumeration trees with respect to the centralized version. Even if the pruning
+% rules can be applied only locally, the size of the subtrees will be smaller than
+% the whole tree, decreasing the possibility of memory issues. Nevertheless, since
+% our aim is to be able to process datasets characterized by huge amount of
+% features, this solution is not acceptable.
+% %\\What this work proposes is an hybrid approach that improves the reliability
+% in case of high dimensional datasets and, at the same time, mitigates the
+% disadvantages of not having a full exploitation of the pruning rules. The main
+% idea is not letting each task to expand the branches to the very end of the
+% tree. The approach, instead, introduces an expansion threshold which, detecting
+% not enough memory or reaching an input given maximum number of table expansions,
+% stops the further expansion of an input table. When the threshold is reached,
+% the tables are not expanded anymore but written to the disk, along with the
+% closed itemsets already found. At this point of the algorithm, a purposely
+% developed job synchronizes the itemsets and the intermediate tables, discarding
+% the ones that are redundant. In this way, the pruning rule discarding all the
+% branches related to already found itemsets is partially restored. The redundancy
+% criterion is strictly related to a depth first exploration of the global
+% enumeration tree: for instance, the table characterized by the itemset
+% \textit{z} and row set \{2 3\}, is considered redundant with respect to the
+% closed itemsets \textit{z} found at the tree level \{1 3 4\}. The reason is that
+% \{1 3 4\} is previous than \{2 3\} in a depth first exploration. The application
+% of this approach to to our running example is represented in \ref{running_3}:
+% this time, the table related to the itemset \textit{av} in row set \{2 4\}, is
+% pruned because the synchronization job discovers previous table with the same
+% itemsets, i.e. in row set \{1 2 3 4\}.\\
+% %After this phase in which only the not redundant tables and the itemsets are
+% kept, the main Carpenter job iteratively restarts, expanding the tables until
+% the expansion threshold is reached or there are no more tables to expand. In
+% addition, from the second iteration, the Carpenter jobs do not take as input all
+% nodes of the tree belonging to the same level. Due to the local depth first
+% strategy adopted in the previous iteration, the tables to expand belong to
+% different levels of the tree, enhancing the effectiveness of the pruning rules.
+% %\\
+% %
+% %The synchronization job architecture carries the disadvantage of introducing an
+% iterative approach into a MapReduce environment, characterized by high overhead.
+% On the other hand it allows (i) to process bigger enumeration trees, splitting
+% the tree in both the dimensions; (ii) to prune useless branches found in the
+% synchronization step, which would waste time and memory, at the cost a very
+% MapReduce-like application (details in subsection \ref{MapReduce Carpenter}).
+% Finally, (iii) it also improves the load balancing of the algorithm: at each
+% iteration, the tables to expand are distributed again to the parallel tasks,
+% decreasing the possibility to assign greater branches to certain tasks and small
+% ones to others.\\
+% %One more interesting aspect of the implementation is the choice of the
+% expansion threshold. The parameter can be tuned from 1 which converts the tree
+% exploration in a complete breadth first manner, to an unlimited threshold, for
+% which the parallel exploration, if all the sub branches fit in memory, is the
+% one in Figure \ref{running_2}. A very high threshold would reduce the number of
+% jobs and, therefore, the related overhead cost of job launch and writing to disk
+% phases. On the other hand, it would less exploit the synchronization job aimed
+% to prune the useless branches. Finally, also the load balance is affected by the
+% expansion threshold: an high parameter would lead to less synchronization and,
+% consequently, less table redistribution with an increasing difference among the
+% tasks' wall clock times.
+% %
+% %
+% %{\bfseries Versione Paolo}
+% %Given the complete row set enumeration tree (see Figure~\ref{running_1}), the
+% traditional Carpenter algorithm
+% %extracts the whole set of closed itemsets by performing a depth first search
+% (DFS) of the row set enumeration tree.
+% %By tracing the set of closed mined by traversing the tree it also prunes part
+% of the search space by applying the three pruning rules
+% %described in Section~\ref{Carpenter algorithm}.
+% %To parallelize the Carpenter algorithm we propose to split the depth first
+% search process in a set of (partially) independent
+% %sub-processes that autonomously evaluate part of the search space.
+% %Specifically, the whole problem can be split by assigning
+% %each ``subspace'' rooted in $TT|_{x}$, where $x$ is a row id in the initial
+% dataset, to one independent
+% %sub-process. Each sub-process applies the in-memory version of Carpenter on its
+% X-conditional transposed table
+% %$TT|_{x}$ and extracts a subset of the complete closed itemset set. Finally,
+% the sets of closed itemsets mined by the sub-processes
+% %are merged to compute the whole closed itemset set. Since the sub-processes are
+% independent they can be executed in parallel by means of Hadoop.
+% %Figure~\ref{running_2} shows the application of the discussed approach on the
+% running example.
+% %Specifically, five independent sub-processes are executed in the case of the
+% running example because the number of rows of the dataset is five.
+% %
+% %This initial version of our algorithm allows parallelizing the Carpenter
+% algorithm. However, it does not allow exploiting, on the complete row
+% %set enumeration tree, pruning rule 3 because each sub-process works
+% independently and is not aware of the partial results (i.e., closed itemsets)
+% already extracted by the other processes. Hence, each sub-process can only prune
+% part of its own search sub-space by exploiting its ``local'' closed itemset set,
+% while
+% %it cannot exploit the closed itemsets already mined by the other sub-processes.
+% %For instance, Task T2 extracts the closed itemset $av$ associated with node
+% $TT|_{2,4}$. However, the same closed is also mined by T1
+% %while evaluating node $TT|_{1,2,3,4}$. In the
+% %centralized version of Carpenter the duplicate version of $av$ associated with
+% node $TT|_{2,4}$ is not generated because $TT|_{2,4}$  follows
+% %$TT|_{1,2,3,4}$ in the performed depth first search. The initial version of our
+% algorithm is not able to apply this pruning because T1 and T2 work
+% independently.
+% %Pruning rule 3 has a high impact of the reduction of the search space. Hence,
+% the inapplicability of pruning rule 3 globally have a negative impact on the
+% %execution time of the parallelized version of Carpenter.
+% %
+% %To overcome this problem,  we designed an advanced parallelized version of
+% Carpenter that shares partial results among the sub-processes.
+% %Analogously to the initial version described above, the advanced version
+% initially splits the whole search space in subspaces and assigns each of
+% %them to one sub-process. The splitting criteria is the same described above.
+% %However, in the advanced version of the algorithm, each sub-process analyses
+% only a part the search subspace that is assigned to it. Specifically,
+% %it analyses only the first part of the search space and then
+% stores/materializes on HDFS the partial set of closed itemset mined so far and
+% the information
+% %about the next/remaining subspaces to analyze and exits. Once all sub-processes
+% are ended a synchronization and pruning task, which exploits the merged version
+% %the partial results mined by the executed sub-processes, is executed to
+% globally apply pruning rule 3 on the current remaining search subspaces.
+% %After the application of the synchronization and pruning step, a set of new
+% sub-processes is defined. Specifically one sub-process
+% %for each of the not pruned search subspace is instantiated and executed. These
+% sub-processes, analogously to the initial ones, analyze
+% %only the initial part of their search space and then store the achieved
+% (partial) results on HDFS. At the end of these sub-processes the synchronization
+% %and pruning step is applied again. The loop continues until there are still
+% some search subspaces to analyze.
+% %
+% %Esempio....
+% %
+% %The use of this approach allows execution in parallel part of the mining
+% process but, at the same time, it allows also applying rule pruning 3
+% %approximately globally.
+% %\end{comment}
+
+\begin{figure}[!t]
+%\centering
+\includegraphics[width=3.5in]{running_example3_d_A.png}
+% where an .eps filename suffix will be assumed under latex,
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Execution of PaMPa-HD on the running example dataset. 
+For sake of clarity, pruning rules 1 and 2 are not
+applied. The dark nodes represent the node that have been written to hdfs in order to apply the synchronization job
+%
+%The red crosses on nodes represent that the nodes have been removed by the local pruning, e.g., 
+%the one on node \{2 4\} represents the pruning of node \{2 4\}.
+}
+\label{running_3}
+\end{figure}
+
+\begin{figure}[!t]
+%\centering
+\includegraphics[width=3.5in]{running_example3_d_B_quadretti.png}
+% where an .eps filename suffix will be assumed under latex,
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Execution of PaMPa-HD on the running example dataset. 
+For sake of clarity, pruning rules 1 and 2 are not
+applied. The big checked crosses on nodes represent the nodes which have been removed by the synchronization job, e.g., 
+the one on node \{2 3 4\} represents the pruning of node \{2 3 4\}.}
+\label{running_3b}
+\end{figure}
+
+%Each worker node does not
+%run Carpenter to the end but stops and writes intermediate results to the disk.
+%After that, the redundancy is deleted with a synchronization job and Carpenter
+%starts again from the filtered tables, handled in parallel by different tasks.
+

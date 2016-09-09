@@ -1,0 +1,101 @@
+
+
+Today's shift towards horizontal scaling in hardware has highlighted the
+need of distributed algorithms. Thus, we
+are witnessing the explosion of distributed and parallel approaches, often
+accompanied with cloud-based services (e.g. Platform-as-a-Service
+tools)~\cite{ApilettiBCCG13}.
+MapReduce~\cite{ArticoloMapReduceGoogle} can be considered the most popular
+approach of the past decade. Designed to cope with very large datasets,
+Hadoop~\cite{HDFS} is the most widely adopted MapReduce implementation.
+In the last couple of years, instead, Apache Spark~\cite{Zaharia_spark}
+has become the favourite platform for large scale data analytics,
+outperforming Hadoop
+performance thanks to its distributed memory abstraction. Hadoop and Spark are
+not the only frameworks supporting the parallelization of Data mining
+algorithms. GraphLab~\cite{graphlab}, Google Pregel~\cite{pregel} and its
+open-source counterpart Giraph~\cite{giraph} are fault-tolerant, graph-based
+framework while SimSQL~\cite{simsql}, for instance, exploits an SQL-based
+approach. Distributed systems are popular also because they became very easy to
+use: Message Passing Interface (MPI)~\cite{mpi}, one of the most adopted
+framework in academic environment, works efficiently only on very low level
+programming such as C.
+
+
+In this review we analyse and evaluate the most effective approaches developed
+on top of the Apache Hadoop~\cite{HDFS} and Spark~\cite{Zaharia_spark}
+frameworks.
+Thanks to their architecture which allows programmers to focus only on the
+algorithmic issues,
+leveraging the high level programming environment, these frameworks represent
+the current de-facto standard in the Big Data environment.
+Both of them support the MapReduce paradigm,
+a distributed programming model introduced by
+Google~\cite{ArticoloMapReduceGoogle}
+to support its data intensive processing.
+A MapReduce application consists of two main phases,
+whose names are map and reduce. The map
+function is fed with a shard of the input dataset on each node;
+after the processing it outputs one or more key-value couples.
+Map results are exchanged among the cluster nodes:
+this is the optional shuffle phase.
+Finally, the reduce phase is run for each unique key and iterates
+through the values that are associated with that key.
+
+%The main benefit of the paradigm is the optimized shuffle operation
+% that should be exploited to achieve the best performance.
+% Not all algorithms can be straightforward adapted to the MapReduce paradigm.
+% In~\cite{chu2007map}, the authors designed Statistical Query model
+% as a judging condition for an efficient and balanced implementation.
+
+Hadoop has become very popular in the last decades; it allows programmers not to
+concern about inter-process communication and low-level details but to focus on
+the problem to be solved. The success of Hadoop and MapReduce is due to the
+paradigm
+that shifts the computation to the data: thanks to the Hadoop Distributed File
+System (HDFS), it takes advantages of data locality allowing the nodes to
+process the data they store.
+The MapReduce paradigm is designed for batch processing:
+iterative processes do not fit efficiently since, often,
+each iteration requires a new reading phase from the disk.
+This feature is critical when dealing with huge datasets.
+This issue motivated the improvements introduced by Spark.
+Apache Spark is a general purpose in-memory
+distributed platform. It enables machines to cache data and intermediate results
+in memory, instead of reloading them from the disk at each iteration, through
+the introduction of Resilient Distributed Datasets (RDD). A RDD is a read-only,
+partitioned collection of records obtained from another RDD or from HDFS.
+RDDs can avoid on-disk materialization since their creation process,
+as a series of transformations (the lineage), is preserved,
+so that they can be recreated when needed, even if this is an expensive process.
+%Recreating from scratch RDDs can be resource intensive, so algorithms
+%characterised by asynchronous fine-grained processes can be slowed down.
+%However, Spark offers more use applications,
+Spark supports both graph and streaming processes, overcoming the
+limitations of the MapReduce batch-oriented paradigm, although maintaining a
+full
+compatibility with the latter.
+Adding flexibility beyond the two-stage model of
+MapReduce, Spark can provide complex Direct Acyclic Graph (DAG) data
+flows. Spark also supports different development languages, such as
+Java, Python and Scala, while Hadoop supports only Java.
+
+\subsection{Hadoop and Spark Machine Learning Libraries}
+In recent years the
+success of these distributed platforms was supported by the introduction of open
+source libraries of machine learning algorithms.
+%These are very precious for the academic world
+%since they allow researchers to save time for implementation or to use the
+%algorithms as reference baseline for further optimizations.
+% We strongly consider
+%the presence of these libraries as a real advantage of a framework.
+Mahout~\cite{Mahout} for Hadoop has represented one of the most popular
+collection of Machine Learning algorithms, containing implementations in the
+areas such as clustering, classification, recommendation systems, etc. All the
+current implementations are based on Hadoop MapReduce.
+MADlib~\cite{madlib},
+instead, provides a SQL toolkit of algorithms that run over Hadoop. Finally,
+MLLib~\cite{MLLib} is the Machine Learning library developed on Spark, and it is
+rapidly growing up. MLLib allows researchers to exploit Spark special features
+to implement all those applications that can benefit from them, e.g. fast
+iterative procedures.

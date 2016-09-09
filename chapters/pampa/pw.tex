@@ -1,0 +1,119 @@
+
+ \textbf{Already pruned redundant stuff}
+As already discussed, Frequent itemset mining represents a
+very popular data mining technique
+used for exploratory analysis.
+Its popularity is witnessed by the high number of approaches
+and implementations.
+The most popular techniques to extract frequent itemsets
+from a transactional datasets are Apriori~\cite{Agr94}, Fp-growth~\cite{Han00} and, even if less popular, Eclat~\cite{Zaki97newalgorithms}.
+%Apriori~\cite{Agr94} is a bottom up approach:
+%itemsets are extended one item at a time and their frequency is tested against
+%the dataset.
+%FP-growth~\cite{Han00}, instead, is based on an FP-tree transposition of the
+%transactional dataset
+%and a recursive divide-and-conquer approach.
+These techniques explore the search space enumerating the items.
+For this reason, they work very well for datasets
+with a small number of items per row,
+but their running time increases exponentially
+with higher row lengths~\cite{Agr94, Zaki97newalgorithms}.
+This behavior is directly inherited by their respective distributed implementations:
+Parallel FP-growth~\cite{pfpgrowth},~\cite{citeulike:13636750}, BigFIM and DistEclat~\cite{bigfim}.
+
+
+%These are not the only distributed and parallel implementations of Frequent Itemset miners.
+%\cite{qiu2014yafim} introduces another Apriori-based frequent
+%itemset miner. The contribution of this work is focused on the candidates
+%handling, which are cached in memory between each iteration.
+%In~\cite{zhang2015distributed}, a similar breadth-first approach is introduced, but with the exploitation of a matrix-based pruning in order to significantly reduce the amount of candidates. In~\cite{liang2015sequence}, the breadth-first exploration manner is combined
+%with the suffix-based candidate generation.\\
+%Finally, for the environments requiring very fast response, some sampling-based techniques have been presented~\cite{riondato2015mining},~\cite{gole2015frequent} and~\cite{Wu2015}. These works are characterized by getting a trade-off between execution time and quality of the results. \\
+%While the previous works have been designed for use cases characterized by
+%datasets with a large amount of transactions,
+As largely discussed, Carpenter algorithm~\cite{Zaki_Carpenter}, 
+has been specifically designed to extract frequent itemsets
+from high-dimensional datasets (in the order of tens of thousands or more attributes). A detailed introduction to the algorithm is presented in section \ref{Carpenter
+algorithm}.
+The idea of designing a parallel MapReduce algorithm to efficiently support
+itemset mining on high dimensional data was first introduced in~\cite{pampa_v1}.
+The PaMPa-HD algorithm significantly enhances the algorithm performance proposed in~\cite{pampa_v1}
+by providing (i) a more efficent approach to address synchronization phase, reducing the number of MapReduce jobs; (ii) a
+more efficient visit of the transposed tables; (iii) and a set of self-tuning strategies to speed up the performances through a dynamic modification of the $max\_exp$ parameter . Furthermore, this work introduces a wider set of experiment to evaluate, on real datasets, the impact of the number of transaction on the performance, but also communication costs and load balancing, very important in a distributed environment.
+
+Specifically, the original algorithm
+exploits an additional independent
+synchronization job at each iteration. As already described in
+Section~\ref{MapReduce Carpenter}, this implementation includes the
+synchronization phase in the Mining Job 3. Therefore, the number of MapReduce
+jobs (with their related overhead) are strongly reduced.
+Additionally, in order to better exploit the pruning rule in the local Carpenter
+iteration in each independent task, all the transposed tables are now processed
+(not only expanded) in depth-first order. This strategy decreases the
+possibility to explore an useless branch of the tree, i.e. a branch whose
+results would be completely overwritten by the closed itemsets obtained by
+branches older in depth-first fashion. For instance, the performance improvement from the previous version, measured with Breast Cancer Dataset (minsup=6) is from 6\% to 30\% (depending on the number of independent tasks).
+%
+%In recent years, the availability of Big Data technologies
+%allowed the implementation of these techniques in distributed environments
+%such as Apache Hadoop~\cite{HDFS},
+%based on the MapReduce paradigm~\cite{ArticoloMapReduceGoogle},
+%and Apache Spark~\cite{Zaharia_spark}.
+%Parallel FP-growth~\cite{pfpgrowth} is the most popular
+%distributed closed frequent itemset mining algorithm.
+%The main idea is to process more sub-FP-trees in parallel.
+%A dataset conversion is required to make all the FP-trees independent.
+%A Spark implementation of Parallel FP-growth has been delivered with MLlib
+%Library~\cite{citeulike:13636750}. This version extracts all the frequent
+%itemsets and not just the closed ones.
+%BigFIM and DistEclat~\cite{bigfim} are two recent methods to extract frequent
+%itemsets.
+%DistEclat represents a distributed implementation of the Eclat
+%algorithm~\cite{Zaki97newalgorithms}
+%an approach based on equivalence classes (groups of itemsets sharing the same
+%prefixes),
+%smartly merged to obtain all the candidates.
+%BigFIM is a hybrid approach exploiting both the Apriori and Eclat paradigms.
+%BigFIM and DistEclat are divided in two phases. In the first one, the approaches
+%use respectively an Apriori-like and Eclat-like strategy to mine the itemsets up
+%to a fixed k-length. After that, the itemsets are distributed and used as
+%prefixes for the longer itemsets. In the last phase, both
+%approaches use Eclat to extract all the closed itemsets.
+%In addition,~\cite{qiu2014yafim} introduces another Apriori-based frequent
+%itemset miner. The contribution of this work is focused on the candidates
+%handling, which are cached in memory between each iteration.
+%In~\cite{zhang2015distributed}, a similar breadth-first approach is introduced, but with the exploitation of a matrix-based pruning in order to significantly reduce the amount of candidates. In~\cite{liang2015sequence}, the breadth-first exploration manner is combined
+%with the suffix-based candidate generation.
+%Finally, for the environments requiring very fast response, some sampling-based techniques have been presented~\cite{riondato2015mining},~\cite{gole2015frequent} and~\cite{Wu2015}. These works are characterized by getting a trade-off between execution time and quality of the results. 
+%While the previous works have been designed for use cases characterized by
+%datasets with a large amount of transactions,
+%Carpenter algorithm~\cite{Zaki_Carpenter}, which inspired PaMPa-HD,
+%has been specifically designed to extract frequent itemsets
+%from high-dimensional datasets, i.e., characterized by a very large number of
+%attributes (in the order of tens of thousands or more).
+%The basic idea is to investigate the row set space instead of the itemset
+%space.
+%%A detailed introduction to the algorithm is presented in section \ref{Carpenter
+%%algorithm}.
+%The idea of designing a parallel MapReduce algorithm to efficiently support
+%itemset mining on high dimensional data was first introduced in~\cite{pampa_v1}.
+%The PaMPa-HD algorithm significantly enhances the algorithm performance proposed in~\cite{pampa_v1}
+%by providing (i) a more efficent approach to address synchronization phase, reducing the number of MapReduce jobs; (ii) a
+%more efficient visit of the transposed tables; (iii) and a set of self-tuning strategies to speed up the performances through a dynamic modification of the $max\_exp$ parameter . Furthermore, this work introduces a wider set of experiment to evaluate, on real datasets, the impact of the number of transaction on the performance, but also communication costs and load balancing, very important in a distributed environment.
+%
+%This work extends our previous work~\cite{pampa_v1}. The original algorithm
+%exploits an additional independent
+%synchronization job at each iteration. As already described in
+%Section\ref{MapReduce Carpenter}, this implementation includes the
+%synchronization phase in the Mining Job 3. Therefore, the number of MapReduce
+%jobs (with their related overhead) are strongly reduced.
+%Additionally, in order to better exploit the pruning rule in the local Carpenter
+%iteration in each independent task, all the transposed tables are now processed
+%(not only expanded) in depth-first order. This strategy decreases the
+%possibility to explore an useless branch of the tree, i.e. a branch whose
+%results would be completely overwritten by the closed itemsets obtained by
+%branches older in depth-first fashion. For instance, the performance improvement from the previous version, measured with Breast Cancer Dataset (minsup=6) is from 6\% to 30\% (depending on the number of independent tasks).
+%% mi sono riferito all'esperimento di scalabilità del precedente paper.
+
+
+

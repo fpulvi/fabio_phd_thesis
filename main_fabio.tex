@@ -7,8 +7,8 @@
 \documentclass[11pt, a4paper, oneside]{Thesis} % Paper size, default font size and one-sided paper
 \usepackage{lipsum}
 
-\usepackage[latin1]{inputenc}% per macchine Linux/Mac/UNIX/Windows; meglio utf8
-\usepackage[T1]{fontenc} % To insert directly < > =
+%\usepackage[latin1]{inputenc}% per macchine Linux/Mac/UNIX/Windows; meglio utf8
+%\usepackage[T1]{fontenc} % To insert directly < > =
 \usepackage{lmodern}
 
 \usepackage[expert]{mathdesign}
@@ -24,63 +24,90 @@
 \usepackage{enumitem}
 \setlist{parsep=0pt,listparindent=\parindent}
 
-%-------------- from Bike sharing paper  -----------------------------------------------------------------------------
-%\usepackage{subcaption}
+%%---------------from pampa-----------------
+\usepackage{amssymb}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{multirow}
+\usepackage{capt-of}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
 
-\newcommand{\BIKEDef}{{\cal ST}ation {\cal O}ccupancy {\cal P}redictor} 
-\newcommand{\BIKE}{STOP} 
-%------------------------------------------------------------------------------------------------------------------------------
+%%---------------from nemico-----------------
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\newcommand{\Nemico}{{\sc NeMiCo}} 
+\newcommand{\NemicoDef}{{\sc Ne}twork {\sc Mi}ning in the {\sc C}l{\sc o}ud} 
+
+\newcommand{\comment}[1]{} 
+
+%%-----------------from ispa
+\usepackage{epsfig}
+\usepackage{graphics}
+\usepackage{epstopdf}
+
+\newcommand{\SeTAB}{{\sc MGI-Cloud}}
+\newcommand{\SeTA}{{\sc M}isleading {\sc G}eneralized {\sc I}temset miner in the {\sc Cloud}}
+\newcommand{\MGI}{{\sc M}isleading {\sc G}eneralized {\sc I}temset}
+\newcommand{\Alg}{{\sc M}isleading {\sc G}eneralized {\sc I}temset {\sc M}iner}
 
 
-%-------------- from ESWA paper ----------------------------------------------------------------------------------------
-\usepackage{amsmath} % for insert equation including \binom{}{}
-\usepackage{multirow} % to insert multi rows inside table
-\usepackage{booktabs}
-
-\usepackage[]{algorithm2e}
-\usepackage{subfigure}
-
-
-\newtheorem{Definition}{Definition}[section]
-%\newcommand{\MLC}{{\sc M}{\sc L}{\sc C}} 
-\newcommand{\MLDA}{{\sc M}{\sc L}{\sc D}{\sc A}} 
-\newcommand{\MLDAdef}{{\sc M}ultiplel-{\sc L}evel {\sc D}ata {\sc A}nalysis}
-\newcommand{\MLCDef}{{\sc M}ultiplel-{\sc L}evel {\sc C}lustering}
-
-\newcommand{\comment}[1]{}
-%------------------------------------------------------------------------------------------------------------------------------
-
-%-------------- from ICHI paper ----------------------------------------------------------------------------------------
-\usepackage{multirow} % to insert multi rows inside table
-%\usepackage{cite}
-%------------------------------------------------------------------------------------------------------------------------------
-
-%--------------from CBMS paper  ----------------------------------------------------------------------------------------
-\newcommand{\CARPE}{{\sc CRP}}
-\newcommand{\CARPEdef}{{\sc C}ardiopulmonary {\sc R}esponse {\sc P}rediction}
-
-\newcommand{\MWL}{W$_{peak}$}
-\newcommand{\MWLQ}{$\widehat{\mbox{W}}_{peak,Q}$}
-\newcommand{\MWLT}{W$_{peak,\theta}$}
-
-\newcommand{\individual}{\textit{single-test}}
-\newcommand{\community}{\textit{multiple-test}}
-%------------------------------------------------------------------------------------------------------------------------------
-
-%--------------from Air Pollution paper  ----------------------------------------------------------------------------------------
-\newcommand{\frameworkDef}{{\sc GE}neralized {\sc C}orrelation analyzer of p{\sc O}llution data}
-\newcommand{\framework}{{\sc GECkO}} 
-%------------------------------------------------------------------------------------------------------------------------------
-
-%--------------from Spatio-Temporal twitter paper  ----------------------------------------------------------------------------------------
-\newcommand{\TTTlong}{{\sc T}witter {\sc Miner}} 
-\newcommand{\TTT}{{\sc TMiner}} 
-%------------------------------------------------------------------------------------------------------------------------------
-
-%--------------from Patient Flow paper  ----------------------------------------------------------------------------------------
-\newcommand{\TTTlongP}{\textit{PA}tient \textit{TR}ansfer \textit{AN}alysis} 
-\newcommand{\TTTP}{{\sc PATRAN}} 
-%------------------------------------------------------------------------------------------------------------------------------
+%%-------------- from Bike sharing paper  -----------------------------------------------------------------------------
+%%\usepackage{subcaption}
+%
+%\newcommand{\BIKEDef}{{\cal ST}ation {\cal O}ccupancy {\cal P}redictor} 
+%\newcommand{\BIKE}{STOP} 
+%%------------------------------------------------------------------------------------------------------------------------------
+%
+%
+%%-------------- from ESWA paper ----------------------------------------------------------------------------------------
+%\usepackage{amsmath} % for insert equation including \binom{}{}
+%\usepackage{multirow} % to insert multi rows inside table
+%\usepackage{booktabs}
+%
+%\usepackage[]{algorithm2e}
+%\usepackage{subfigure}
+%
+%
+%\newtheorem{Definition}{Definition}[section]
+%%\newcommand{\MLC}{{\sc M}{\sc L}{\sc C}} 
+%\newcommand{\MLDA}{{\sc M}{\sc L}{\sc D}{\sc A}} 
+%\newcommand{\MLDAdef}{{\sc M}ultiplel-{\sc L}evel {\sc D}ata {\sc A}nalysis}
+%\newcommand{\MLCDef}{{\sc M}ultiplel-{\sc L}evel {\sc C}lustering}
+%
+%\newcommand{\comment}[1]{}
+%%------------------------------------------------------------------------------------------------------------------------------
+%
+%%-------------- from ICHI paper ----------------------------------------------------------------------------------------
+%\usepackage{multirow} % to insert multi rows inside table
+%%\usepackage{cite}
+%%------------------------------------------------------------------------------------------------------------------------------
+%
+%%--------------from CBMS paper  ----------------------------------------------------------------------------------------
+%\newcommand{\CARPE}{{\sc CRP}}
+%\newcommand{\CARPEdef}{{\sc C}ardiopulmonary {\sc R}esponse {\sc P}rediction}
+%
+%\newcommand{\MWL}{W$_{peak}$}
+%\newcommand{\MWLQ}{$\widehat{\mbox{W}}_{peak,Q}$}
+%\newcommand{\MWLT}{W$_{peak,\theta}$}
+%
+%\newcommand{\individual}{\textit{single-test}}
+%\newcommand{\community}{\textit{multiple-test}}
+%%------------------------------------------------------------------------------------------------------------------------------
+%
+%%--------------from Air Pollution paper  ----------------------------------------------------------------------------------------
+%\newcommand{\frameworkDef}{{\sc GE}neralized {\sc C}orrelation analyzer of p{\sc O}llution data}
+%\newcommand{\framework}{{\sc GECkO}} 
+%%------------------------------------------------------------------------------------------------------------------------------
+%
+%%--------------from Spatio-Temporal twitter paper  ----------------------------------------------------------------------------------------
+%\newcommand{\TTTlong}{{\sc T}witter {\sc Miner}} 
+%\newcommand{\TTT}{{\sc TMiner}} 
+%%------------------------------------------------------------------------------------------------------------------------------
+%
+%%--------------from Patient Flow paper  ----------------------------------------------------------------------------------------
+%\newcommand{\TTTlongP}{\textit{PA}tient \textit{TR}ansfer \textit{AN}alysis} 
+%\newcommand{\TTTP}{{\sc PATRAN}} 
+%%------------------------------------------------------------------------------------------------------------------------------
 
 \usepackage{float} % to control the position of the picture with [H] added after \begin{figure}
 
@@ -216,12 +243,15 @@
 \chapter{Background}\label{background}
 \input{chapters/background}
 
-\chapter{Frequent Itemset Mining for Big Data: an experimental review}
-Analysis of the state of the art
-\chapter {Frequent Itemset Mining for High-Dimensional data}
-PaMPa-HD
-\chapter{Frequent Itemset Mining in Distributed Scalable Frameworks}
-\chapter{Misleading Generalized Itemsets}
+\chapter{Frequent Itemset Mining for Big Data: an experimental review}\label{survey}
+\input{chapters/survey/survey_itemset}
+\chapter {Frequent Itemset Mining for High-Dimensional data}\label{pampa}
+\input{chapters/pampa/extension_pampa}
+\chapter{Frequent Itemset Mining in Distributed Scalable Frameworks}\label{nemico}
+\input{chapters/nemico/nemico}
+%\chapter{Mining of Misleading Generalized Itemsets with Distributed Scalable frameworks}\label{mgi}
+\input{chapters/mgi/ispa}
+\chapter{Conclusion}\label{thesis_conclusion}
 
 
 
@@ -234,7 +264,7 @@ PaMPa-HD
 %\addcontentsline{toc}{chapter}{References}
 %%%%%% ESWA %%%%%%%%%
 \bibliographystyle{IEEEtran}
-\bibliography{BiblioESWA1,BiblioESWA2,BiblioICHI,BiblioCBMS,BiblioBikeSharing,BiblioAirPollution,BiblioSTtweets,BiblioPatientFlow}
+\bibliography{biblio,biblio_pampa,biblio_nemico,biblio_ispa}
 %%%%%%%%%%%%%%%%%%%
 \end{document}  
 \grid

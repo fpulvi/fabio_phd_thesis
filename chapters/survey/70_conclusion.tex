@@ -1,0 +1,73 @@
+
+In this Chapter, we presented an overview of the state-of-the-art frequent
+itemset mining algorithms
+whose source code is available for the most widespread distributed enviroments.
+As summarized in Table \ref{survey_recap}, we selected the two
+most popular distributed frameworks,
+Hadoop~\cite{HDFS} and Apache Spark~\cite{Zaharia_spark}, and 6 algorithms to
+address the itemset mining extraction on top of them.
+The selected algorithms have been discussed along four interesting dimensions,
+typical of both the algorithmic and the distributed computation worlds.
+The comparison has been performed on 14 synthetic datasets with
+different data distributions and 2 real datasets representing two interesting
+use-case scenarios.
+As throughly detailed in Section~\ref{lesson}, there is no clear winner:
+the most suitable approach varies based on the considered use case, data distribution, and parameter setting.
+Experimental results highlight that DistEclat
+is very efficient when the analysis can be effectively
+completed in main memory.
+BigFIM is more scalable with the number of dimensions,
+whereas MLlib PFP, instead, is affected by the average transaction length.
+Mahout PFP is less efficient but more reliable,
+as it scales to high dimensionality and cardinality,
+and low support thresholds.
+Above all, we have realized a concrete lack about the support of real high-dimensional datasets, being
+the analyzed algorithm in pain just with few dozens of dataset dimensions. In this direction, as detailed in Chapter~\ref{pampa}, we have focused our efforts.
+
+\textbf{Maybe move at the end in the conclusion}
+
+Although many critical limitations related
+to frequent itemset mining on distributed environments have been efficiently
+addressed by researchers in recent years, there are still several
+open issues that need to be addressed
+to allow frequent itemset mining become a cornerstone approach
+in big-data mining applications.
+Our vision of future research directions is
+summarized in the major open issues related to approaches able to automatically support the analyst
+in selecting the best algorithm and parameters and to the design of innovative and native distributed approaches.
+
+
+% %TANIA TOGLIERE TUTTO QUELLO CHE SEGUE
+% %Specifically, we presented a critical discussion and an experimental comparison
+% of the most efficient itemset mining algorithms run on either Hadoop or Spark
+% framework.
+% Because of the double nature of the topic, including both data
+% mining algorithms and distributed frameworks, we performed the comparative study
+% on 6 algorithms.After the discussion of the baseline centralized algorithms from
+% which the distributed implementations were inspired, we discussed the selected
+% algorithms by addressing typical issues of distributed enviroments such as
+% communication cost and load balance.
+% We have benchmarked the algorithms with different type of mining problems. We
+% have studied the performance of the approaches dealing with different values of
+% minimum support, different
+% transaction length, different expected patterns length and different number of
+% transactions. We have also evaluated the algorithms dealing with a real use
+% cases and, finally, from the point of view of load balancing. In this way, we
+% hope to support the reader in the choice of the algorithm which best fits his
+% requirements and use case features.
+
+%% The experiments showed that DistEclat has the best performance when it does
+%not run of memory. In addition has very good performances when dealing with a
+%high number of attributes or long expected frequent patterns. DistEclat proved
+%to be very fast but it likely runs out of memory when dealing with huge amount
+%of data. Mahout PFP showed very interesting performances in almost all the use
+%cases, except when dealing with very low minsup values. MLLib PFP, instead,
+%proved to be most reliable approach when dealing with almost all the use cases.
+%It showed some memory issues with very sparse distribution but it proved to be
+%very efficient in the real life use cases. Since it also demonstrated to be the
+%very balanced in the distribution of the work among the nodes, we consider it
+%the most promising approach for general use cases. In addition, it is the newest
+%algorithm of the tested group of approach, so it is also the least mature and
+%will be likely improved by MLlib community. %For long transactions or sparse
+%datasets, instead, we consider BigFIM the most suitable approach, even because
+%of its fair load balance behaviour.

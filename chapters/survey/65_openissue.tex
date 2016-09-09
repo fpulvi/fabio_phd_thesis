@@ -1,0 +1,66 @@
+
+Following the analysis of the state-of-the-art in frequent itemset mining
+algorithms for distributed computing frameworks, and the in-depth experimental
+evaluation discussed in Section~\ref{experimental},
+we can deduce that different efficient and scalable
+algorithms have been designed and developed during the last years.
+However, despite the technological advancements, there is still room for
+improvements. Specifically,
+some open problems, summarized below, should be addressed to support
+a more effective and efficient data mining process on Big Data collections.
+
+\textbf{Algorithm selection.}
+Many algorithms have been proposed in literature
+to efficiently extract correlations among data in the form of frequent itemsets,
+as discussed in this review.
+However, to apply one of the above algorithms for the analysis of a given
+dataset, the analyst needs to identify
+the best algorithm suitable for her use case,
+able to efficiently deal with the
+underlying data characteristics.
+The selection process is mainly based on the analyst expertise and must be
+handpicked for a given dataset.
+Thus, innovative and effective techniques that can intelligently and
+automatically support the analyst in the identification of the best algorithm
+for the current use case analysis are needed.
+
+\textbf{Parameter setting.}
+The performance of the available algorithms to extract frequent
+itemsets depends on the choice of the input parameters, like the support
+threshold, which dramatically impacts the execution time based on the data
+distribution characteristics. The optimal trade-off between execution time and
+result accuracy must be manually selected for any given application, based on
+the
+analysts expertise.
+To extract meaningful and interesting itemsets while maintaining the
+number of extracted results within manageable limits, a large number of
+experiments should be performed and the results
+manually evaluated by domain experts.
+The whole process is time consuming and requires a considerable
+amount of effort and skills. Thus, new scalable approaches
+capable of self-configuring to automatically extract actionable
+knowledge from massive data repositories
+are needed.
+
+\textbf{Missing support for really high-dimensional datasets}
+The performance analysis have included a mining experiments on datasets with 
+up to 100 dimensions. Even if BigFIM has outperformed the competitors, its performances
+are still very weak for low minimum support values. On the other hand, 100-features dataset certainly
+do not represent a state-of-the-art high dimensional problem, which can be instead characterized by thousands of million of dimensions.
+Thus, arises from the review is a concrete lack of a real scalable implementation which focus on the number of
+items per transaction. 
+
+\textbf{Full exploitation of computational capabilities of distributed
+frameworks.}
+Up to now, data mining algorithms have been mainly designed to be
+optimized when running on centralized architectures.
+Furthermore, recursive primitives cannot be easily translated into
+distributed approaches,
+thus the efficiency of the current distributed
+implementations are limited.
+There is room for novel approaches natively
+designed to be distributed, able to efficiently address the itemset
+mining discovery and to fully exploit computational capabilities of
+distributed frameworks.
+
+

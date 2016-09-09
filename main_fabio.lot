@@ -1,5 +1,21 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Overview of valution criteria. \relax }}{16}{table.caption.34}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Resume of the theoretical and experimental analysis\relax }}{16}{table.caption.35}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Algorithm comparison summary. \relax }}{17}{table.caption.37}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Synthetic datasets\relax }}{23}{table.caption.45}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Real-life use-cases dataset characteristics\relax }}{28}{table.caption.53}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Delicious dataset: cumulative number of transactions and frequent itemsets with $minsup$\nobreakspace {}0.01\%.\relax }}{29}{table.caption.55}
+\contentsline {table}{\numberline {3.7}{\ignorespaces Network traffic flows: number of transactions and frequent itemsets with $minsup$\nobreakspace {}0.1\%.\relax }}{31}{table.caption.60}
+\contentsline {table}{\numberline {3.8}{\ignorespaces Summary of the limits identified by the experimental evaluation of the algorithms (lowest $minsup$, maximum transaction length, largest dataset cardinality). The faster algorithm for each experiment is marked in bold. \relax }}{38}{table.caption.71}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Datasets\relax }}{57}{table.caption.104}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Load Balancing\relax }}{60}{table.caption.109}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Strategies\relax }}{62}{table.caption.111}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Strategies performance\relax }}{62}{table.caption.112}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Load Balancing\relax }}{70}{table.caption.131}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces {\sc M}isleading {\sc G}eneralized {\sc I}temset{}s mined from $\cal {D}$. min\_sup = 10\%, max\_neg\_cor= 0.70, min\_pos\_cor= 0.80, and max\_NOD = 80\%.\relax }}{78}{table.caption.145}
+\contentsline {table}{\numberline {5.2}{\ignorespaces {\sc M}isleading {\sc G}eneralized {\sc I}temset{}s mined from $\cal {D}$. min\_sup = 10\%, max\_neg\_cor= 0.70, min\_pos\_cor= 0.80, and max\_NOD = 80\%.\relax }}{78}{table.caption.146}
 \addvspace {10\p@ }

@@ -1,0 +1,22 @@
+set terminal postscript eps monochrome "Arial" 18
+set output 'graficoSpeedup.eps'
+set size 0.7,0.5
+set xlabel 'Number of nodes'
+set ylabel 'Speedup'
+#set key below box
+set grid y
+
+set style data boxes
+set boxwidth 1
+
+set yrange [0:5]
+set xrange [0:6]
+
+
+set ytics 0.5
+set xtics ("1 node" 1, "3 nodes" 3, "5 nodes" 5)  
+
+plot "datiSpeedup.dat" notitle lt 1 fs solid 0.7
+
+#, "datiNumItemsetsDatasetCPUs.dat" using ($1):3 title "D24cores" lt 1 fs solid 0.2, "datiNumItemsetsDatasetCPUs.dat" using ($1+0.50):4 title "D32cores" lt 1 fs pattern 6
+

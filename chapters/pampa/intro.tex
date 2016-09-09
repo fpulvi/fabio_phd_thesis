@@ -1,0 +1,86 @@
+In the last years, the increasing capabilities of recent applications
+to produce and store huge amounts of information,
+the so called "Big Data"~\cite{Jin201559}, have changed dramatically
+the importance of the intelligent analysis of data.
+Data mining, together with machine learning~\cite{DBLP:journals/bdr/Al-JarrahYMKT15}, 
+is considered
+one of the fondamental tools on which Big Data analytics
+are based.
+In both academic and industrial domains, the interest towards data mining,
+which focuses on extracting effective and usable knowledge from large
+collections of data, has risen.
+The need for efficient and highly scalable data mining tools increases with the
+size of the datasets,
+as well as their value for businesses and researchers aiming at extracting
+meaningful insights increases.\\
+Frequent (closed) itemset mining is among the most complex exploratory
+techniques in data mining.
+It is used to discover frequently co-occurring items
+according to a user-provided frequency threshold, called minimum support.
+Existing mining algorithms revealed to be very efficient on simple datasets
+but very resource intensive in Big Data contexts.
+In general, the application of data mining techniques to Big Data collections
+is characterized by the need of huge amount of resources.
+For this reason, we are witnessing the explosion of parallel and distributed
+approaches,
+typically based on distributed frameworks, such as Apache Hadoop~\cite{HDFS}
+and Spark~\cite{Zaharia_spark}.
+Unfortunately, most of the scalable distributed techniques
+for frequent itemset mining have been designed to cope with datasets
+characterized by few items per transaction (low dimensionality, short
+transactions),
+focusing, on the contrary, on very large datasets in terms of number of
+transactions.
+Currently, only single-machine implementations exist to address very long
+transactions,
+such as Carpenter~\cite{Zaki_Carpenter}, and no distributed implementations at
+all.\\
+%Nevertheless, many researchers in scientific domains such as bioinformatics or
+%networking,
+%often require to deal with this type of data.
+Nevertheless, many scientific applications, such as bioinformatics or networking, 
+generate a large number of events characterized by a variety of features.
+Thus, high-dimensional datasets have been continuosly generated.
+For instance, most gene expression datasets are characterized by
+a huge number of items (related to tens of thousands of genes)
+and a few records (one transaction per patient or tissue).
+Many applications in computer vision deal with high-dimensional data, such as
+face recognition.
+An increasing portion of big data is actually related to geospatial data~\cite{Lee201574} and
+smart-cities. Some studies have built this type of large datasets
+measuring the occupancy of different car lanes:
+each transaction describes the occupancy rate in a captor location and in a
+given timestamp~\cite{PEMSDataset}.
+In the networking domain, instead,
+the heterogeneous environment provides many different datasets
+characterized by high-dimensional data,
+such as URL reputation, advertising, and social network
+datasets~\cite{snapnets}.
+To effectively deal with those high-dimensional datasets,
+novel and distributed approaches are needed.
+
+This work introduces PaMPa-HD \cite{pampa_v1},
+a parallel MapReduce-based frequent closed itemset mining algorithm
+for high-dimensional datasets.
+PaMPa-HD relies on the Carpenter algorithm~\cite{Zaki_Carpenter}. 
+The PaMPa-HD design\footnote{The source code of PaMPa-HD can be downloaded from https://github.com/fabiopulvi/PaMPa-HD},through an ad-hoc synchronization technique, takes into account crucial design aspects,
+such as load balancing and robustness to memory-issues. Furthermore, different strategies have been proposed to easily tune up the parameter configuration.
+The algorithm has been thoroughly evaluated on real high dimensional datasets. 
+PaMPa-HD outperforms the state-of-the-art distributed approaches
+in execution time and by supporting lower minimum support threshold. 
+
+
+The paper is organized as follows:
+Section~\ref{Preliminaries} introduces the frequent (closed) itemset mining
+problem,
+Section~\ref{Carpenter algorithm} briefly describes the centralized version
+of Carpenter,
+and Section~\ref{Distributed implementation outline} presents the proposed
+PaMPa-HD algorithm.
+Section~\ref{Experiments} describes the experimental evaluations
+proving the effectiveness of the proposed technique,
+Section~\ref{Related work} presents a brief review of the state of the art,
+and Section~\ref{Applications} discusses possible applications of PaMPa-HD.
+Finally, Section~\ref{Conclusion} introduces future works and conclusions.
+
+

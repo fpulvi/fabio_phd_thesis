@@ -1,0 +1,205 @@
+\relax 
+\Newlabel{label1}{a}
+\Newlabel{label2}{b}
+\citation{Jin201559}
+\citation{DBLP:journals/bdr/Al-JarrahYMKT15}
+\citation{HDFS}
+\citation{Zaharia_spark}
+\citation{Zaki_Carpenter}
+\citation{Lee201574}
+\citation{PEMSDataset}
+\citation{snapnets}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
+\newlabel{Introduction}{{1}{2}}
+\citation{pampa_v1}
+\citation{Zaki_Carpenter}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Frequent itemset mining background}{4}}
+\newlabel{Preliminaries}{{2}{4}}
+\newlabel{horizontalexampledataset}{{1a}{5}}
+\newlabel{sub@horizontalexampledataset}{{(a)}{a}}
+\newlabel{TTexampledataset}{{1b}{5}}
+\newlabel{sub@TTexampledataset}{{(b)}{b}}
+\newlabel{conditionalexampledataset}{{1c}{5}}
+\newlabel{sub@conditionalexampledataset}{{(c)}{c}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Running example dataset $\mathcal  {D}$}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Horizontal representation of $\mathcal {D}$}}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Transposed representation of $\mathcal {D}$}}}{5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$TT|_{\{2,3\}}$: example of con\discretionary {-}{}{}di\discretionary {-}{}{}tio\discretionary {-}{}{}nal tran\discretionary {-}{}{}spo\discretionary {-}{}{}sed table}}}{5}}
+\newlabel{exampledataset}{{1}{5}}
+\citation{KumarBook}
+\citation{Zaki_Carpenter}
+\citation{Agr94}
+\citation{Han00}
+\citation{Zaki_Carpenter}
+\citation{Zaki_Carpenter}
+\@writefile{toc}{\contentsline {section}{\numberline {3}The Carpenter algorithm}{7}}
+\newlabel{Carpenter algorithm}{{3}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The transaction enumeration tree of the running example dataset in Figure\nobreakspace  {}1a\hbox {}. For the sake of clarity, no pruning rules are applied to the tree.}}{8}}
+\newlabel{running_1}{{2}{8}}
+\citation{Zaki_Carpenter}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The PaMPa-HD algorithm}{11}}
+\newlabel{Distributed implementation outline}{{4}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Running toy example: each node expands a branch of the tree independently. For the sake of clarity, pruning rule 1 and 2 are not applied. The pruning rule 3 is applied only within the same task: the small crosses on the edges represent pruned nodes due to local pruning rule 3, e.g. the one on node \{2 4\} represents the pruning of node \{2 4\}.}}{12}}
+\newlabel{running_2}{{3}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Implementation details}{16}}
+\newlabel{MapReduce Carpenter}{{4.1}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Execution of PaMPa-HD on the running example dataset. For the sake of clarity, pruning rules 1 and 2 are not applied. The dark nodes represent the nodes that have been written to HDFS in order to apply the synchronization job.}}{17}}
+\newlabel{running_3}{{4}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Execution of PaMPa-HD on the running example dataset. For the sake of clarity, pruning rules 1 and 2 are not applied. The big checked crosses on nodes represent the nodes which have been removed by the synchronization job, e.g., the one on node \{2 3 4\} represents the pruning of node \{2 3 4\}.}}{18}}
+\newlabel{running_3b}{{5}{18}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces PaMPa-HD at a glance}}{19}}
+\newlabel{alg1}{{1}{19}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Dataset distribution and local and partial Carpenter execution (Job 1)}}{21}}
+\newlabel{job1}{{2}{21}}
+\newlabel{TTexampledataset_}{{6a}{22}}
+\newlabel{sub@TTexampledataset_}{{(a)}{a}}
+\newlabel{key-value}{{6b}{22}}
+\newlabel{sub@key-value}{{(b)}{b}}
+\newlabel{key-value 3}{{6c}{22}}
+\newlabel{sub@key-value 3}{{(c)}{c}}
+\newlabel{composed_tt}{{6d}{22}}
+\newlabel{sub@composed_tt}{{(d)}{d}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Job 1 applied to the running example dataset ($minsup=1$): local Carpenter algorithm is run from the Transposed Table 6d\hbox {}. }}{22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Transposed representation of $\mathcal {D}$: tidlist of item $a$}}}{22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Emitted key-value entries from the example row in Table 1b\hbox {} }}}{22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {key-value entries for key $3$}}}{22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {$TT|_{\{3\}}$: composed with the received values}}}{22}}
+\newlabel{examplejob1}{{6}{22}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Synchronization Phase and exploitation of the pruning rule 3 (Job 2)}}{25}}
+\newlabel{job2}{{3}{25}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Interleaving of the Carpenter execution and synchronization phase (Job 3)}}{26}}
+\newlabel{job3}{{4}{26}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{26}}
+\newlabel{Experiments}{{5}{26}}
+\citation{uci}
+\citation{pems}
+\citation{breast_cancer_dataset}
+\citation{Zaki_Carpenter}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Datasets}}{28}}
+\newlabel{datasets}{{1}{28}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Impact of the maximum expansion threshold}{28}}
+\newlabel{exp_fisso}{{5.1}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Execution time and number of iterations for different $max\_exp$ values on PEMS-SF dataset with $minsup$=10. }}{30}}
+\newlabel{pems_fixed}{{7}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Execution time and number of iterations for different $max\_exp$ values on Breast Cancer dataset with $minsup$=5. }}{31}}
+\newlabel{breast_fixed}{{8}{31}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Load Balancing}}{32}}
+\newlabel{load balance breast}{{2}{32}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Self-tuning strategies}{32}}
+\newlabel{exp_strategies}{{5.2}{32}}
+\citation{Jacobson:1988:CAC:52325.52356}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Strategies}}{35}}
+\newlabel{table_strategies}{{3}{35}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Strategies performance}}{36}}
+\newlabel{strategies_perf}{{4}{36}}
+\citation{pfpgrowth}
+\citation{mahout2}
+\citation{Han00}
+\citation{bigfim}
+\citation{Zaki97newalgorithms}
+\citation{bigfim}
+\citation{Agr94}
+\citation{uci}
+\citation{bigfim}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Execution time}{37}}
+\newlabel{running_time}{{5.3}{37}}
+\citation{breast_cancer_dataset}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Execution time for different Minsup values on the PEMS-SF dataset (100-rows).}}{39}}
+\newlabel{pems_confronto}{{9}{39}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Impact of the number of transactions}{39}}
+\newlabel{number_rows}{{5.4}{39}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Execution time for different Minsup values on the Breast Cancer dataset.}}{40}}
+\newlabel{breast_confronto}{{10}{40}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Execution times for different versions of PEMS-SF for PaMPa-HD.}}{41}}
+\newlabel{pampa_pems_confronto}{{11}{41}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Impact of the number of nodes}{42}}
+\newlabel{scalability}{{5.5}{42}}
+\citation{Sarma:2013:ULB:2535570.2488334}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Execution times for PEMS-SF dataset with different number of parallel tasks.}}{43}}
+\newlabel{scalability_img_pems}{{12}{43}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Load Balancing and communication costs}{43}}
+\newlabel{communication_cost}{{5.6}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Execution times for Breast Cancer dataset with different number of parallel tasks.}}{44}}
+\newlabel{scalability_img_breast}{{13}{44}}
+\citation{Agr94}
+\citation{Han00}
+\citation{Agr94,Zaki97newalgorithms}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Received and sent data in the commodity cluster network during PEMS-SF dataset mining, minsup=20.}}{46}}
+\newlabel{comm_cost_pems}{{14}{46}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related work}{46}}
+\newlabel{Related work}{{6}{46}}
+\citation{HDFS}
+\citation{ArticoloMapReduceGoogle}
+\citation{Zaharia_spark}
+\citation{pfpgrowth}
+\citation{citeulike:13636750}
+\citation{bigfim}
+\citation{Zaki97newalgorithms}
+\citation{qiu2014yafim}
+\citation{zhang2015distributed}
+\citation{liang2015sequence}
+\citation{riondato2015mining}
+\citation{gole2015frequent}
+\citation{Wu2015}
+\citation{Zaki_Carpenter}
+\citation{pampa_v1}
+\citation{pampa_v1}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Received and sent data in the commodity cluster network during Breast Cancer dataset mining, minsup=6.}}{47}}
+\newlabel{comm_cost_breast}{{15}{47}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Load Balancing}}{48}}
+\newlabel{load balance final}{{5}{48}}
+\citation{pampa_v1}
+\citation{Vimieiro20141}
+\citation{Bermejo201235}
+\citation{KamsuFoguem20131034}
+\citation{Nahar20131086}
+\citation{Tstat}
+\citation{netflow}
+\citation{trustcom2013}
+\citation{fontas_AR}
+\citation{Netmine}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Applications}{50}}
+\newlabel{Applications}{{7}{50}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{51}}
+\newlabel{Conclusion}{{8}{51}}
+\bibstyle{elsarticle-num_modified}
+\bibdata{biblio}
+\bibcite{Jin201559}{{1}{}{{}}{{}}}
+\bibcite{DBLP:journals/bdr/Al-JarrahYMKT15}{{2}{}{{}}{{}}}
+\bibcite{HDFS}{{3}{}{{}}{{}}}
+\bibcite{Zaharia_spark}{{4}{}{{}}{{}}}
+\bibcite{Zaki_Carpenter}{{5}{}{{}}{{}}}
+\bibcite{Lee201574}{{6}{}{{}}{{}}}
+\bibcite{PEMSDataset}{{7}{}{{}}{{}}}
+\bibcite{snapnets}{{8}{}{{}}{{}}}
+\bibcite{pampa_v1}{{9}{}{{}}{{}}}
+\bibcite{KumarBook}{{10}{}{{}}{{}}}
+\bibcite{Agr94}{{11}{}{{}}{{}}}
+\bibcite{Han00}{{12}{}{{}}{{}}}
+\bibcite{uci}{{13}{}{{}}{{}}}
+\bibcite{pems}{{14}{}{{}}{{}}}
+\bibcite{breast_cancer_dataset}{{15}{}{{}}{{}}}
+\bibcite{Jacobson:1988:CAC:52325.52356}{{16}{}{{}}{{}}}
+\bibcite{pfpgrowth}{{17}{}{{}}{{}}}
+\bibcite{mahout2}{{18}{}{{}}{{}}}
+\bibcite{bigfim}{{19}{}{{}}{{}}}
+\bibcite{Zaki97newalgorithms}{{20}{}{{}}{{}}}
+\bibcite{Sarma:2013:ULB:2535570.2488334}{{21}{}{{}}{{}}}
+\bibcite{ArticoloMapReduceGoogle}{{22}{}{{}}{{}}}
+\bibcite{citeulike:13636750}{{23}{}{{}}{{}}}
+\bibcite{qiu2014yafim}{{24}{}{{}}{{}}}
+\bibcite{zhang2015distributed}{{25}{}{{}}{{}}}
+\bibcite{liang2015sequence}{{26}{}{{}}{{}}}
+\bibcite{riondato2015mining}{{27}{}{{}}{{}}}
+\bibcite{gole2015frequent}{{28}{}{{}}{{}}}
+\bibcite{Wu2015}{{29}{}{{}}{{}}}
+\bibcite{Vimieiro20141}{{30}{}{{}}{{}}}
+\bibcite{Bermejo201235}{{31}{}{{}}{{}}}
+\bibcite{KamsuFoguem20131034}{{32}{}{{}}{{}}}
+\bibcite{Nahar20131086}{{33}{}{{}}{{}}}
+\bibcite{Tstat}{{34}{}{{}}{{}}}
+\bibcite{netflow}{{35}{}{{}}{{}}}
+\bibcite{trustcom2013}{{36}{}{{}}{{}}}
+\bibcite{fontas_AR}{{37}{}{{}}{{}}}
+\bibcite{Netmine}{{38}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers

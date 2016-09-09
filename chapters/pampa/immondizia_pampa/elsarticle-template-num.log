@@ -1,0 +1,719 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.4.15)  30 MAR 2016 16:07
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**elsarticle-template-num.tex
+(./elsarticle-template-num.tex
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(d:/texlive/2014/texmf-dist/tex/latex/elsarticle/elsarticle.cls
+Document Class: elsarticle 2009/09/17, 1.2.0: Elsevier Ltd
+\@bls=\dimen102
+(d:/texlive/2014/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(d:/texlive/2014/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen103
+)
+(d:/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(d:/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(d:/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(d:/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(d:/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(d:/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+(d:/texlive/2014/texmf-dist/tex/latex/psnfss/pifont.sty
+Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+
+(d:/texlive/2014/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+(d:/texlive/2014/texmf-dist/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+\c@tnote=\count88
+\c@fnote=\count89
+\c@cnote=\count90
+\c@ead=\count91
+\c@author=\count92
+\@eadauthor=\toks15
+\c@affn=\count93
+\absbox=\box26
+\keybox=\box27
+\Columnwidth=\dimen106
+\space@left=\dimen107
+\els@boxa=\box28
+\els@boxb=\box29
+\leftMargin=\dimen108
+\@enLab=\toks16
+\@sep=\skip43
+\@@sep=\skip44
+
+(./elsarticle-template-num.spl)
+(d:/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip45
+\bibsep=\skip46
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count94
+)
+\splwrite=\write3
+\openout3 = `elsarticle-template-num.spl'.
+
+)
+(d:/texlive/2014/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(d:/texlive/2014/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(d:/texlive/2014/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(d:/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen109
+\captionmargin@=\dimen110
+\captionwidth=\dimen111
+\caption@tempdima=\dimen112
+\caption@indent=\dimen113
+\caption@parindent=\dimen114
+\caption@hangindent=\dimen115
+)
+\c@KVtest=\count95
+\sf@farskip=\skip47
+\sf@captopadj=\dimen116
+\sf@capskip=\skip48
+\sf@nearskip=\skip49
+\c@subfigure=\count96
+\c@subfigure@save=\count97
+\c@lofdepth=\count98
+\c@subtable=\count99
+\c@subtable@save=\count100
+\c@lotdepth=\count101
+\sf@top=\skip50
+\sf@bottom=\skip51
+)
+(d:/texlive/2014/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen117
+)
+(d:/texlive/2014/texmf-dist/tex/latex/capt-of/capt-of.sty
+Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
+)
+(d:/texlive/2014/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(d:/texlive/2014/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(d:/texlive/2014/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count102
+\c@ALG@rem=\count103
+\c@ALG@nested=\count104
+\ALG@tlm=\skip52
+\ALG@thistlm=\skip53
+\c@ALG@Lnr=\count105
+\c@ALG@blocknr=\count106
+\c@ALG@storecount=\count107
+\c@ALG@tmpcounter=\count108
+\ALG@tmplength=\skip54
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (./elsarticle-template-num.aux
+
+LaTeX Warning: Label `TTexampledataset' multiply defined.
+
+
+LaTeX Warning: Label `sub@TTexampledataset' multiply defined.
+
+
+LaTeX Warning: Label `job2' multiply defined.
+
+)
+\openout1 = `elsarticle-template-num.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+ (d:/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count109
+\scratchdimen=\dimen118
+\scratchbox=\box30
+\nofMPsegments=\count110
+\nofMParguments=\count111
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen119
+\MPnumerator=\count113
+\makeMPintoPDFobject=\count114
+\everyMPtoPDFconversion=\toks19
+) (d:/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(d:/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(d:/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(d:/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(d:/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(d:/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+(./abstract.tex)
+LaTeX Font Info:    Try loading font information for U+msa on input line 116.
+ (d:/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 116.
+
+(d:/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (./intro.tex [1
+
+
+{d:/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2])
+(./preliminaries.tex [3] [4]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 79.
+
+(d:/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 79.
+
+Overfull \hbox (6.62506pt too wide) in paragraph at lines 83--86
+[]\OT1/cmr/m/n/12 Given a trans-ac-tional dataset $\OMS/cmsy/m/n/12 D$ \OT1/cmr
+/m/n/12 and a min-i-mum sup-port thresh-old $\OML/cmm/m/it/12 minsup$\OT1/cmr/m
+/n/12 ,
+ []
+
+[5]) (./centralizedcarpenter.tex [6]
+<running_example1.png, id=37, 472.164pt x 716.4366pt>
+File: running_example1.png Graphic file (type png)
+
+<use running_example1.png>
+Package pdftex.def Info: running_example1.png used on input line 22.
+(pdftex.def)             Requested size: 252.94499pt x 383.80907pt.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
+ [7] [8 <./running_example1.png>]
+<running_example2_d.png, id=47, 476.982pt x 716.4366pt>
+File: running_example2_d.png Graphic file (type png)
+
+<use running_example2_d.png>
+Package pdftex.def Info: running_example2_d.png used on input line 100.
+(pdftex.def)             Requested size: 252.94499pt x 379.92824pt.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 105.
+) (./distrimpl.tex [9] [10 <./running_example2_d.png>] [11] [12] [13] <running_
+example3_d_A.png, id=65, 476.982pt x 716.4366pt>
+File: running_example3_d_A.png Graphic file (type png)
+
+<use running_example3_d_A.png>
+Package pdftex.def Info: running_example3_d_A.png used on input line 260.
+(pdftex.def)             Requested size: 252.94499pt x 379.92824pt.
+
+<running_example3_d_B.png, id=66, 476.982pt x 716.4366pt>
+File: running_example3_d_B.png Graphic file (type png)
+
+<use running_example3_d_B.png>
+Package pdftex.def Info: running_example3_d_B.png used on input line 276.
+(pdftex.def)             Requested size: 252.94499pt x 379.92824pt.
+) [14 <./running_example3_d_A.png>]
+Overfull \vbox (470.09471pt too high) has occurred while \output is active []
+
+
+[15 <./running_example3_d_B.png>] (./impldetails.tex
+Overfull \hbox (1.04884pt too wide) in paragraph at lines 1--3
+[]\OT1/cmr/m/n/12 PaMPa-HD im-ple-men-ta-tion ex-ploits Hadoop MapRe-duce.z The
+ al-go-rithm
+ []
+
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 11.
+(d:/texlive/2014/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 11.
+Missing character: There is no Ã in font cmbx12!
+Missing character: There is no ¨ in font cmbx12!
+Missing character: There is no Ã in font cmbx12!
+Missing character: There is no ¨ in font cmbx12!
+Missing character: There is no Ã in font cmbx12!
+Missing character: There is no   in font cmbx12!
+ [16] [17] [18]
+
+LaTeX Warning: Command \textless invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 200.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 200.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--299
+[]\OT1/cmr/m/n/10 (b) |Emit-ted key-
+ []
+
+[19]
+
+LaTeX Warning: Command \textless invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+[20]
+Overfull \vbox (357.60512pt too high) has occurred while \output is active []
+
+
+[21]
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 418.
+
+) (./threshold.tex
+
+Package natbib Warning: Citation `breast_cancer_dataset' on page 22 undefined o
+n input line 2.
+
+
+Package natbib Warning: Citation `breast_cancer_dataset' on page 22 undefined o
+n input line 7.
+
+[22] [23]
+Overfull \hbox (21.35873pt too wide) in paragraph at lines 32--44
+ [] 
+ []
+
+[24] [25] <immagini_extension/pems_fixed.png, id=110, 427.8384pt x 285.7074pt>
+File: immagini_extension/pems_fixed.png Graphic file (type png)
+
+<use immagini_extension/pems_fixed.png>
+Package pdftex.def Info: immagini_extension/pems_fixed.png used on input line 9
+2.
+(pdftex.def)             Requested size: 361.34999pt x 241.31786pt.
+
+<immagini_extension/breast_fixed.png, id=111, 427.8384pt x 285.7074pt>
+File: immagini_extension/breast_fixed.png Graphic file (type png)
+
+<use immagini_extension/breast_fixed.png>
+Package pdftex.def Info: immagini_extension/breast_fixed.png used on input line
+ 99.
+(pdftex.def)             Requested size: 361.34999pt x 241.31786pt.
+ [26 <./immagini_extension/pems_fixed.png>] [27 <./immagini_extension/breast_fi
+xed.png>] [28] [29] [30]
+<immagini_extension/pems_strategy1.png, id=129, 427.3566pt x 285.2256pt>
+File: immagini_extension/pems_strategy1.png Graphic file (type png)
+
+<use immagini_extension/pems_strategy1.png>
+Package pdftex.def Info: immagini_extension/pems_strategy1.png used on input li
+ne 249.
+(pdftex.def)             Requested size: 361.34999pt x 241.17639pt.
+
+<immagini_extension/pems_strategy2.png, id=130, 427.3566pt x 285.7074pt>
+File: immagini_extension/pems_strategy2.png Graphic file (type png)
+
+<use immagini_extension/pems_strategy2.png>
+Package pdftex.def Info: immagini_extension/pems_strategy2.png used on input li
+ne 256.
+(pdftex.def)             Requested size: 361.34999pt x 241.58379pt.
+
+<immagini_extension/pems_strategy3.png, id=131, 427.8384pt x 285.7074pt>
+File: immagini_extension/pems_strategy3.png Graphic file (type png)
+
+<use immagini_extension/pems_strategy3.png>
+Package pdftex.def Info: immagini_extension/pems_strategy3.png used on input li
+ne 263.
+(pdftex.def)             Requested size: 361.34999pt x 241.31786pt.
+
+<immagini_extension/pems_strategy4.png, id=132, 427.3566pt x 285.7074pt>
+File: immagini_extension/pems_strategy4.png Graphic file (type png)
+
+<use immagini_extension/pems_strategy4.png>
+Package pdftex.def Info: immagini_extension/pems_strategy4.png used on input li
+ne 270.
+(pdftex.def)             Requested size: 361.34999pt x 241.58379pt.
+
+<immagini_extension/pems_strategy_best.png, id=133, 427.3566pt x 285.2256pt>
+File: immagini_extension/pems_strategy_best.png Graphic file (type png)
+
+<use immagini_extension/pems_strategy_best.png>
+Package pdftex.def Info: immagini_extension/pems_strategy_best.png used on inpu
+t line 277.
+(pdftex.def)             Requested size: 361.34999pt x 241.17639pt.
+
+<immagini_extension/breast_strategy1.png, id=134, 427.8384pt x 342.078pt>
+File: immagini_extension/breast_strategy1.png Graphic file (type png)
+
+<use immagini_extension/breast_strategy1.png>
+Package pdftex.def Info: immagini_extension/breast_strategy1.png used on input 
+line 285.
+(pdftex.def)             Requested size: 361.34999pt x 288.93033pt.
+
+<immagini_extension/breast_strategy2.png, id=135, 427.8384pt x 342.5598pt>
+File: immagini_extension/breast_strategy2.png Graphic file (type png)
+
+<use immagini_extension/breast_strategy2.png>
+Package pdftex.def Info: immagini_extension/breast_strategy2.png used on input 
+line 292.
+(pdftex.def)             Requested size: 361.34999pt x 289.33727pt.
+
+<immagini_extension/breast_strategy3.png, id=136, 427.8384pt x 285.7074pt>
+File: immagini_extension/breast_strategy3.png Graphic file (type png)
+
+<use immagini_extension/breast_strategy3.png>
+Package pdftex.def Info: immagini_extension/breast_strategy3.png used on input 
+line 299.
+(pdftex.def)             Requested size: 361.34999pt x 241.31786pt.
+
+<immagini_extension/breast_strategy4.png, id=137, 427.8384pt x 342.5598pt>
+File: immagini_extension/breast_strategy4.png Graphic file (type png)
+
+<use immagini_extension/breast_strategy4.png>
+Package pdftex.def Info: immagini_extension/breast_strategy4.png used on input 
+line 306.
+(pdftex.def)             Requested size: 361.34999pt x 289.33727pt.
+
+<immagini_extension/breast_strategy_best.png, id=138, 427.3566pt x 285.2256pt>
+File: immagini_extension/breast_strategy_best.png Graphic file (type png)
+
+<use immagini_extension/breast_strategy_best.png>
+Package pdftex.def Info: immagini_extension/breast_strategy_best.png used on in
+put line 313.
+(pdftex.def)             Requested size: 361.34999pt x 241.17639pt.
+) (./exp.tex [31]
+
+Package natbib Warning: Citation `Borgelt_Carpenter' on page 32 undefined on in
+put line 334.
+
+
+Package natbib Warning: Citation `pfpgrowth' on page 32 undefined on input line
+ 335.
+
+
+Package natbib Warning: Citation `Mahout' on page 32 undefined on input line 33
+6.
+
+[32 <./immagini_extension/pems_strategy1.png>]
+
+Package natbib Warning: Citation `breast_cancer_dataset' on page 33 undefined o
+n input line 349.
+
+
+LaTeX Warning: Reference `grafo_breast' on page 33 undefined on input line 350.
+
+
+
+LaTeX Warning: Reference `grafo_breast' on page 33 undefined on input line 364.
+
+
+
+LaTeX Warning: Reference `grafo_breast' on page 33 undefined on input line 372.
+
+
+[33 <./immagini_extension/pems_strategy2.png>] [34 <./immagini_extension/pems_s
+trategy3.png>]
+
+LaTeX Warning: Reference `grafo_1' on page 35 undefined on input line 394.
+
+[35 <./immagini_extension/pems_strategy4.png>] [36 <./immagini_extension/pems_s
+trategy_best.png>]
+
+LaTeX Warning: Reference `grafo_2' on page 37 undefined on input line 421.
+
+
+Overfull \hbox (13.96526pt too wide) in paragraph at lines 418--437
+[]\OT1/cmr/m/n/12 The last set of per-for-mance ex-per-i-ments is ex-e-cuted on
+ syn-thetic Dataset #2.
+ []
+
+[37 <./immagini_extension/breast_strategy1.png>] [38 <./immagini_extension/brea
+st_strategy2.png>] [39 <./immagini_extension/breast_strategy3.png>]) (./pw.tex
+
+Package natbib Warning: Citation `Agr94' on page 40 undefined on input line 7.
+
+
+Package natbib Warning: Citation `Han00' on page 40 undefined on input line 9.
+
+
+Package natbib Warning: Citation `Zaki97newalgorithms' on page 40 undefined on 
+input line 15.
+
+
+Package natbib Warning: Citation `Agr94' on page 40 undefined on input line 15.
+
+
+[40 <./immagini_extension/breast_strategy4.png>]
+
+Package natbib Warning: Citation `ArticoloMapReduceGoogle' on page 41 undefined
+ on input line 20.
+
+
+Package natbib Warning: Citation `pfpgrowth' on page 41 undefined on input line
+ 22.
+
+
+Package natbib Warning: Citation `bigfim' on page 41 undefined on input line 26
+.
+
+
+Package natbib Warning: Citation `Zaki97newalgorithms' on page 41 undefined on 
+input line 27.
+
+
+LaTeX Warning: Reference `pampa' on page 41 undefined on input line 37.
+
+[41 <./immagini_extension/breast_strategy_best.png>]) (./applications.tex
+
+Package natbib Warning: Citation `Tstat' on page 42 undefined on input line 21.
+
+
+
+Package natbib Warning: Citation `netflow' on page 42 undefined on input line 2
+1.
+
+
+Package natbib Warning: Citation `trustcom2013' on page 42 undefined on input l
+ine 24.
+
+
+Package natbib Warning: Citation `fontas_AR' on page 42 undefined on input line
+ 24.
+
+
+Package natbib Warning: Citation `Netmine' on page 42 undefined on input line 2
+4.
+
+) [42] (./conclusions.tex) [43] (./elsarticle-template-num.bbl [44])
+
+Package natbib Warning: There were undefined citations.
+
+[45] (./elsarticle-template-num.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3912 strings out of 493109
+ 57696 string characters out of 6138587
+ 125310 words of memory out of 5000000
+ 7255 multiletter control sequences out of 15000+600000
+ 13100 words of font info for 50 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 38i,10n,47p,1023b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
+<d:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2014
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><d:/texlive/2014/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2014/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2014/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi6.pfb><d:/texlive/2014/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb><d:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb><d:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:
+/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2
+014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><d:/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/texlive/2014/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr8.pfb><d:/texlive/2014/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb><d:/texlive/2014/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb><d:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8
+.pfb><d:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><d:/
+texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><d:/texlive/2
+014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb><d:/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on elsarticle-template-num.pdf (45 pages, 1067900 bytes).
+PDF statistics:
+ 264 PDF objects out of 1000 (max. 8388607)
+ 163 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+

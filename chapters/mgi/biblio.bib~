@@ -1,0 +1,846 @@
+@inproceedings{grimaudo2012hierarchical,
+  title={Hierarchical learning for fine grained internet traffic classification},
+  author={Grimaudo, Luigi and Mellia, Marco and Baralis, Elena},
+  booktitle={Wireless Communications and Mobile Computing Conference (IWCMC), 2012 8th International},
+  pages={463--468},
+  year={2012},
+  organization={IEEE}
+}
+
+
+@inproceedings{pfpgrowth,
+ author = {Li, Haoyuan and Wang, Yi and Zhang, Dong and Zhang, Ming and Chang, Edward Y.},
+ title = {Pfp: parallel fp-growth for query recommendation},
+ booktitle = {RecSys'08},
+ year = {2008},
+ pages = {107--114}
+}
+
+
+@article{Mahout,
+ author = {The Apache Mahout Project},
+ title = {{The Apache Mahout machine learning library.
+Available: http://mahout.apache.org/ Last access on March 2013}},
+ journal = {},
+ volume = {},
+ issue = {},
+ year = {2013}
+}
+
+@article{Tstat,
+author    = {A. Finamore and M. Mellia and M. Meo and M. Munaf\`o and D. Rossi},
+title     = {Experiences of Internet Traffic Monitoring with Tstat},
+journal = {IEEE Network},
+volume = {25},
+number = {3},
+year      = {2011},
+pages     = {8--14}}
+
+@article{Tstat2,
+author    = {M. Mellia and M. Meo and L. Muscariello and D. Rossi},
+title     = {Passive analysis of TCP anomalies},
+journal = {Computer Networks},
+volume = {52},
+number = {14},
+year      = {2008},
+pages     = {2663--2676}}
+
+@article{zaianeimage,
+    author = "Maria Luiza Antonie and  Osmar R. Zaiane and Alexandru Coman",
+    title = "Application of Data Mining Techniques for Medical Image Classification",
+    journal = "In MDM/KDD",
+    year = {2001}
+}
+
+@inproceedings{BaldiBR05,
+  author    = {Mario Baldi and Elena Baralis and Fulvio Risso},
+  title     = {Data mining techniques for effective and scalable traffic
+               analysis},
+  booktitle = {Integrated Network Management},
+  year      = {2005},
+  pages     = {105-118}}
+
+
+@inproceedings{FARMER,
+ author = {Gao Cong and Anthony K. H. Tung and Xin Xu and Feng Pan and Jiong Yang},
+ title = {FARMER: finding interesting rule groups in microarray datasets},
+ booktitle = {ACM SIGMOD '04},
+ year = {2004}
+}
+
+@Book{KumarBook,
+  author = "{Pang-Ning T. and Steinbach M. and  Kumar V.}",
+  TITLE = "{Introduction to Data Mining}",
+  publisher =   "{Addison-Wesley}",
+  year =  {2006}
+}
+
+@article{Zak00,
+ author = {Zaki,, Mohammed J.},
+ title = {Scalable Algorithms for Association Mining},
+ journal = {IEEE Trans. on Knowl. and Data Eng.},
+ volume = {12},
+ number = {3},
+ year = {2000},
+ pages = {372--390}
+ }
+
+@inproceedings{Uno04,
+  author    = {Takeaki Uno and Masashi Kiyomi and Hiroki Arimura},
+  title     = {{LCM} ver. 2: Efficient Mining Algorithms for Frequent/Closed/Maximal Itemsets},
+  booktitle = {FIMI '04},
+  year      = {}}
+
+@inproceedings{El-04,
+ author = {El-Hajj,, Mohammad and Za\"{\i}ane,, Osmar R.},
+ title = {COFI approach for mining frequent itemsets revisited},
+ booktitle = {DMKD '04},
+ year = {},
+ pages = {70--75}
+ }
+
+@inproceedings{Pie03,
+  author    = {Andrea Pietracaprina and Dario Zandolin},
+  title     = {Mining Frequent Itemsets using Patricia Tries},
+  booktitle = {FIMI '03},
+  year      = {}
+}
+
+@inproceedings{Gra03,
+  author    = {G{\"o}sta Grahne and Jianfei Zhu},
+  title     = {Efficiently Using Prefix-trees in Mining Frequent Itemsets},
+  booktitle = {FIMI '03},
+  year      = {}
+}
+
+@inproceedings{LiL03,
+  author    = {Guimei Liu and Hongjun Lu and Jeffrey Xu Yu and Wei Wang and Xiangye Xiao},
+  title     = {AFOPT: An Efficient Implementation of Pattern Growth Approach},
+  booktitle = {FIMI '03},
+  year      = {}
+}
+
+@inproceedings{Uno05,
+ author = {Takeaki Uno and Masashi Kiyomi and Hiroki Arimura},
+ title = {LCM ver.3: collaboration of array, bitmap and prefix tree for frequent itemset mining},
+ booktitle = {OSDM '05},
+ year = {},
+ pages = {77--86}
+}
+
+@inproceedings{Bas06,
+title={Performance Analysis of Frequent Itemset Mining Using Hybrid Database Representation Approach},
+author={Bashir, S. and Rauf Baig, A.},
+booktitle={IEEE INMIC '06},
+year={},
+pages={237-243}
+}
+
+@inproceedings{Goe04,
+ author = {Goethals,, Bart},
+ title = {Memory issues in frequent itemset mining},
+ booktitle = {SAC '04},
+ year = {2004},
+ pages = {530--534}
+}
+
+@inproceedings{Vaa04,
+author = {Vaarandi, Risto},
+title = {A Breadth-First Algorithm for Mining Frequent Patterns from Event Logs},
+booktitle = {INTELLCOMM},
+pages = {293--308},
+year = {2004}
+}
+
+@inproceedings{Ram02,
+  author    = {Ganesh Ramesh and William Maniatty and Mohammed Javeed Zaki},
+  title     = {Indexing and Data Access Methods for Database Mining},
+  booktitle = {DMKD '02},
+  year      = {}
+}
+
+@inproceedings{El03,
+ author = {El-Hajj,, Mohammad and Za\"{\i}ane,, Osmar R.},
+ title = {Inverted matrix: efficient discovery of frequent items in large datasets in the context of interactive mining},
+ booktitle = {KDD '03},
+ year = {},
+ pages = {109--118}
+ }
+
+@inproceedings{Gra04,
+ author = {Grahne,, Gosta and Zhu,, Jianfei},
+ title = {Mining Frequent Itemsets from Secondary Memory},
+ booktitle = {ICDM '04},
+ year = {},
+ pages = {91--98}
+}
+
+@inproceedings{Tat04,
+ author = {Tata,, Sandeep and Hankins,, Richard A. and Patel,, Jignesh M.},
+ title = {Practical suffix tree construction},
+ booktitle = {VLDB '04},
+ year = {2004},
+ pages = {36--47}
+ }
+
+@article{Tia05,
+ author = {Tian,, Yuanyuan and Tata,, Sandeep and Hankins,, Richard A. and Patel,, Jignesh M.},
+ title = {Practical methods for constructing suffix trees},
+ journal = {The VLDB Journal},
+ volume = {14},
+ number = {3},
+ year = {2005},
+ pages = {281--299}
+}
+
+@inproceedings{Bue06,
+ author = {Buehrer,, Gregory and Parthasarathy,, Srinivasan and Ghoting,, Amol},
+ title = {Out-of-core frequent pattern mining on a commodity PC},
+ booktitle = {KDD '06},
+ year = {},
+ pages = {86--95}
+}
+
+@article{Amo07,
+ author = {Ghoting,, Amol and Buehrer,, Gregory and Parthasarathy,, Srinivasan and Kim,, Daehyun and Nguyen,, Anthony and Chen,, Yen-Kuang and Dubey,, Pradeep},
+ title = {Cache-conscious frequent pattern mining on modern and emerging processors},
+ journal = {The VLDB Journal},
+ volume = {16},
+ number = {1},
+ year = {2007},
+ pages = {77--96} }
+
+@inproceedings{Pho07,
+ author = {Phoophakdee,, Benjarath and Zaki,, Mohammed J.},
+ title = {Genome-scale disk-based suffix tree indexing},
+ booktitle = {SIGMOD '07},
+ year = {2007},
+ pages = {833--844}
+ }
+
+@article{Adn09,
+ author = {Muhaimenul Adnan and Reda Alhajj},
+ title = { DRFP-tree: disk-resident frequent pattern tree},
+ journal = { Applied Intelligence Springer},
+ volume = {30},
+ number = {2},
+ pages = {84--97},
+ year = {2009},
+ }
+
+@article{Bar09,
+author = {Elena Baralis and Tania Cerquitelli and Silvia Chiusano},
+title = {{IMine: Index Support for Item Set Mining}},
+journal ={IEEE TKDE},
+volume = {21},
+number = {4},
+year = {2009},
+pages = {493-506}
+}
+
+
+@inproceedings{Agr94,
+  author    = {Rakesh Agrawal and Ramakrishnan Srikant},
+  title     = {Fast Algorithms for Mining Association Rules in Large Databases},
+  booktitle = {VLDB '94},
+  year      = {1994},
+  pages     = {487-499}
+}
+
+@inproceedings{Han00,
+ author = {Han,, Jiawei and Pei,, Jian and Yin,, Yiwen},
+ title = {Mining frequent patterns without candidate generation},
+ booktitle = {SIGMOD '00},
+ year = {2000},
+ pages = {1--12}
+}
+
+@ARTICLE{Quest,
+AUTHOR = "N. Agrawal and T. Imielinski and A. Swami",
+TITLE = "Database mining: A performance perspective",
+JOURNAL = "In IEEE TKDE",
+VOLUME = {5},
+NUMBER = {6},
+YEAR = {1993}
+}
+
+@inproceedings{Racz04,
+  author    = {Bal{\'a}zs R{\'a}cz},
+  title     = {nonordfp: An FP-growth variation without rebuilding the FP-tree},
+  booktitle = {FIMI '04},
+  year      = {}
+}
+
+@inproceedings{LiuHM98,
+  author    = {Bing Liu and Wynne Hsu and Yiming Ma},
+  title     = {Integrating Classification and Association Rule Mining},
+  booktitle = {KDD '98},
+  year      = {1998},
+  pages     = {80-86},
+}
+
+@article{PeiHanConstraints04,
+ author = {Jian Pei and Jiawei Han and Laks V. S. Lakshmanan},
+ title = {Pushing Convertible Constraints in Frequent Itemset Mining},
+ journal = {Data Min. Knowl. Discov.},
+ volume = {8},
+ number = {3},
+ year = {2004},
+ pages = {227--252}
+ }
+
+@INPROCEEDINGS{AgrawalShim96,
+AUTHOR = "Rakesh Agrawal and Kyuseok Shim",
+TITLE = "Developing Tightly-Coupled Data Mining Applications on a Relational Database System",
+BOOKTITLE = "ACM SIGKDD '96",
+YEAR = {1996}   }
+
+@INPROCEEDINGS{SarawagiSIGMOD98,
+AUTHOR = "S. Sarawagi and S. Thomas and R. Agrawal",
+TITLE = "Integrating mining with relational database systems: Alternatives and implications",
+BOOKTITLE = "ACM SIGMOD",
+YEAR = {1998}   }
+
+@INPROCEEDINGS{NestorovTsur99,
+AUTHOR = "S. Nestorov and S. Tsur",
+TITLE = "Integrating data mining with relational {DBMS}: A tightly-coupled
+  approach",
+BOOKTITLE = "NGITS '99",
+YEAR = {1999}   }
+@article{MAFIA01,
+author = {Douglas Burdick and Manuel Calimlim and            Jason Flannick and Johannes Gehrke and Tomi Yiu},
+  title     = {MAFIA: A Maximal Frequent Itemset Algorithm},
+  journal   = {in IEEE TKDE},
+  volume    = {17},
+  number    = {11},
+  year      = {2005},
+  pages     = {1490-1504}
+}
+
+@inproceedings{ZakiMaximal01,
+ author = {Gouda, Karam and Zaki, Mohammed Javeed},
+ title = {Efficiently Mining Maximal Frequent Itemsets},
+ booktitle = {ICDM '01},
+ year = {2001},
+ pages = {163--170}
+}
+
+@inproceedings{HanClosedHan03,
+ author = {Wang, Jianyong and Han, Jiawei and Pei, Jian},
+ title = {CLOSET+: searching for the best strategies for mining frequent closed itemsets},
+ booktitle = {KDD '03},
+ year = {2003},
+ pages = {236--245}
+ }
+
+@article{ZakiClosed05,
+author = {Mohammed J. Zaki and Ching-Jui Hsiao},
+title = {Efficient Algorithms for Mining Closed Itemsets and Their Lattice Structure},
+journal ={IEEE Trans. Knowl. Data Eng.},
+volume = {17},
+number = {4},
+year = {2005},
+pages = {462-478}
+}
+
+@inproceedings{Bayardo98,
+ author = {Bayardo,Jr., Roberto J.},
+ title = {Efficiently mining long patterns from databases},
+ booktitle = {SIGMOD '98},
+ year = {1998},
+ pages = {85--93}
+}
+
+@misc{SourceCode,
+author = "HYBRIDTREE",
+title = "{http://dbdmg.polito.it/twiki/bin/view/Public/HY-Tree}",
+url = "{http://dbdmg.polito.it/twiki/bin/view/Public/HY-Tree}"
+}
+
+@inproceedings{CFP-KDD03,
+ author = {Guimei Liu and Hongjun Lu and Wenwu Lou and Jeffrey Xu Yu},
+ title = {On computing, storing and querying frequent patterns},
+ booktitle = {KDD '03},
+ year = {2003},
+ pages = {607--612}
+}
+
+@article{CFP-tree07,
+ author = {Liu, Guimei and Lu, Hongjun and Xu Yu, Jeffrey},
+ title = {CFP-tree: A compact disk-based structure for storing and querying frequent itemsets},
+ journal = {Inf. Syst.},
+ volume = {32},
+ number = {2},
+ year = {2007},
+ pages = {295--319}
+}
+
+@misc{TPC-H,
+author = "TPC-H",
+year = "2009",
+title = "The {TPC} Benchmark {H}. {T}ransaction {P}rocessing {P}erformance {C}ouncil",
+url = "http://www.tpc.org/tpch/default.asp",
+note="http://www.tpc.org/tpch/default.asp"
+}
+
+@inproceedings{BaralisSAC2010,
+ author = {Elena Baralis and Tania Cerquitelli and Silvia Chiusano},
+ title = {A persistent HY-Tree to efficiently support itemset mining on large datasets},
+ booktitle = {SAC '10},
+ year = {},
+ pages = {1060--1064}
+}
+
+@manual{dbdm,
+ author = "{DBDMGroup at Politecnico di Torino}",
+ title = "http://tinyurl.com/vldbmine1/"
+}
+
+@manual{FIMIrep,
+author = "FIMI",
+title = "http://fimi.cs.helsinki.fi/",
+}
+
+@manual{Wiki,
+author = "Wikipedia",
+title = "http://en.wikipedia.org/",
+}
+
+@inproceedings{lucchese06,
+  title={Mining frequent closed itemsets out of core},
+  author={Lucchese, C. and Orlando, S. and Perego, R.},
+  booktitle={6th SIAM International Conference on Data Mining},
+  pages={419--429},
+  year={2006}
+}
+@inproceedings{kDCI,
+  title={kDCI: A multi-strategy algorithm for mining frequent sets},
+  author={Lucchese, C. and Orlando, S. and Palmerini, P. and Perego, R. and Silvestri, F.},
+  booktitle={Proceedings of the IEEE ICDM Workshop of Frequent Itemset Mining Implementations (FIMI), Melbourne, Florida},
+  year={2003}}
+
+@article{GrahneZ05,
+  author    = {G{\"o}sta Grahne and Jianfei Zhu},
+  title     = {Fast Algorithms for Frequent Itemset Mining Using FP-Trees},
+  journal   = {IEEE Trans. Knowl. Data Eng.},
+  volume    = {17},
+  number    = {10},
+  year      = {2005},
+  pages     = {1347-1362}
+}
+
+@inproceedings{Savasere1995,
+  author    = {Savasere, A. and Omiecinski, E. and Navathe, S.},
+  title     = {An efficient algorithm for mining association rules in large databases},
+  booktitle  = {VLDB '95},
+  year      = {}
+}
+
+@article{TR3-2012,
+author={Baralis, E. and Cerquitelli, T. and Chiusano, S. and Grand, A.},
+year={2012},
+title={Technical Report n. TR-2-2012 Large-scale itemset mining},
+note={[Online]. Available: \url{http://dbdmg.polito.it/wordpress/research/large-scale-itemset-mining/}}
+}
+
+
+@article{JinYA05,
+  author    = {Ruoming Jin and Ge Yang and
+               Gagan Agrawal},
+  title     = {Shared Memory Parallelization of Data Mining Algorithms: Techniques, Programming Interface, and Performance},
+  journal   = {IEEE Trans. Knowl. Data Eng.},
+  volume    = {17},
+  number    = {1},
+  year      = {2005},
+  pages     = {71-89}
+}
+
+@inproceedings{PramudionoK03,
+  author    = {Iko Pramudiono and Masaru Kitsuregawa},
+  title     = {Tree Structure Based Parallel Frequent Pattern Mining on PC Cluster},
+  booktitle = {DEXA},
+  year      = {2003},
+  pages     = {537-547}
+}
+
+@inproceedings{Chen2006,
+ author = {Chen, Dehao and Lai, Chunrong and Hu, Wei and Chen, WenGuang and Zhang, Yimin and Zheng, Weimin},
+ title = {Tree partition based parallel frequent pattern mining on shared memory systems},
+ booktitle = {Proceedings of the 20th international conference on Parallel and distributed processing},
+ series = {IPDPS'06},
+ year = {2006},
+ pages = {313--313},
+ numpages = {1}
+}
+
+@inproceedings{Zaiane2001,
+ author = {Za\"{\i}ane, Osmar R. and El-Hajj, Mohammad and Lu, Paul},
+ title = {Fast Parallel Association Rule Mining without Candidacy Generation},
+ booktitle = {Proceedings of the 2001 IEEE International Conference on Data Mining},
+ series = {ICDM '01},
+ year = {2001},
+ pages = {665--668},
+ numpages = {4}
+}
+
+@article{El-HajjZ06,
+  author    = {Mohammad El-Hajj and Osmar R. Za\"{\i}ane},
+  title     = {Parallel Bifold: Large-scale parallel pattern mining with constraints},
+  journal   = {Distributed and Parallel Databases},
+  volume    = {20},
+  number    = {3},
+  year      = {2006},
+  pages     = {225-243}
+}
+
+@inproceedings{Liu2007,
+ author = {Liu, Li and Li, Eric and Zhang, Yimin and Tang, Zhizhong},
+ title = {Optimization of frequent itemset mining on multiple-core processor},
+ booktitle = {Proceedings of the 33rd international conference on Very large data bases},
+ series = {VLDB '07},
+ year = {2007},
+ pages = {1275--1285},
+ numpages = {11}
+}
+
+@article{Zaki1999,
+ author = {Zaki, Mohammed J.},
+ title = {Parallel and Distributed Association Mining: A Survey},
+ journal = {IEEE Concurrency},
+ issue_date = {October 1999},
+ volume = {7},
+ number = {4},
+ month = oct,
+ year = {1999},
+ issn = {1092-3063},
+ pages = {14--25},
+ numpages = {12}
+}
+
+@article{Dean2008,
+ author = {Dean, Jeffrey and Ghemawat, Sanjay},
+ title = {MapReduce: simplified data processing on large clusters},
+ journal = {Commun. ACM},
+ issue_date = {January 2008},
+ volume = {51},
+ number = {1},
+ month = jan,
+ year = {2008},
+ issn = {0001-0782},
+ pages = {107--113},
+ numpages = {7},
+}
+
+%%% DUPLICATED: cite pfpgrowth
+@inproceedings{LiWZZC08,
+  author    = {Haoyuan Li and Yi Wang and Dong Zhang and            Ming Zhang and Edward Y. Chang},
+  title     = {Pfp: parallel fp-growth for query recommendation},
+  booktitle = {RecSys},
+  year      = {2008},
+  pages     = {107-114}
+}
+
+@inproceedings{Zhou2010,
+  author    = {Le Zhou and Zhiyong Zhong and Jin Chang and Junjie Li and  Huang, J.Z. and  Shengzhong Feng },
+  title     = {Balanced parallel FP-Growth with MapReduce},
+  booktitle = {2010 IEEE Youth Conference on Information Computing and Telecommunications (YC-ICT)},
+  year      = {2010},
+  pages     = {243 - 246}
+}
+
+@inproceedings{SAC10,
+  author    = {Elena Baralis and Tania Cerquitelli and               Silvia Chiusano},
+  title     = {A persistent HY-Tree to efficiently support itemset mining on large datasets},
+  booktitle = {SAC},
+  year      = {2010},
+  pages     = {1060-1064}}
+
+@article{HDFS,
+  title={The Hadoop distributed file system: Architecture and design},
+  author={Borthakur, D.},
+  journal={Hadoop Project Website},
+  volume={11},
+  pages={21},
+  year={2007}
+}
+
+@inproceedings{ArticoloMapReduceGoogle,
+ author = {Dean, Jeffrey and Ghemawat, Sanjay},
+ title = {MapReduce: simplified data processing on large clusters},
+ booktitle = {OSDI'04},
+ year = {2004},
+ pages = {10--10},
+} 
+
+@misc{WordNet,
+title = {{Available at http://wordnet.princeton.edu. Last Accessed: 01/10/2012}},
+author = {Wordnet Lexical Database},
+year={2012},
+url = {http://wordnet.princeton.edu}
+}
+
+@article{Sawacha,
+author = "Sawacha, Zimi and G. Guarneri and A. Avogaro and Cobelli, Claudio",
+journal = "Journal of diabetes science and technology",
+month = "Sep 1",
+number = "5",
+pages = "1127-1138",
+title = "{A} new classification of diabetic gait pattern based on cluster analysis of biomechanical data",
+volume = "4",
+year = "2010",
+}
+
+@article{MGI,
+  author    = {Luca Cagliero and
+               Tania Cerquitelli and
+               Paolo Garza and
+               Luigi Grimaudo},
+  title     = {Misleading Generalized Itemset discovery},
+  journal   = {Expert Syst. Appl.},
+  volume    = {41},
+  number    = {4},
+  year      = {2014},
+  pages     = {1400-1410}
+}
+
+
+@article{Flipping,
+ author = {Barsky, Marina and Kim, Sangkyum and Weninger, Tim and Han, Jiawei},
+ title = {Mining flipping correlations from large datasets with taxonomies},
+ journal = {Proc. VLDB Endow.},
+ issue_date = {December 2011},
+ volume = {5},
+ number = {4},
+ month = dec,
+ year = {2011},
+ issn = {2150-8097},
+ pages = {370--381},
+ numpages = {12},
+} 
+
+@article{Han1999,
+  title={Mining Multiple-Level Association Rules in Large Databases},
+  author={Han, J. and Fu, Y.},
+  journal={IEEE Transactions on knowledge and data engineering},
+  volume = {11},
+  number = {7},
+  year = {1999},
+  pages = {798-805},
+  publisher = {IEEE Press}
+}
+
+@article{Wu2010Interestingness,
+ author = {Wu, Tianyi and Chen, Yuguo and Han, Jiawei},
+ title = {Re-examination of interestingness measures in pattern mining: a unified framework},
+ journal = {Data Min. Knowl. Discov.},
+ issue_date = {November  2010},
+ volume = {21},
+ number = {3},
+ month = nov,
+ year = {2010},
+ issn = {1384-5810},
+ pages = {371--397},
+ numpages = {27},
+} 
+
+@inproceedings{bigfim,
+author = {Moens, Sandy and Aksehirli, Emin and Goethals, Bart},
+title = {Frequent Itemset Mining for Big Data},
+booktitle = {SML: BigData 2013 Workshop on Scalable Machine Learning},
+year = {2013},
+publisher = {IEEE},
+groups = {adrem-published}, 
+pdf = { http://www.adrem.ua.ac.be/bibrem/pubs/bigfim.pdf }
+}
+
+@INPROCEEDINGS{FIMHadoop,
+author={Kovacs, F. and Illes, J.},
+booktitle={Computational Cybernetics (ICCC), 2013 IEEE 9th International Conference on},
+title={Frequent itemset mining on hadoop},
+year={2013},
+month={July},
+pages={241-245},
+keywords={data mining;input-output programs;parallel programming;Hadoop;I/O traffic capacity;data mining;distributed mining algorithms;frequent itemset mining;parallel mining algorithms;Association rules;Clustering algorithms;Conferences;Itemsets;Radiation detectors},
+doi={10.1109/ICCCyb.2013.6617596}}
+
+@article{Han2000FP,
+ author = {Han, Jiawei and Pei, Jian and Yin, Yiwen},
+ title = {Mining Frequent Patterns Without Candidate Generation},
+ journal = {SIGMOD Rec.},
+ issue_date = {June 2000},
+ volume = {29},
+ number = {2},
+ month = may,
+ year = {2000},
+ issn = {0163-5808},
+ pages = {1--12},
+ numpages = {12},
+ url = {http://doi.acm.org/10.1145/335191.335372},
+ doi = {10.1145/335191.335372},
+ acmid = {335372},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+
+@inproceedings{Srikant1995,
+ author = {R. Srikant and R. Agrawal},
+ title= {Mining Generalized Association Rules},
+ booktitle = {VLDB 1995},
+ pages = {407--419},
+ year = {1995}
+}
+
+@article{GL3,
+  author    = {Luca Cagliero and
+               Paolo Garza},
+  title     = {Improving classification models with taxonomy information},
+  journal   = {Data Knowl. Eng.},
+  volume    = {86},
+  year      = {2013},
+  pages     = {85-101},
+  ee        = {http://dx.doi.org/10.1016/j.datak.2013.01.005}
+}
+
+@article{BaralisCCG12,
+  author    = {Elena Baralis and
+               Luca Cagliero and
+               Tania Cerquitelli and
+               Paolo Garza},
+  title     = {Generalized association rule mining with constraints},
+  journal   = {Inf. Sci.},
+  volume    = {194},
+  year      = {2012},
+  pages     = {68-84},
+  ee        = {http://dx.doi.org/10.1016/j.ins.2011.05.016},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+@inproceedings{Agrawal1993,
+ author = {Agrawal, R. and Imielinski, T. and Swami},
+ title = {Mining association rules between sets of items in large databases},
+ booktitle = {ACM SIGMOD 1993},
+ year = {1993},
+ pages = {207--216}
+ }
+
+@article{ChangeTKDE,
+  author    = {Luca Cagliero},
+  title     = {Discovering Temporal Change Patterns in the Presence of
+               Taxonomies},
+  journal   = {IEEE Trans. Knowl. Data Eng.},
+  volume    = {25},
+  number    = {3},
+  year      = {2013},
+  pages     = {541-555},
+  ee        = {http://doi.ieeecomputersociety.org/10.1109/TKDE.2011.233},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+
+@article{KunkleZC08,
+  author    = {Daniel Kunkle and
+               Donghui Zhang and
+               Gene Cooperman},
+  title     = {Mining Frequent Generalized Itemsets and Generalized Association
+               Rules Without Redundancy},
+  journal   = {J. Comput. Sci. Technol.},
+  volume    = {23},
+  number    = {1},
+  year      = {2008},
+  pages     = {77-102},
+  ee        = {http://dx.doi.org/10.1007/s11390-008-9107-1},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+
+@inproceedings{IS2010,
+  author    = {Elena Baralis and
+               Luca Cagliero and
+               Tania Cerquitelli and
+               Vincenzo D'Elia and
+               Paolo Garza},
+  title     = {Support driven opportunistic aggregation for generalized
+               itemset extraction},
+  booktitle = {IEEE Conf. of Intelligent Systems},
+  year      = {2010},
+  pages     = {102-107},
+  ee        = {http://dx.doi.org/10.1109/IS.2010.5548348},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+@inproceedings{ClosedPasquier1999,
+ author = {Pasquier, Nicolas and Bastide, Yves and Taouil, Rafik and Lakhal, Lotfi},
+ title = {Discovering Frequent Closed Itemsets for Association Rules},
+ booktitle = {Proceedings of the 7th International Conference on Database Theory},
+ series = {ICDT '99},
+ year = {1999},
+ isbn = {3-540-65452-6},
+ pages = {398--416},
+ numpages = {19},
+ url = {http://dl.acm.org/citation.cfm?id=645503.656256},
+ acmid = {656256},
+ publisher = {Springer-Verlag},
+ address = {London, UK, UK},
+} 
+
+@inproceedings{Srikant1997,
+  title={Mining association rules with item constraints},
+  author={Agrawal, R. and Srikant, R.},
+  booktitle = {KDD 1997},
+  pages={67-73},
+  year={1997}
+}
+
+@inproceedings{Sriphaew2002,
+  title={A new method for finding generalized frequent itemsets in association rule mining},
+  author={Sriphaew, K. and Theeramunkong, T.},
+  booktitle={Proceeding of the VII Intern. Symposium on Computers and Communications},
+  pages ={1040--1045},
+  year={2002}
+}
+
+@misc{aperto,
+author = "AperTo",
+title = {The AperTo Open Datasets},
+url = {http://aperto.comune.torino.it/?q=taxonomy/term/26. Last access: March, 1st 2014}
+}
+
+@inproceedings{Suchanek2007,
+ author = {Suchanek, Fabian M. and Kasneci, Gjergji and Weikum, Gerhard},
+ title = {Yago: A Core of Semantic Knowledge},
+ booktitle = {WWW'07},
+ year = {2007},
+ isbn = {978-1-59593-654-7},
+ pages = {697--706},
+} 
+
+
+
+@inproceedings{ISPA13,
+  author    = {Daniele Apiletti and
+               Elena Baralis and
+               Tania Cerquitelli and
+               Silvia Chiusano and
+               Luigi Grimaudo},
+  title     = {SeaRum: A Cloud-Based Service for Association Rule Mining},
+  booktitle = {ISPA'13},
+  year      = {2013},
+  pages     = {1283-1290},
+}
+
+
+@inproceedings{BaralisCCCG13,
+  author    = {Elena Baralis and
+               Luca Cagliero and
+               Tania Cerquitelli and
+               Silvia Chiusano and
+               Paolo Garza},
+  title     = {Frequent weighted itemset mining from gene expression data},
+  booktitle = {BIBE},
+  year      = {2013},
+  pages     = {1-4},
+  ee        = {http://dx.doi.org/10.1109/BIBE.2013.6701681},
+}
+
+

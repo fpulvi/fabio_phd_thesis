@@ -1,0 +1,21 @@
+Itemset mining is a well-known exploratory data mining technique used to
+discover interesting correlations hidden in a data collection. Since it supports
+different targeted analyses, it is profitability exploited in a wide range of
+different domains, ranging from network traffic data to medical records. With
+the increasing amount of generated data, different scalable algorithms have been
+developed, exploiting the computational advantages of distributed computing
+frameworks, as Apache Hadoop MapReduce and Apache Spark. However, in most cases
+no algorithm is universally superior. Several aspects influence which algorithm
+performs best, including input data cardinality and data distribution, and the
+algorithm selection is usually manually performed based on analyst expertise.
+
+This paper presents an experimental study to compare the performance of some
+state-of-the-art implementations of itemset mining algorithms to guide the
+analyst in selecting the most suitable approach based on the outlined lesson
+learned. Load balancing and communication costs will be included in
+the analysis dimensions, in order to build a structured comparison through both
+data mining and distributed environments criteria. Many real and synthetic
+datasets have been considered in the comparison.
+Eventually, no algorithm proves to be universally superior
+and performance is heavily influenced by both
+data distribution and input parameter setting.

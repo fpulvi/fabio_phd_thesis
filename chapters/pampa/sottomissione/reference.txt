@@ -1,0 +1,38 @@
+[1] X. Jin, B. W. Wah, X. Cheng, Y. Wang, Significance and challenges of big data research, Big Data Research 2 (2) (2015) 59 { 64, visions on Big Data. doi:http://dx.doi.org/10.1016/j.bdr.2015.01.006. }
+[2] O. Y. Al-Jarrah, P. D. Yoo, S. Muhaidat, G. K. Karagiannidis, K. Taha, Efficient machine learning for big data: A review, Big Data Research 2 (3) (2015) 87 {93. doi:10.1016/j.bdr.2015.04.001. }
+[3] D. Borthakur, The hadoop distributed file system: Architecture and design, Hadoop Project 11 (2007) 21.
+[4] M. Zaharia, M. Chowdhury, T. Das, A. Dave, J. Ma, M. McCauley, M. J. Franklin, S. Shenker, I. Stoica, Resilient distributed datasets: A fault-tolerant abstraction for in-memory cluster computing, in: NSDI'12, 2012, pp. 2
+[5] F. Pan, G. Cong, A. K. H. Tung, J. Yang, M. J. Zaki, Carpenter: Finding closed patterns in long biological datasets, in: Proceedings of the Ninth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD '03, ACM, New York, NY, USA, 2003, pp. 637{642. doi:10.1145/956750.956832}.
+[6] J.-G. Lee, M. Kang, Geospatial big data: Challenges and opportunities, Big Data Research 2 (2) (2015) 74 { 81, visions on Big Data. doi:http://dx.doi.org/10.1016/j.bdr.2015.01.003. }
+[7] M. Cuturi, UCI machine learning repository. PEMS-SF data set (2011). URL https://archive.ics.uci.edu/ml/datasets/PEMS-SF
+[8] J. Leskovec, A. Krevl, SNAP Datasets: Stanford large network dataset collection, http://snap.stanford.edu/data (Jun. 2014).
+[9] D. Apiletti, E. Baralis, T. Cerquitelli, P. Garza, P. Michiardi, F. Pulvirenti, Pampa-hd: A parallel mapreduce-based frequent pattern miner for high-dimensional data, in: IEEE ICDM Workshop on High Dimensional Data Mining (HDM), Atlantic City, NJ, USA, 2015. doi:10.1109/ICDMW.2015.18.
+[10] Pang-Ning T. and Steinbach M. and Kumar V., Introduction to Data Mining, Addison-Wesley, 2006. 
+[11] R. Agrawal, R. Srikant, Fast algorithms for mining association rules in large databases, in: VLDB '94, 1994, pp. 487{499}.
+[12] J. Han, J. Pei, Y. Yin, Mining frequent patterns without candidate generation, in: SIGMOD '00, 2000, pp. 1{12}.
+[13] M. Lichman, UCI machine learning repository (2013). URL http://archive.ics.uci.edu/ml
+[14] California department of transportation. URL http://http://pems.dot.ca.gov/. Last access: April, 21st 2016
+[15] M. L. data set repository, Breast cancer dataset (kent ridge. URL http://mldata.org/repository/data/viewslug/breast-cancer-kent-ridge-2 Last access: July, 21st 2016
+[16] V. Jacobson, Congestion avoidance and control, SIGCOMM Comput. Commun. Rev. 18 (4) (1988) 314{329. doi:10.1145/52325.52356}.
+[17] H. Li, Y. Wang, D. Zhang, M. Zhang, E. Y. Chang, PFP: parallel fp-growth for query recommendation, in: RecSys'08, 2008, pp. 107{114}.
+[18] Apache Software Foundation. Apache mahout:: Scalable machine-learning and data-mining library [online, cited 2016-03-15].
+[19] S. Moens, E. Aksehirli, B. Goethals, Frequent itemset mining for big data, in: SML: BigData 2013 Workshop on Scalable Machine Learning, IEEE, 2013.
+[20] M. J. Zaki, S. Parthasarathy, M. Ogihara, W. Li, New algorithms for fast discovery of association rules, in: KDD'97, AAAI Press, 1997, pp. 283{286}.
+[21] A. D. Sarma, F. N. Afrati, S. Salihoglu, J. D. Ullman, Upper and lower bounds on the cost of a map-reduce computation, Proc. VLDB Endow. 6 (4) (2013) 277{288. doi:10.14778/2535570.2488334}.
+[22] J. Dean, S. Ghemawat, Mapreduce: simplified data processing on large clusters, in: OSDI'04, 2004, pp. 10{10}.
+[23] X. Meng, J. Bradley, B. Yavuz, E. Sparks, S. Venkataraman, D. Liu, J. Freeman, D. B. Tsai, M. Amde, S. Owen, D. Xin, R. Xin, M. J. Franklin, R. Zadeh, M. Zaharia, A. Talwalkar, MLlib: Machine learning in Apache Spark. arXiv:1505.06807.
+[24] H. Qiu, R. Gu, C. Yuan, Y. Huang, Yafim: A parallel frequent itemset mining algorithm with spark, in: Parallel & Distributed Processing Symposium Workshops (IPDPSW), 2014 IEEE International, IEEE, 2014, pp. 1664{1671.
+[25] F. Zhang, M. Liu, F. Gui, W. Shen, A. Shami, Y. Ma, A distributed frequent itemset mining algorithm using spark for big data analytics, Cluster Computing 18 (4) (2015) 1493{1501}.
+[26] Y.-h. Liang, S.-y. Wu, Sequence-growth: A scalable and effective frequent itemset mining algorithm for big data based on mapreduce framework, in: 2015 IEEE International Congress on Big Data, IEEE, 2015, pp. 393{400}.
+[27] M. Riondato, E. Upfal, Mining frequent itemsets through progressive sampling with rademacher averages, in: Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, ACM, 2015, pp. 1005{1014}.
+[28] S. Gole, B. Tidke, Frequent itemset mining for big data in social media using clustbigfim algorithm, in: Pervasive Computing (ICPC), 2015 International Conference on, IEEE, 2015, pp. 1{6}.
+[29] X. Wu, W. Fan, J. Peng, K. Zhang, Y. Yu, Iterative sampling based frequent itemset mining for big data, International Journal of Machine Learning and Cybernetics 6 (6) (2015) 875{882. doi:10.1007/s13042015-0345-6}.
+[30] R. Vimieiro, P. Moscato, A new method for mining disjunctive emerging patterns in high-dimensional datasets using hypergraphs, Information Systems 40 (2014) 1 { 10. doi:http://dx.doi.org/10.1016/j.is.2013.09.001}.
+[31] P. Bermejo, L. de la Ossa, J. A. Gmez, J. M. Puerta, Fast wrapper feature subset selection in high-dimensional datasets by means of filter re-ranking, Knowledge-Based Systems 25 (1) (2012) 35 { 44, special Issue on New Trends in Data Mining. doi:http://dx.doi.org/10.1016/j.knosys.2011.01.015}.
+[32] B. Kamsu-Foguem, F. Rigal, F. Mauget, Mining association rules for the quality improvement of the production process, Expert Systems with Applications 40 (4) (2013) 1034 { 1045. doi:http://dx.doi.org/10.1016/j.eswa.2012.08.039}.
+[33] J. Nahar, T. Imam, K. S. Tickle, Y.-P. P. Chen, Association rule mining to detect factors which contribute to heart disease in males and females, Expert Systems with Applications 40 (4) (2013) 1086 { 1093. doi:http://dx.doi.org/10.1016/j.eswa.2012.08.028}.
+[34] A. Finamore, M. Mellia, M. Meo, M. Munafò, D. Rossi, Experiences of internet traffic monitoring with tstat, IEEE Network 25 (3) (2011) 8{14}. 
+[35] B. Claise, Cisco systems netflow services export version 9. rfc 3954 (informational) (2004).
+[36] D. Apiletti, E. Baralis, T. Cerquitelli, S. Chiusano, L. Grimaudo, Searum: A cloud-based service for association rule mining, in: Proceedings of the 2013 12th IEEE International Conference on Trust, Security and Privacy in Computing and Communications, TRUSTCOM '13, IEEE Computer Society, Washington, DC, USA, 2013, pp. 1283{1290. doi:10.1109/TrustCom}.2013.153.
+[37] D. Brauckhoff, X. Dimitropoulos, A. Wagner, K. Salamatian, Anomaly extraction in backbone networks using association rules, Networking, IEEE/ACM Transactions on 20 (6) (2012) 1788{1799. doi:10.1109/TNET.2012.2187306}.
+[38] D. Apiletti, E. Baralis, T. Cerquitelli, V. D'Elia, Characterizing network traffic by means of the netmine framework, Comput. Netw. 53 (6) (2009) 774{789. doi:10.1016/j.comnet.2008.12.011.57 }.

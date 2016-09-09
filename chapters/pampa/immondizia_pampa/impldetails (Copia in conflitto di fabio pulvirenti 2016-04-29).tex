@@ -1,0 +1,539 @@
+
+
+
+
+PaMPa-HD implementation exploits Hadoop MapReduce.
+The algorithm consists of three MapReduce jobs as shown in Figure \ref{alg1}.
+
+The first job is developed to distribute the input dataset to the independent tasks,
+which will run a local version of the Carpenter algorithm. Each mapper is fed
+with a transaction of the input dataset, which is supposed to be in a vertical
+representation, together with the minsup parameter. As detailed in Algorithm~\ref{job1}, each transaction is in the form $item,tidlist$. 
+For each transaction, the mapper performs 
+the following steps. For each tid $t_{i}$ of the input tidlist, given $TL_{greater}$ the set of tids $(t_{i+1},t_{i+2},...,t_{n})$ greater than the considered tid $t_{i}$.
+\begin{itemize}
+\item If $|TL_{greater}|+1 <= minsup$, output a key-value pair \textless key= $t_{i}$; value= $TL_{greater}$, item\textgreater, then analyze $t_{i+1}$ of the tidlist.
+ \item Else discard the tidlist.
+\end {itemize}
+ For instance, if the input transaction is the tidlist of item b (b, 1 2 3) and
+ minsup is 1, the mapper will output three pairs:  \textless key=1; value=2 3,
+ b\textgreater,  \textless  key=2; value=3, b\textgreater,  \textless  key=3;
+ value=b\textgreater .\\
+ After the mapper phase, the MapReduce shuffle and sort phase aggregates the
+ \textless key,value\textgreater pairs and delivers to reducers the nodes of the
+ first level of the tree, which represent the transposed tables projected on a
+ single tid. The tables in Figure~\ref{examplejob1} resume the processing of a row of the initial Transposed  representation of $D$.
+ Reducers run a local Carpenter implementation from the input
+ tables. Given that each key matches a single transposed table $TT_{X}$, each reducer builds the transposed tables with the tidlists contained in the ``value'' fields. 
+ 
+ From this table, a local Carpenter job is run. As already described in Section~\ref{Carpenter algorithm}, Carpenter recursively processes a transposed table expanding it in a depth-first manner. At each iteration of the Carpenter subroutine, a counter is increased. When the count is over the given maximum expansion threshold, the main routine is not invoked anymore. In this case, all the intermediate results are written to HDFS.
+ \begin{enumerate}
+ \item the transposed table is composed using the tidlists from each key-value
+ and a local Carpenter job is run
+ \item each recursion of the Carpenter subroutine increases a counter which is
+ compared to the expansion threshold before each recursion
+\item if the count is below the threshold another Carpenter recursion is scheduled
+\item else, Carpenter main routine is not invoked anymore but all the
+ intermediate results are written to HDFS
+\end{enumerate}
+During the local Carpenter process, the found closed itemsets and the explored branches are
+ stored in memory in order to apply a local pruning. Furthermore, closed itemsets are emitted as output at the end of the task, together with the tidlist of the node of the tree in
+which they have been found. This information is required by the synchronization phase in order to establish which element is the eldest in a depth first
+exploration\\
+After this phase, the synchronization job is launched. It is a straightforward
+MapReduce job in which mappers input is the output of the previous job: it is
+ composed of the closed frequent itemsets found in the previous Carpenter tasks
+ and intermediate Transposed TAbles that still have to be expanded. The itemsets
+ are associated to their minsup and the tidlist related to the node of the tree
+ in which they have been found; the Transposed Tables are associated to the table content,
+ the corresponding itemset and the table tidlist. For each itemset, the mappers
+ output a pair of the form \textless key=itemset;value=tidlist,minsup\textgreater; for
+ each tables the mappers out a pair of the form \textless
+ key=itemset;value=tidlist,table\_content\textgreater. The shuffle and sort phase
+ delivers to the reducers the pairs aggregated by keys. The reducers, which matches the buckets introduced in Section~\ref{Distributed implementation outline}, compare the
+ entries and emit, for the same key or itemset, only the eldest version in a
+ depth first exploration. For instance, referring to our running example in Figure~\ref{running_3b}, in the bucket of the itemset $av$ are collected the entries related to the nodes $T_{1 2 3}$ and $T_{2 3 4}$. Since the tidlist $1 2 3$ is previous than $2 3 4$ in a depth-first exploration order, the reducer keeps and emits only the entry related to the node $T_{1 2 3}$.
+ With this design, the redundant tables are discarded with a pruning very similar to the one
+ related to a centralized memory at the cost of a very MapReduce-like job.
+
+Finally, the last MapReduce job can be seen as a mixture of the two previous jobs. In the Map phase, in fact, all the remaining tables are expandend by a local Carpenter routine. In the Reduce phase, instead, is applied the same kind of synchronization that is run in the synchronization job. The job has two types of input: transposed tables and frequent closed itemsets. The former are processed respecting a depth-first sorting and expanded until it is reached the maximum expansion threshold. From that moment, the tables are not expanded but sent to the reducers. Please note that the tree exploration processing the initial transposed tables in a depth-first order is more similar to a centralized architecture, enhancing the impact of the pruning rule 3. 
+The latter (i.e. the frequent closed itemsets of the previous PaMPa-HD job) are processed in the following way. If in memory there is already an oldest depth-first entry of the same itemset, the closed itemset is discarded. If there is not, it is saved into memory  and used to improve the local pruning effectiveness. At the end of the task, all the frequent closed found are sent to the reducers.
+This job is iterated until all the Transposed Tables have been processed.
+
+%one for each tid (transaction id).
+%
+%Job \#1 reads the input dataset, in the transposed format,
+%and builds the initial conditional transposed tables $TT|_{X}$,
+%one for each tid (transaction id).
+%The last step of the reducer locally runs the centralized Carpenter on each conditional transposed table $TT|_{X}$,
+%until there is enough memory available and the number of processed nodes
+%of the enumeration tree rooted in $TT|_{X}$ is lower than a maximum number
+%of iterations (the maximum expansion threshold parameter of PaMPa-HD).
+%If any of the two conditions is verified,
+%the job ends by storing the currently-extracted frequent closed itemsets
+%on disk (in HDFS~\cite{HDFS}) along with the pointer to the next node of the enumeration
+%tree to be processed, i.e., the next conditional $TT|_{X}$.
+
+% The following tasks will process the conditional transposed tables
+% stored on disk.
+%The number of reducers is set to build each $TT|_{X}$ independently,
+%\textbf{when the available resources allow doing it}\footnote{
+%Daniele:
+%secondo me qui bisogna spiegare cosa succede se le risorse non lo permettono,
+%oppure togliere la frase.
+%Cmq non capisco cosa vogliamo dire con l\`impostazione del numero di reducers,
+%non ce n\`e uno per ogni table?
+%Secondo me conviene togliere tutta la frase.
+%}.
+
+
+
+%Job \#2 globally synchronizes the partial closed itemset lists
+%and the intermediate conditional transposed tables saved on disk by job \#1,
+%by applying pruning rule 3.
+%
+%Job \#3 performs the same operations as job \#1,
+%but it receives in input the remaining $TT|_{X}$ of the enumeration tree,
+%instead of building them from the input dataset.
+%
+%Job \#2 and job \#3 are repeated until no conditional tables remain.
+
+
+
+Thanks to the introduction of a global synchronization phase (job \#2 and job\#3),
+the proposed PaMPa-HD approach is able to apply pruning rule 3
+and handle high-dimensional datasets,
+otherwise not manageable due to memory issues.
+% Experimental results also show the efficiency of this approach with
+% respect to other MapReduce-based itemset mining algorithms.
+
+
+% %The first job is developed to distribute the input dataset to the reducers,
+% which will run a local version of the Carpenter algorithm. Each mapper is fed
+% with a transaction of the input dataset, which is supposed to be in a vertical
+% representation, together with the minsup parameter. As detailed in algorithm
+% \ref{job1}, each transaction is in the form \textless key;
+% value=item,tidlist\textgreater. For each key-value couple, the mapper performs
+% the following steps. For each tid of the input tidlist:
+% %
+% %\begin{enumerate}
+% %\item consider only the tids greater than the considered tid.
+% %\item if the count of tids, plus one which represents the considered tid, is
+% greater or equal to minsup, output a key-value pair in which the key is the tid
+% and the value is the items and tids of tidlist greater than the considered tid.
+% Then, consider the next tid of the tidlists and restart point 2.
+% %\item Else, i.e. the count is less than minsup, discard the tidlist and exit.
+% %\end{enumerate}
+% %
+% %For instance, if the input transaction is the tidlist of item b ( b, 1 2 3) and
+% minsup is 1, the mapper will output three pairs:  \textless key=1; value=2 3,
+% b\textgreater,  \textless  key=2; value=3, b\textgreater,  \textless  key=3;
+% value=b\textgreater .\\
+% %After the mapper phase, the MapReduce shuffle and sort phase aggregates the
+% \textless key,value\textgreater  pairs and delivers to reducers the nodes of the
+% first level of the tree, which represent the transposed tables projected on a
+% single row tidlist. Reducers run a local Carpenter implementation from the input
+% tables. In each reducer, the found closed itemsets and the explored branches are
+% stored in memory in order to apply a local pruning.The reducer function,
+% (algorithm \ref{job1}) can be resumed in:
+% %\begin{enumerate}
+% %\item for each key value the transposed table is composed using the tidlists
+% and a local Carpenter job is run
+% %\item each recursion of the Carpenter subroutine increases a counter which is
+% compared to the expansion threshold before each recursion
+% %\item if the count is below the threshold and there is enough memory in the
+% node to continue expanding the branch, another Carpenter recursion is scheduled
+% %\item else, Carpenter main routine is not invoked anymore but all the
+% intermediate results are written to HDFS
+% %\end{enumerate}
+% %During the local Carpenter process, the closed itemset are emitted as output as
+% soon as they are mined, together with the tidlist of the node of the tree in
+% which they have been found. This information is required by the next job
+% (synchronization job) in order to establish which is the eldest in a depth first
+% exploration\\
+% %After this phase, the synchronization job is launched. It is a straightforward
+% MapReduce job in which mappers input is the output of the previous job: it is
+% composed of the closed frequent itemsets and intermediate tables. The itemsets
+% are associated to their minsup and the tidlist related to the node of the tree
+% in which they have been found; the tables are associated to the table content,
+% the corresponding itemset and the table tidlist. For each itemset, the mappers
+% output a pair of the form \textless key=itemset;value=tidlist\textgreater; for
+% each tables the mappers out a pair of the form \textless
+% key=itemset;value=tidlist;table content\textgreater. The shuffle and sort phase
+% delivers to the reducers the pairs aggregated by keys. The reducers compare the
+% entries and emit, for the same key or itemset, only the eldest version in a
+% depth first exploration. In this way, all the redundant tables are discarded and
+% a centralized memory is emulated at the cost of a very MapReduce-like job.\\
+% %The last job is very similar to the first job reducer. Its aim is to expand the
+% tables that have not been explored by the previous Carpenter jobs. This time,
+% the mappers run a local Carpenter from the input transposed tables, being very
+% similar to the first job reducers. When the expansion threshold is reached or
+% there is no more memory, the mappers write the intermediate tables into HDFS\\
+% %The algorithm repeats iteratively the second and the third jobs until all the
+% tables have been processed. Since the reducers of the first and the third job
+% process more than one table, the comparator function that is used in shuffle and
+% sort phase has been purposely modified in order to respect a depth first
+% exploration sorting. In this way, the pruning based on the local memory is more
+% effective since the tables are processed with an order close to a depth first
+% exploration.
+\fbox{\parbox{0.9\linewidth}{
+PaMPa-HD pseudo code
+ \begin{algorithmic}[1]
+
+ \Procedure{PaMPa-HD}{$minsup;$ $initial$ $TT$}
+
+
+\State Job 1 Mapper: process each row of TT \par
+and send it to reducers, using as key values \par the tids of the tidlists
+
+\State Job 1 Reducer: aggregates $TT|_{x}$ and run \par local Carpenter until
+expansion threshold is \par reached  or memory is not enough
+\State Job 2 Mapper: process all the closed itemset \par or transposed
+ tables from the previous job \par and send them to reducers
+\State Job 2 Reducer: for each itemset belonging \par to a table or a frequent
+closed, keep \par the eldest in  a Depth First fashion
+\State Job 3 Mapper: process each closed itemset \par and $TT|_{x}$ from  the  previous job. \par For the transposed tables run
+local Carpenter \par until  expansion  threshold is reached
+\State Job 3 Reducer: for each itemset belonging \par to a table or a frequent
+closed, keep \par the eldest in  a Depth First fashion
+\State Repeat Job 3 until no more \par conditional tables  need to be
+processed
+% \Procedure{PaMPa-HD}{$minsup;$ $initial$ $TT$}
+%
+%
+%\State Job 1 Mapper: process each row of TT \par
+%and send it to reducers, using as key values \par the tids of the tidlists
+%
+%\State Job 1 Reducer: aggregates $TT|_{x}$ and run \par local Carpenter until
+%expansion threshold is \par reached  or memory is not enough
+%\State Job 2 Mapper: process all the closed itemset \par or transposed
+% tables from the previous job \par and send them to reducers
+%\State Job 2 Reducers: for each itemset belonging \par to a table or a frequent
+%closed, keep \par the eldest in  a Depth First fashion
+%\State Job 3 Mapper: process each $TT|_{x}$ from  the \par previous job and run
+%Local Carpenter until \par expansion  threshold is reached  or memory \par is not
+%enough
+%\State Repeat Job 2 and Job 3 until no more \par conditional tables  need to be
+%processed
+
+ \EndProcedure
+ \end{algorithmic}
+}}
+% \caption{PaMPa-HD pseudo code}
+ \label{alg1}
+ 
+ 
+\fbox{\parbox{0.9\linewidth}{
+Job 1 Pseudo code
+ \begin{algorithmic}[1]
+  \Procedure{Mapper}{$minsup; item_{i};tidlist$ $TL$}
+\For{$j =  0$  to $|(TL)|-1$}
+\State tidlist $TL_{greater}$ : set of tids greater than the considered tid $t_{j}$.
+ \If{ $|TL_{greater}|+1 \ge minsup$}
+ \State output \textless key= $t_{j}$; value= $TL_{greater}$, item\textgreater
+ \Else $ $ Break
+ \EndIf
+\EndFor
+\EndProcedure
+\Procedure{Reducer}{$key= tid$ $X,value=list$ $of$ $tidlists$ $TL[$ $]$}
+\State Create new transposed table $ TT|_{X} $
+\For{\textbf{each} tidlist $TL_{i}$ of $TL[$ $]$}
+\State  add $TL_{i}$ to $ TT|_{row_{i}} $
+\EndFor
+\State Run $Carpenter (minsup;  TT|_{X})$
+%\State\hspace{\algorithmicindent}Output (Frequent Closed itemsets)
+%\State\hspace{\algorithmicindent} Output (Transposed tables)
+%\State\hspace{\algorithmicindent}$Output( \textless frequent$ $closed$ $itemsets\textgreater )$ 
+\State\hspace{\algorithmicindent}$Output \textless itemset;$ $tidlist+table$ $I$ $rows  \textgreater$ 
+\For{\textbf{each} frequent closed itemset found}
+\State $Output(  \textless itemset;tidlist+support \textgreater) $
+\EndFor
+ \EndProcedure
+ \end{algorithmic}
+}}
+ \label{job1}
+
+
+%\begin{figure}[!t]
+%%\renewcommand{\arraystretch}{1.3}
+%%\centerline
+%{\subfloat[Transposed representation of $\mathcal{D}$: tidlist of item $a$]{
+%\label{TTexampledataset}
+%\begin{tabular}{|l|l|}
+%\hline
+%
+%	item & tidlist \\ \hline
+%	a & 1,2,3,4,5 \\ \hline
+%\end{tabular}}}%
+%%\hfil
+%{\subfloat[Emitted key-value entries]{
+%\label{key-value}
+%\begin{tabular}{|l|l|}
+%\hline
+%%\multicolumn{2}{|c|}{$TT|_{\{2,3\}}$}\\  
+%%\hline
+%%\hline
+%key & value\\ \hline
+%1 & 2,3,4,5 \textbar  a \\
+% \hline
+%2 & 3,4,5 \textbar  a \\ \hline
+%3 & 4,5 \textbar  a\\ \hline
+%4 &5 \textbar  a \\ \hline
+%5 & - \textbar  a \\ \hline
+%\end{tabular}}}%
+%\hfil
+%{\subfloat[key-value for key$3$]{
+%\label{key-value 3}
+%\begin{tabular}{|l|l|}
+%\hline
+%%\multicolumn{2}{|c|}{$TT|_{\{2,3\}}$}\\  
+%%\hline
+%%\hline
+%key & value\\ \hline
+%3 & 4,5 \textbar a \\ \hline
+%3 & - \textbar c \\ \hline
+%3 & - \textbar e \\ \hline
+%3 & - \textbar h \\ \hline
+%3 & - \textbar o \\ \hline
+%3 & 5 \textbar  q \\ \hline
+%3 & 5 \textbar  t \\ \hline
+%3 & 4 \textbar  v \\ \hline
+%\end{tabular}}}%
+%{\subfloat[$TT|_{\{3\}}$: composed with the received values]{
+%\label{composed_tt}
+%\begin{tabular}{|l|l|}
+%\hline
+%\multicolumn{2}{|c|}{$TT|_{\{3\}}$}\\  
+%\hline
+%\hline
+%item & tidlist \\ \hline
+%a &4,5 \\ \hline
+%c & - \\ \hline
+%e & -\\ \hline
+%h & -\\ \hline
+%o & -\\ \hline
+%q & 5\\ \hline
+%t & 5\\ \hline
+%t & 5\\ \hline
+%v &4 \\ \hline
+%\end{tabular}}}%
+%\caption{Job 1 applied to the Running example dataset \textbf{la mettiamo su due colonne?}}
+%\label{exampledataset}
+%\end{figure}
+
+
+\begin{figure*}[!t]
+%\renewcommand{\arraystretch}{1.3}
+%\centerline
+{\subfloat[Transposed representation of $\mathcal{D}$: tidlist of item $a$]{
+\label{TTexampledataset}
+\begin{tabular}{|l|l|}
+\hline
+
+	item & tidlist \\ \hline
+	a & 1,2,3,4,5 \\ \hline
+\end{tabular}}}%
+\hfil
+{\subfloat[Emitted key-value entries]{
+\label{key-value}
+\begin{tabular}{|l|l|}
+\hline
+
+%\multicolumn{2}{|c|}{$TT|_{\{2,3\}}$}\\  
+%\hline
+%\hline
+key & value\\ \hline
+1 & 2,3,4,5 \textbar  a \\
+ \hline
+2 & 3,4,5 \textbar  a \\ \hline
+3 & 4,5 \textbar  a\\ \hline
+4 &5 \textbar  a \\ \hline
+5 & - \textbar  a \\ \hline
+\end{tabular}}}%
+\hfil
+{\subfloat[key-value for key$3$]{
+\label{key-value 3}
+\begin{tabular}{|l|l|}
+\hline
+%\multicolumn{2}{|c|}{$TT|_{\{2,3\}}$}\\  
+%\hline
+%\hline
+key & value\\ \hline
+3 & 4,5 \textbar a \\ \hline
+3 & - \textbar c \\ \hline
+3 & - \textbar e \\ \hline
+3 & - \textbar h \\ \hline
+3 & - \textbar o \\ \hline
+3 & 5 \textbar  q \\ \hline
+3 & 5 \textbar  t \\ \hline
+3 & 4 \textbar  v \\ \hline
+\end{tabular}}}%
+\hfil
+{\subfloat[$TT|_{\{3\}}$: composed with the received values]{
+\label{composed_tt}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{$TT|_{\{3\}}$}\\  
+\hline
+\hline
+item & tidlist \\ \hline
+a &4,5 \\ \hline
+c & - \\ \hline
+e & -\\ \hline
+h & -\\ \hline
+o & -\\ \hline
+q & 5\\ \hline
+t & 5\\ \hline
+t & 5\\ \hline
+v &4 \\ \hline
+\end{tabular}}}%
+\caption{Job 1 applied to the Running example dataset: local Carpenter algorithm is run from the Transposed Table \ref{composed_tt}. }
+\label{examplejob1}
+\end{figure*}
+%%\For{$j =  0$  to $lenght(t_{i})-1$}
+% %
+%\If{$   lenght(t_{i})-j \ge minsup$}
+% \State $Output(  \textless j;item+t_{i} \lbrack j+1\rbrack , ... ,t_{i}
+% \lbrack lenght(t_{i})-1\rbrack \textgreater) $
+%  \EndIf
+%      \EndFor
+% %\EndProcedure
+% %\\
+% % \Procedure{Reducer}{$minsup; key=row_{i},value=list$ $of$ $tidlists$}
+% %\State Create new transposed table $ TT|_{row_{i}} $
+% %\For{\textbf{each} tidlist t}
+% %\State  add $TL_{i}$ to $ TT|_{row_{i}} $
+% %\EndFor
+% %\State Run $Carpenter (minsup;  TT|_{row_{i}})$
+
+
+\fbox{\parbox{0.9\linewidth}{
+Job 2 Pseudo code
+ \begin{algorithmic}[1]
+  \Procedure{Mapper}{$Frequent$ $Closed$ $itemset$ $/$ $Transposed$ $table$}
+\If {Input $I$ is a table}
+\State $itemset\gets ExtractItemset(I)$
+\State $tidlist\gets ExtractTidlist(I)$
+\State $Output(  \textless itemset;$ $tidlist+table$ $I$ $rows  \textgreater) $
+\Else $ $  (i.e. input $I$ is a frequent closed Itemset)
+\State $itemset\gets ExtractItemset(I)$
+\State $tidlist\gets ExtractTidlist(I)$
+\State $support\gets ExtractSupport(I)$
+\State $Output(  \textless itemset;tidlist+support \textgreater) $
+\EndIf
+
+\EndProcedure
+\Procedure{Reducer}{$key=itemset;$ $value=itemsets$ $\&$ $tables$ $T[$ $]$}
+\State $oldest\gets null$
+\For{\textbf{each} itemset or table $T$ of  $T[$ $]$}
+\State $tidlist\gets ExtractTidlist(T)$
+\If { $tidlist$ previous of $oldest$ in a DFS}
+ \State $oldest\gets T$
+\EndIf
+\EndFor
+\State $Output(\textless itemset+oldest\textgreater )$  
+%% \pushcode[0] $/support) \textgreater) $
+% %
+ \EndProcedure
+ \end{algorithmic}
+}}
+ \label{job2}
+
+\fbox{\parbox{0.9\linewidth}{
+Job 3 Pseudo code
+ \begin{algorithmic}[1]
+  \Procedure{Mapper}{$Frequent$ $Closed$ $itemset$ $/$ $Transposed$ $table$}
+\If {Input $I$ is a frequent closed itemset}
+\State save $I$ to local memory
+
+\Else $ $ (i.e. input $I$ is a Transposed Table)
+%\State $itemset\gets ExtractItemset(I)$
+\State Run $Carpenter (minsup;  TT|_{X})$
+
+\State\hspace{\algorithmicindent} $Output(  \textless itemset;$ $tidlist+table$ $I$ $rows  \textgreater) $
+
+%\State\hspace{\algorithmicindent} $Output(  \textless itemset;tidlist+support \textgreater) $
+\EndIf
+\For{\textbf{each} frequent closed itemset found}
+\State $Output(  \textless itemset;tidlist+support \textgreater) $
+\EndFor
+\EndProcedure
+\Procedure{Reducer}{$key=itemset;$ $value=itemsets$ $\&$ $tables$ $T[$ $]$}
+\State $oldest\gets null$
+\For{\textbf{each} itemset or table $T$ of  $T[$ $]$}
+\State $tidlist\gets ExtractTidlist(T)$
+\If { $tidlist$ previous of $oldest$ in a DFS}
+ \State $oldest\gets T$
+\EndIf
+\EndFor
+\State $Output(\textless itemset+oldest\textgreater )$  
+%% \pushcode[0] $/support) \textgreater) $
+% %
+ \EndProcedure
+ \end{algorithmic}
+}}
+ \label{job3}
+
+% %
+% %\begin{algorithm}
+% % \begin{algorithmic}[2]
+% % \Procedure{Mapper}{Frequent$ $Closed itemset / transposed table$}
+% %\If {Input is a table}
+% %\State $itemset\gets ExtractItemset(table)$
+% %\State $tidlist\gets ExtractTidlist(table)$
+% %\State $Output(  \textless itemset;tidlist+table$ $content  \textgreater) $
+% %\Else
+% %\State $itemset\gets ExtractItemset(FCItemset)$
+% %\State $row\gets ExtractTidlist(FCItemset)$
+% %\State $Output(  \textless itemset;tidlist+support \textgreater) $
+% %\EndIf
+% %
+% %\EndProcedure
+% % \Procedure{Reducer}{$key=itemset,value=list$ $of$ $itemsets$ $and$ $tables$}
+% %
+% %\For{\textbf{each} itemset and table t}
+% %\State $tidlist\gets ExtractTidlist(t)$
+% %\State  Keep the eldest in a depth first exploration order
+% %\EndFor
+% %\State $Output(  \textless itemset;tidlist$ $+$ $table$ $content$  \Statex
+% \pushcode[0] $/support) \textgreater) $
+% %
+% % \EndProcedure
+% % \end{algorithmic}
+% % \caption{Synchronization Job}
+% % \label{job2}
+% %\end{algorithm}
+% %
+% %\begin{algorithm}
+% % \begin{algorithmic}[2]
+% % \Procedure{Carpenter}{$minsup, TT|_{x}$}
+% % \State $count\gets 0$
+% % \State initialize frequent closed pattern set $FCP$ as empty
+% %\State run subroutine $MinePatterns(minsup, FCP,$  \Statex \pushcode[0]
+% $TT|_{x}, count)$
+% %\EndProcedure
+% %
+% %\Procedure {MinePatterns}{$minsup, FCP,TT|_{x}, count$}
+% %\State $count++$
+% %\State Apply pruning rules
+% %
+% %\If {$ support \ge minsup$}
+% %\State add the itemset to FCP
+% %\State $Output(  \textless itemset;tidlist+support \textgreater) $
+% %\EndIf
+% %\State build $TT|_{x+i}$ following a depth first manner
+% %
+% %\If {$count \le expansion$ $threshold$ $AND$ $free$ $memory \ge safety$
+% $threshold$}
+% %\State run $MinePatterns\{minsup, FCP, TT|_{x+i}, count\}$
+% %\Else
+% %\State $Output(  \textless itemset;tidlist+table$ $content  \textgreater) $
+% %\EndIf
+% %\EndProcedure
+% %
+% % \end{algorithmic}
+% % \caption{Local Carpenter job}
+% % \label{job4}
+% %\end{algorithm}
+
+

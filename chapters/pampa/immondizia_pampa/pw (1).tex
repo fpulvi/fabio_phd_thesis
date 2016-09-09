@@ -1,0 +1,40 @@
+\textbf{Questo tutto vecchio, rifrasare?} Frequent itemset mining represents a very popular data mining technique 
+used for exploratory analysis. 
+Its popularity is witnessed by the high number of approaches 
+and implementations. 
+The most popular techniques to extract frequent itemsets
+from a transactional datasets are Apriori and Fp-growth.
+Apriori~\cite{Agr94} is a bottom up approach: 
+itemsets are extended one item at a time and their frequency is tested against the dataset. 
+FP-growth~\cite{Han00}, instead, is based on an FP-tree transposition of the transactional dataset 
+and a recursive divide-and-conquer approach. 
+These techniques explore the search space enumerating the items. 
+For this reason, they work very well for datasets 
+with a small (average) number of items per row, 
+but their running time increases exponentially 
+with higher (average) row lengths~\cite{Zaki97newalgorithms, Agr94}.
+
+In recent years, the explosion of the so called Big Data phenomenon 
+has pushed the implementation of these techniques in distributed environments 
+such as Apache Hadoop~\cite{HDFS}, 
+based on the MapReduce paradigm~\cite{ArticoloMapReduceGoogle}, 
+and Apache Spark~\cite{Zaharia_spark}. 
+Parallel FP-growth~\cite{pfpgrowth} is the most popular 
+distributed closed frequent itemset mining algorithm. 
+The main idea is to process more sub-FP-trees in parallel. 
+A dataset conversion is required to make all the FP-trees independent. 
+BigFIM and DistEclat~\cite{bigfim} are two recent methods to extract frequent itemsets. 
+DistEclat represents a distributed implementation of the Eclat algorithm~\cite{Zaki97newalgorithms} 
+an approach based on equivalence classes (groups of itemsets sharing the same prefixes), 
+smartly merged to obtain all the candidates. 
+BigFIM is a hybrid approach exploiting both Apriori and Eclat paradigms.
+BigFIM and DistEclat are divided in two phases. In the first one, the approaches use respectively an Apriori-like an Eclat-like strategy to mine the itemsets up to a fixed k-length. After that, the itemsets are distributed and used as prefixes for the longer itemsets. The last phase of the mining, both the approaches uses Eclat to extract all the closed itemsets.
+Carpenter~\cite{Zaki_Carpenter}, which inspired this work, 
+has been specifically designed to extract frequent itemsets 
+from high-dimensional datasets, i.e., characterized by a very large number of attributes (in the order of tens of thousands or more). 
+The basic idea is to investigate the row set space instead of the itemset space. 
+A detailed introduction to the algorithm is presented in section \ref{Carpenter algorithm}.
+This work is based on the distributed implementation PaMPa-HD~\cite{pampa_v1}. The original algorithm assumes a slightly different architecture, assuming an additional independet synchronization job at each iteration. As already described in Section\ref{MapReduce Carpenter}, this implementation includes the synchronization phase in the Mining Job 3. Therefore, the number of MapReduce jobs (with their related overhead) are strongly reduced.
+Additionally, in order to better exploit the pruning rule in the local Carpenter iteration in each independent task, all the transposed tables are now processed (not only expanded) in depth-first order. This strategy decreases the possibility to explore an useless branch of the tree, i.e. a branch whose results would be completely overwritten by the closed itemsets obtained by branches older in depth-first fashion. 
+
+

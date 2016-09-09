@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{HDFS}
+D.~Borthakur, The hadoop distributed file system: Architecture and design,
+  Hadoop Project 11 (2007) 21.
+
+\bibitem{Zaharia_spark}
+M.~Zaharia, M.~Chowdhury, T.~Das, A.~Dave, J.~Ma, M.~McCauley, M.~J. Franklin,
+  S.~Shenker, I.~Stoica, Resilient distributed datasets: A fault-tolerant
+  abstraction for in-memory cluster computing, in: NSDI'12, 2012, pp. 2--2.
+
+\bibitem{Zaki_Carpenter}
+F.~Pan, G.~Cong, A.~K.~H. Tung, J.~Yang, M.~J. Zaki,
+  \href{http://doi.acm.org/10.1145/956750.956832}{Carpenter: Finding closed
+  patterns in long biological datasets}, in: Proceedings of the Ninth ACM
+  SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD
+  '03, ACM, New York, NY, USA, 2003, pp. 637--642.
+\newblock \href {http://dx.doi.org/10.1145/956750.956832}
+  {\path{doi:10.1145/956750.956832}}.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/956750.956832}
+
+\bibitem{PEMSDataset}
+M.~Cuturi, \href{https://archive.ics.uci.edu/ml/datasets/PEMS-SF}{{UCI} machine
+  learning repository. {PEMS-SF} data set} (2011).
+\newline\urlprefix\url{https://archive.ics.uci.edu/ml/datasets/PEMS-SF}
+
+\bibitem{snapnets}
+J.~Leskovec, A.~Krevl, {SNAP Datasets}: {Stanford} large network dataset
+  collection, \url{http://snap.stanford.edu/data} (Jun. 2014).
+
+\bibitem{KumarBook}
+{Pang-Ning T. and Steinbach M. and Kumar V.}, {Introduction to Data Mining},
+  {Addison-Wesley}, 2006.
+
+\end{thebibliography}

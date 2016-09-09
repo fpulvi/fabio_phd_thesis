@@ -1,0 +1,98 @@
+%In recent years, the increasing capabilities of recent applications to produce
+%and store huge amounts of information has changed dramatically the importance of
+%the intelligent analysis of big data. The interest towards data mining, an
+%important set of techniques useful to extract effective and usable knowledge
+%from data, has risen.
+%This trend is noticeable in both the academic and the industrial
+%domains.
+%For researchers, the big data analytics scenario is very challenging. Often,
+%indeed, the application of traditional data mining techniques to such large
+%volumes of data is not straightforward. It is not only a matter of computational
+%power or memory; some of the most popular techniques had to be redesigned from
+%scratches to fit the new environment.
+%On the other side, companies are
+%interested in the strategic benefits that big data could deliver, even directly.
+%In~\cite{junque2013predictive}, the authors present a study to illustrate that
+%larger data indeed can be more valuable assets for predictive analytics. The
+%deduction is that institutions with larger collections of data and, of course,
+%the skill to take advantage of them, can obtain a competitive advantage over
+%institutions without. Data mining, together with machine learning~\cite{DBLP:journals/bdr/Al-JarrahYMKT15}, is the main tool on which big data analytics
+%rely on and it includes different types of techniques: (i) clustering
+%algorithms to discover hidden structures in unlabelled
+%data~\cite{Xu_2005SurveyClustering}, (ii) frequent itemsets mining and association
+%rules analysis to discover interesting correlations and
+%dependencies~\cite{Han_2007SurveyFIM}, and finally, (iii) supervised learning
+%techniques to extract a function or a model that best approximates the
+%distribution of the input dataset to map or label new data
+%examples~\cite{AggarwalBookClassification}.
+Existing data mining algorithm revealed to be very efficient on typical datasets but
+very resource intensive when the size of the input dataset grows up. In general,
+applying data mining techniques to big data collections has often entailed to
+cope with computational costs that represent a critical bottleneck. Furthermore,
+the shift towards horizontal scaling in hardware has highlighted the need of
+distribution/parallelization of data analytics techniques. 
+
+Effective and efficient analytics algorithms have been proposed during the last
+years to better utilize the available hardware resources and distributed
+computing frameworks. Here we focus on itemset mining algorithms because thery
+represent exploratory approaches widely used to discover frequently co-occurring
+items from the data. These algorithms have been widely exploited in different
+application domains (e.g., network traffic data~\cite{ApilettiBCCG13},
+healthcare~\cite{META-TIST-2015}, biological data~\cite{DBLP:conf/sigmod/CongXPTY04}, energy
+data~\cite{NostroENDM2016_senzacrossref}, images~\cite{zaianeimage},  open
+linked data~\cite{BCOpenLinkedData}, document and data summarization~\cite{BaralisCFG15},~\cite{DBLP:journals/cg/LopesPPM07},~\cite{Mampaey:2011:TMI:2020408.2020499},
+to support different targeted analyses.
+
+Although different algorithms have been proposed to perform the computationally
+intensive frequent itemset mining task, also in the distributed frameworks, no
+algorithm is universally superior. Several aspects influence which algorithm
+performs best, including input data cardinality and data distribution, adopted
+strategies to process the data into independent tasks, strategies to reduce the
+communication costs. The algorithm selection for a given analytics case study is
+usually manually performed based on analyst expertise and it is very time
+consuming. To help the analyst in the algorithm selection process, the work introduced in this chapter presents 
+an experimental comparison of different scalable itemset mining
+algorithms. Specifically, as summarized in Table \ref{survey_recap}, the
+contribution of this review includes:
+\begin{itemize}
+\item The discussion of the state-of-the-art itemset mining algorithms dealing
+with huge data collections to analyze how technological development efficiently
+support the continuous design of more scalable and more efficient algorithms. We
+selected the most two widespread and recent distributed frameworks as
+Hadoop~\cite{HDFS}, Apache Spark~\cite{Zaharia_spark} to set the experimental
+scenario. We selected the five algorithms, to
+perform the itemset mining discovery on distributed environment. 	These
+algorithms (i.e., Mahout PFP~\cite{Mahout}, Mllib PFP~\cite{MLLib},
+BigFIM~\cite{bigfim}, DistEclat~\cite{bigfim}, YAFIM~\cite{YAFIM}) cover the
+different search space strategies adopted in the centralized architecure to
+efficiently address the mining activity by effectively dealing with different
+data distribution.
+\item
+The definition of four evaluation criteria to characterize both  the algorithmic
+strategies and the distributed implementation as well.
+\item
+A detailed comparative analysis of the selected, running on either Spark or
+Hadoop framework, with a thoroughly discussion on interesting results got by
+performing a large set of experiments on real and synthetic datasets.
+Specifically, we run more than 250 experiments on 14 synthetic datasets and 2 real datasets to
+evaluate the algorithm performance, load balancing and communication cost as
+well.
+\item
+The discussion of the lessons learned to share general advices gained from the
+experience of performing the in-depth comparative analysis.
+\item
+The discussion of some open issues that should be addressed to support a more
+effective and efficient data mining process on very large datasets.
+\end{itemize}
+
+The results described in this Chapter have been published as \textbf{aggiungere citazioni minisurvey big dap e, una volta pubblicato, speriamo, survey altro.} and are organized as follow. Section~\ref{criteria} presents the
+evaluation criteria considered in this study. Section~\ref{algorithms} discusses
+the selected algorithms, while in
+Section~\ref{experimental} we benchmark the algorithms with a large set of
+experiments on both real and synthetic datasets.
+Section~\ref{lesson} summarizes the lessons learned from our evaluation
+analysis, while Section~\ref{openissues} discusses some research directions to
+be addressed to support a more effective and efficient data mining process on
+big data collections. Section~\ref{conclusion} provides a brief summary of this
+review.
+

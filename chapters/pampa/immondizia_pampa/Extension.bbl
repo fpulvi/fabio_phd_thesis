@@ -1,0 +1,141 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{HDFS}
+D.~Borthakur, The hadoop distributed file system: Architecture and design,
+  Hadoop Project 11 (2007) 21.
+
+\bibitem{Zaharia_spark}
+M.~Zaharia, M.~Chowdhury, T.~Das, A.~Dave, J.~Ma, M.~McCauley, M.~J. Franklin,
+  S.~Shenker, I.~Stoica, Resilient distributed datasets: A fault-tolerant
+  abstraction for in-memory cluster computing, in: NSDI'12, 2012, pp. 2--2.
+
+\bibitem{Zaki_Carpenter}
+F.~Pan, G.~Cong, A.~K.~H. Tung, J.~Yang, M.~J. Zaki,
+  \href{http://doi.acm.org/10.1145/956750.956832}{Carpenter: Finding closed
+  patterns in long biological datasets}, in: Proceedings of the Ninth ACM
+  SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD
+  '03, ACM, New York, NY, USA, 2003, pp. 637--642.
+\newblock \href {http://dx.doi.org/10.1145/956750.956832}
+  {\path{doi:10.1145/956750.956832}}.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/956750.956832}
+
+\bibitem{PEMSDataset}
+M.~Cuturi, \href{https://archive.ics.uci.edu/ml/datasets/PEMS-SF}{{UCI} machine
+  learning repository. {PEMS-SF} data set} (2011).
+\newline\urlprefix\url{https://archive.ics.uci.edu/ml/datasets/PEMS-SF}
+
+\bibitem{snapnets}
+J.~Leskovec, A.~Krevl, {SNAP Datasets}: {Stanford} large network dataset
+  collection, \url{http://snap.stanford.edu/data} (Jun. 2014).
+
+\bibitem{KumarBook}
+{Pang-Ning T. and Steinbach M. and Kumar V.}, {Introduction to Data Mining},
+  {Addison-Wesley}, 2006.
+
+\bibitem{uci}
+M.~Lichman, \href{http://archive.ics.uci.edu/ml}{{UCI} machine learning
+  repository} (2013).
+\newline\urlprefix\url{http://archive.ics.uci.edu/ml}
+
+\bibitem{pems}
+\href{http://http://pems.dot.ca.gov/. Last access: April, 21st 2016}{California
+  department of transportation}.
+\newline\urlprefix\url{http://http://pems.dot.ca.gov/. Last access: April, 21st
+  2016}
+
+\bibitem{breast_cancer_dataset}
+M.~L. data~set repository,
+  \href{http://mldata.org/repository/data/viewslug/breast-cancer-kent-ridge-2
+  Last access: July, 15th 2015}{Breast cancer dataset (kent ridge}.
+\newline\urlprefix\url{http://mldata.org/repository/data/viewslug/breast-cancer-kent-ridge-2
+  Last access: July, 15th 2015}
+
+\bibitem{Jacobson:1988:CAC:52325.52356}
+V.~Jacobson, \href{http://doi.acm.org/10.1145/52325.52356}{Congestion avoidance
+  and control}, SIGCOMM Comput. Commun. Rev. 18~(4) (1988) 314--329.
+\newblock \href {http://dx.doi.org/10.1145/52325.52356}
+  {\path{doi:10.1145/52325.52356}}.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/52325.52356}
+
+\bibitem{pfpgrowth}
+H.~Li, Y.~Wang, D.~Zhang, M.~Zhang, E.~Y. Chang, {PFP}: parallel fp-growth for
+  query recommendation, in: RecSys'08, 2008, pp. 107--114.
+
+\bibitem{Mahout}
+{The Apache Mahout machine learning library. Available:
+  http://mahout.apache.org/}.
+
+\bibitem{Han00}
+J.~Han, J.~Pei, Y.~Yin, Mining frequent patterns without candidate generation,
+  in: SIGMOD '00, 2000, pp. 1--12.
+
+\bibitem{bigfim}
+S.~Moens, E.~Aksehirli, B.~Goethals, Frequent itemset mining for big data, in:
+  SML: BigData 2013 Workshop on Scalable Machine Learning, IEEE, 2013.
+
+\bibitem{Zaki97newalgorithms}
+M.~J. Zaki, S.~Parthasarathy, M.~Ogihara, W.~Li, New algorithms for fast
+  discovery of association rules, in: KDD'97, AAAI Press, 1997, pp. 283--286.
+
+\bibitem{Agr94}
+R.~Agrawal, R.~Srikant, Fast algorithms for mining association rules in large
+  databases, in: VLDB '94, 1994, pp. 487--499.
+
+\bibitem{ArticoloMapReduceGoogle}
+J.~Dean, S.~Ghemawat, Mapreduce: simplified data processing on large clusters,
+  in: OSDI'04, 2004, pp. 10--10.
+
+\bibitem{pampa_v1}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, P.~Garza, P.~Michiardi, F.~Pulvirenti,
+  \href{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=7395755}{Pampa-hd:
+  A parallel mapreduce-based frequent pattern miner for high-dimensional data},
+  in: IEEE ICDM Workshop on High Dimensional Data Mining (HDM), Atlantic City,
+  NJ, USA, 2015.
+\newblock \href {http://dx.doi.org/10.1109/ICDMW.2015.18}
+  {\path{doi:10.1109/ICDMW.2015.18}}.
+\newline\urlprefix\url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=7395755}
+
+\bibitem{Tstat}
+A.~Finamore, M.~Mellia, M.~Meo, M.~Munaf\`o, D.~Rossi, Experiences of internet
+  traffic monitoring with tstat, IEEE Network 25~(3) (2011) 8--14.
+
+\bibitem{netflow}
+Cisco,
+  \href{http://www.cisco.com/c/en/us/products/ios-nx-os-software/ios-netflow/index.html
+  Last access: July, 15th 2015}{Netflow}.
+\newline\urlprefix\url{http://www.cisco.com/c/en/us/products/ios-nx-os-software/ios-netflow/index.html
+  Last access: July, 15th 2015}
+
+\bibitem{trustcom2013}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, L.~Grimaudo,
+  \href{http://dx.doi.org/10.1109/TrustCom.2013.153}{Searum: A cloud-based
+  service for association rule mining}, in: Proceedings of the 2013 12th IEEE
+  International Conference on Trust, Security and Privacy in Computing and
+  Communications, TRUSTCOM '13, IEEE Computer Society, Washington, DC, USA,
+  2013, pp. 1283--1290.
+\newblock \href {http://dx.doi.org/10.1109/TrustCom.2013.153}
+  {\path{doi:10.1109/TrustCom.2013.153}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1109/TrustCom.2013.153}
+
+\bibitem{fontas_AR}
+D.~Brauckhoff, X.~Dimitropoulos, A.~Wagner, K.~Salamatian, Anomaly extraction
+  in backbone networks using association rules, Networking, IEEE/ACM
+  Transactions on 20~(6) (2012) 1788--1799.
+\newblock \href {http://dx.doi.org/10.1109/TNET.2012.2187306}
+  {\path{doi:10.1109/TNET.2012.2187306}}.
+
+\bibitem{Netmine}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, V.~D'Elia,
+  \href{http://dx.doi.org/10.1016/j.comnet.2008.12.011}{Characterizing network
+  traffic by means of the netmine framework}, Comput. Netw. 53~(6) (2009)
+  774--789.
+\newblock \href {http://dx.doi.org/10.1016/j.comnet.2008.12.011}
+  {\path{doi:10.1016/j.comnet.2008.12.011}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1016/j.comnet.2008.12.011}
+
+\end{thebibliography}

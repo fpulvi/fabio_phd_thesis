@@ -1,0 +1,353 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=latex 2012.5.9)  5 JUN 2014 10:33
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**ISPA2014
+(./ISPA2014.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2011-07-01, ngerman-x-2011-07-01, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
+ icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
+iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
+ lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
+ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
+ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
+.
+(./IEEEtran.cls
+Document Class: IEEEtran 2007/03/05 V1.7a by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen102
+\@IEEEtrantmpdimenB=\dimen103
+\@IEEEtrantmpcountA=\count79
+\@IEEEtrantmpcountB=\count80
+\@IEEEtrantmptoksA=\toks14
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 373.
+
+(/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+\@IEEEnormalsizeunitybaselineskip=\dimen104
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen105
+\CLASSINFOnormalsizeunitybaselineskip=\dimen106
+\IEEEnormaljot=\dimen107
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+\IEEEilabelindentA=\dimen108
+\IEEEilabelindentB=\dimen109
+\IEEEilabelindent=\dimen110
+\IEEEelabelindent=\dimen111
+\IEEEdlabelindent=\dimen112
+\IEEElabelindent=\dimen113
+\IEEEiednormlabelsep=\dimen114
+\IEEEiedmathlabelsep=\dimen115
+\IEEEiedtopsep=\skip41
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@IEEEsubequation=\count85
+\abovecaptionskip=\skip42
+\belowcaptionskip=\skip43
+\c@figure=\count86
+\c@table=\count87
+\@IEEEeqnnumcols=\count88
+\@IEEEeqncolcnt=\count89
+\@IEEEtmpitemindent=\dimen116
+\c@IEEEbiography=\count90
+\@IEEEtranrubishbin=\box26
+) (./subfigure.sty
+Package: subfigure 1995/03/06 v2.0 subfigure package
+
+Package: subfigure 1995/03/06 v2.0
+\c@subfigure=\count91
+\c@lofdepth=\count92
+\c@subtable=\count93
+\c@lotdepth=\count94
+) (/usr/share/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/usr/share/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen117
+\Gin@req@width=\dimen118
+)
+\epsfxsize=\dimen119
+\epsfysize=\dimen120
+)
+(/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+(/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Managing graphics extensions (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+)
+
+Package epstopdf Warning: Drivers other than `pdftex.def' are not supported.
+
+)) (./ISPA2014.aux)
+\openout1 = `ISPA2014.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 362.
+LaTeX Font Info:    ... okay on input line 362.
+
+** ATTENTION: Overriding command lockouts (line 372).
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 412.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 412.
+
+(/usr/share/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 412.
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ù in font ptmr7t!
+ [1
+
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 517.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 517.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 542.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 542.
+File: gerarchia/GerarchiaISPATre.eps Graphic file (type eps)
+
+<gerarchia/GerarchiaISPATre.eps>
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 579.
+
+Underfull \hbox (badness 10000) in paragraph at lines 595--601
+[]\OT1/ptm/m/n/10 For ex-am-ple, by en-forc-ing min[]sup=10%,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 595--601
+\OT1/ptm/m/n/10 max[]neg[]cor=0.70, and min[]pos[]cor=0.80, MGI
+ []
+
+
+Underfull \hbox (badness 2884) in paragraph at lines 595--601
+\OMS/cmsy/m/n/10 f\OT1/ptm/m/n/10 (Time,a.m.), (In-frac-tion name,Prohibition)\
+OMS/cmsy/m/n/10 g $\OML/cmm/m/it/10 .$ \OMS/cmsy/m/n/10 f\OT1/ptm/m/n/10 (Time,
+
+ []
+
+
+Underfull \hbox (badness 6316) in paragraph at lines 595--601
+\OT1/ptm/m/n/10 name,Prohibition)\OMS/cmsy/m/n/10 g \OT1/ptm/m/n/10 has a pos-i
+-tive cor-re-la-tion (0.83),
+ []
+
+[2]
+Underfull \hbox (badness 1490) in paragraph at lines 621--625
+\OT1/ptm/m/n/10 ser-vice for dis-cov-er-ing hid-den and ac-tion-able pat-terns
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 714--717
+\OT1/ptm/b/n/10 AperTo dataset. \OT1/ptm/m/n/10 This open dataset, avail-able a
+t
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 714--717
+\OT1/ptm/m/n/10 http://aperto.comune.torino.it, col-lects in-for-ma-tion about
+ []
+
+[4]
+File: grafici/EffectMinsup.eps Graphic file (type eps)
+ <grafici/EffectMinsup.eps>
+File: grafici/EffectMaxNOD.eps Graphic file (type eps)
+ <grafici/EffectMaxNOD.eps>
+Underfull \hbox (badness 3861) in paragraph at lines 778--786
+\OT1/ptm/m/n/10 min[]pos[]cor=0.4, and max[]NOD=60%: \OMS/cmsy/m/n/10 f\OT1/ptm
+/m/n/10 (Location,Zip
+ []
+
+
+Underfull \hbox (badness 3396) in paragraph at lines 778--786
+\OT1/ptm/m/n/10 (In-frac-tion name,Prohibition)\OMS/cmsy/m/n/10 g \OT1/ptm/m/n/
+10 is neg-a-tively cor-re-lated,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 787--792
+[]\OT1/ptm/m/n/10 Let us con-sider now the fol-low-ing MGI:
+ []
+
+
+Underfull \hbox (badness 2351) in paragraph at lines 787--792
+\OMS/cmsy/m/n/10 f\OT1/ptm/m/n/10 (Location,District 1), (Ve-hi-cle type,Privat
+e car),(Time,
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 787--792
+\OT1/ptm/m/n/10 p.m.)\OMS/cmsy/m/n/10 g $\OML/cmm/m/it/10 .$ \OMS/cmsy/m/n/10 f
+\OT1/ptm/m/n/10 (Location, Zip code 10122),(Ve-hi-cle type,
+ []
+
+
+Underfull \hbox (badness 5681) in paragraph at lines 787--792
+\OT1/ptm/m/n/10 Pri-vate car),(Time, (4 p.m.,8 p.m.]), (Lo-ca-tion, Zip
+ []
+
+
+Underfull \hbox (badness 1975) in paragraph at lines 787--792
+\OT1/ptm/m/n/10 whereas 11 of its de-scen-dant item-sets are neg-a-tively
+ []
+
+[5]
+File: grafici/graficoSpeedup.eps Graphic file (type eps)
+ <grafici/graficoSpeedup.eps> (./ISPA2014.bbl)
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[6] (./ISPA2014.aux) ) 
+Here is how much of TeX's memory you used:
+ 1829 strings out of 493630
+ 29391 string characters out of 3148795
+ 96130 words of memory out of 3000000
+ 5133 multiletter control sequences out of 15000+200000
+ 28990 words of font info for 64 fonts, out of 3000000 for 9000
+ 831 hyphenation exceptions out of 8191
+ 42i,9n,27p,325b,300s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on ISPA2014.dvi (6 pages, 46256 bytes).

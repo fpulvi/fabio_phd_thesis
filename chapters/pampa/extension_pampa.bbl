@@ -1,0 +1,242 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{Jin201559}
+X.~Jin, B.~W. Wah, X.~Cheng, Y.~Wang,
+  \href{http://www.sciencedirect.com/science/article/pii/S2214579615000076}{Significance
+  and challenges of big data research}, Big Data Research 2~(2) (2015) 59 --
+  64, visions on Big Data.
+\newblock \href {http://dx.doi.org/http://dx.doi.org/10.1016/j.bdr.2015.01.006}
+  {\path{doi:http://dx.doi.org/10.1016/j.bdr.2015.01.006}}.
+
+\bibitem{DBLP:journals/bdr/Al-JarrahYMKT15}
+O.~Y. Al{-}Jarrah, P.~D. Yoo, S.~Muhaidat, G.~K. Karagiannidis, K.~Taha,
+  \href{http://dx.doi.org/10.1016/j.bdr.2015.04.001}{Efficient machine learning
+  for big data: {A} review}, Big Data Research 2~(3) (2015) 87--93.
+\newblock \href {http://dx.doi.org/10.1016/j.bdr.2015.04.001}
+  {\path{doi:10.1016/j.bdr.2015.04.001}}.
+
+\bibitem{HDFS}
+D.~Borthakur, The hadoop distributed file system: Architecture and design,
+  Hadoop Project 11 (2007) 21.
+
+\bibitem{Zaharia_spark}
+M.~Zaharia, M.~Chowdhury, T.~Das, A.~Dave, J.~Ma, M.~McCauley, M.~J. Franklin,
+  S.~Shenker, I.~Stoica, Resilient distributed datasets: A fault-tolerant
+  abstraction for in-memory cluster computing, in: NSDI'12, 2012, pp. 2--2.
+
+\bibitem{Zaki_Carpenter}
+F.~Pan, G.~Cong, A.~K.~H. Tung, J.~Yang, M.~J. Zaki,
+  \href{http://doi.acm.org/10.1145/956750.956832}{Carpenter: Finding closed
+  patterns in long biological datasets}, in: Proceedings of the Ninth ACM
+  SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD
+  '03, ACM, New York, NY, USA, 2003, pp. 637--642.
+\newblock \href {http://dx.doi.org/10.1145/956750.956832}
+  {\path{doi:10.1145/956750.956832}}.
+
+\bibitem{Lee201574}
+J.-G. Lee, M.~Kang,
+  \href{http://www.sciencedirect.com/science/article/pii/S2214579615000040}{Geospatial
+  big data: Challenges and opportunities}, Big Data Research 2~(2) (2015) 74 --
+  81, visions on Big Data.
+\newblock \href {http://dx.doi.org/http://dx.doi.org/10.1016/j.bdr.2015.01.003}
+  {\path{doi:http://dx.doi.org/10.1016/j.bdr.2015.01.003}}.
+
+\bibitem{PEMSDataset}
+M.~Cuturi, \href{https://archive.ics.uci.edu/ml/datasets/PEMS-SF}{{UCI} machine
+  learning repository. {PEMS-SF} data set} (2011).
+\newline\urlprefix\url{https://archive.ics.uci.edu/ml/datasets/PEMS-SF}
+
+\bibitem{snapnets}
+J.~Leskovec, A.~Krevl, {SNAP Datasets}: {Stanford} large network dataset
+  collection, \url{http://snap.stanford.edu/data} (Jun. 2014).
+
+\bibitem{pampa_v1}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, P.~Garza, P.~Michiardi, F.~Pulvirenti,
+  \href{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=7395755}{Pampa-hd:
+  A parallel mapreduce-based frequent pattern miner for high-dimensional data},
+  in: IEEE ICDM Workshop on High Dimensional Data Mining (HDM), Atlantic City,
+  NJ, USA, 2015.
+\newblock \href {http://dx.doi.org/10.1109/ICDMW.2015.18}
+  {\path{doi:10.1109/ICDMW.2015.18}}.
+
+\bibitem{KumarBook}
+{Pang-Ning T. and Steinbach M. and Kumar V.}, {Introduction to Data Mining},
+  {Addison-Wesley}, 2006.
+
+\bibitem{Agr94}
+R.~Agrawal, R.~Srikant, Fast algorithms for mining association rules in large
+  databases, in: VLDB '94, 1994, pp. 487--499.
+
+\bibitem{Han00}
+J.~Han, J.~Pei, Y.~Yin, Mining frequent patterns without candidate generation,
+  in: SIGMOD '00, 2000, pp. 1--12.
+
+\bibitem{uci}
+M.~Lichman, \href{http://archive.ics.uci.edu/ml}{{UCI} machine learning
+  repository} (2013).
+\newline\urlprefix\url{http://archive.ics.uci.edu/ml}
+
+\bibitem{pems}
+\href{http://http://pems.dot.ca.gov/. Last access: April, 21st 2016}{California
+  department of transportation}.
+\newline\urlprefix\url{http://http://pems.dot.ca.gov/. Last access: April, 21st
+  2016}
+
+\bibitem{breast_cancer_dataset}
+M.~L. data~set repository,
+  \href{http://mldata.org/repository/data/viewslug/breast-cancer-kent-ridge-2
+  Last access: July, 21st 2016}{Breast cancer dataset (kent ridge}.
+\newline\urlprefix\url{http://mldata.org/repository/data/viewslug/breast-cancer-kent-ridge-2
+  Last access: July, 21st 2016}
+
+\bibitem{Jacobson:1988:CAC:52325.52356}
+V.~Jacobson, \href{http://doi.acm.org/10.1145/52325.52356}{Congestion avoidance
+  and control}, SIGCOMM Comput. Commun. Rev. 18~(4) (1988) 314--329.
+\newblock \href {http://dx.doi.org/10.1145/52325.52356}
+  {\path{doi:10.1145/52325.52356}}.
+
+\bibitem{pfpgrowth}
+H.~Li, Y.~Wang, D.~Zhang, M.~Zhang, E.~Y. Chang, {PFP}: parallel fp-growth for
+  query recommendation, in: RecSys'08, 2008, pp. 107--114.
+
+\bibitem{mahout2}
+{Apache Software Foundation}.
+\newblock \href{http://mahout.apache.org}{Apache mahout:: Scalable
+  machine-learning and data-mining library} [online, cited 2016-03-15].
+
+\bibitem{bigfim}
+S.~Moens, E.~Aksehirli, B.~Goethals, Frequent itemset mining for big data, in:
+  SML: BigData 2013 Workshop on Scalable Machine Learning, IEEE, 2013.
+
+\bibitem{Zaki97newalgorithms}
+M.~J. Zaki, S.~Parthasarathy, M.~Ogihara, W.~Li, New algorithms for fast
+  discovery of association rules, in: KDD'97, AAAI Press, 1997, pp. 283--286.
+
+\bibitem{Sarma:2013:ULB:2535570.2488334}
+A.~D. Sarma, F.~N. Afrati, S.~Salihoglu, J.~D. Ullman,
+  \href{http://dx.doi.org/10.14778/2535570.2488334}{Upper and lower bounds on
+  the cost of a map-reduce computation}, Proc. VLDB Endow. 6~(4) (2013)
+  277--288.
+\newblock \href {http://dx.doi.org/10.14778/2535570.2488334}
+  {\path{doi:10.14778/2535570.2488334}}.
+
+\bibitem{ArticoloMapReduceGoogle}
+J.~Dean, S.~Ghemawat, Mapreduce: simplified data processing on large clusters,
+  in: OSDI'04, 2004, pp. 10--10.
+
+\bibitem{citeulike:13636750}
+X.~Meng, J.~Bradley, B.~Yavuz, E.~Sparks, S.~Venkataraman, D.~Liu, J.~Freeman,
+  D.~B. Tsai, M.~Amde, S.~Owen, D.~Xin, R.~Xin, M.~J. Franklin, R.~Zadeh,
+  M.~Zaharia, A.~Talwalkar, \href{http://arxiv.org/abs/1505.06807}{{MLlib}:
+  Machine learning in Apache Spark.  }\href { http://arxiv.org/abs/1505.06807}
+  {\path{arXiv:1505.06807}}.
+
+\bibitem{qiu2014yafim}
+H.~Qiu, R.~Gu, C.~Yuan, Y.~Huang, Yafim: A parallel frequent itemset mining
+  algorithm with spark, in: Parallel \& Distributed Processing Symposium
+  Workshops (IPDPSW), 2014 IEEE International, IEEE, 2014, pp. 1664--1671.
+
+\bibitem{zhang2015distributed}
+F.~Zhang, M.~Liu, F.~Gui, W.~Shen, A.~Shami, Y.~Ma, A distributed frequent
+  itemset mining algorithm using spark for big data analytics, Cluster
+  Computing 18~(4) (2015) 1493--1501.
+
+\bibitem{liang2015sequence}
+Y.-h. Liang, S.-y. Wu, Sequence-growth: A scalable and effective frequent
+  itemset mining algorithm for big data based on mapreduce framework, in: 2015
+  IEEE International Congress on Big Data, IEEE, 2015, pp. 393--400.
+
+\bibitem{riondato2015mining}
+M.~Riondato, E.~Upfal, Mining frequent itemsets through progressive sampling
+  with rademacher averages, in: Proceedings of the 21th ACM SIGKDD
+  International Conference on Knowledge Discovery and Data Mining, ACM, 2015,
+  pp. 1005--1014.
+
+\bibitem{gole2015frequent}
+S.~Gole, B.~Tidke, Frequent itemset mining for big data in social media using
+  clustbigfim algorithm, in: Pervasive Computing (ICPC), 2015 International
+  Conference on, IEEE, 2015, pp. 1--6.
+
+\bibitem{Wu2015}
+X.~Wu, W.~Fan, J.~Peng, K.~Zhang, Y.~Yu,
+  \href{http://dx.doi.org/10.1007/s13042-015-0345-6}{Iterative sampling based
+  frequent itemset mining for big data}, International Journal of Machine
+  Learning and Cybernetics 6~(6) (2015) 875--882.
+\newblock \href {http://dx.doi.org/10.1007/s13042-015-0345-6}
+  {\path{doi:10.1007/s13042-015-0345-6}}.
+
+\bibitem{Vimieiro20141}
+R.~Vimieiro, P.~Moscato,
+  \href{http://www.sciencedirect.com/science/article/pii/S0306437913001221}{A
+  new method for mining disjunctive emerging patterns in high-dimensional
+  datasets using hypergraphs}, Information Systems 40 (2014) 1 -- 10.
+\newblock \href {http://dx.doi.org/http://dx.doi.org/10.1016/j.is.2013.09.001}
+  {\path{doi:http://dx.doi.org/10.1016/j.is.2013.09.001}}.
+
+\bibitem{Bermejo201235}
+P.~Bermejo, L.~de~la Ossa, J.~A. Gámez, J.~M. Puerta,
+  \href{http://www.sciencedirect.com/science/article/pii/S095070511100027X}{Fast
+  wrapper feature subset selection in high-dimensional datasets by means of
+  filter re-ranking}, Knowledge-Based Systems 25~(1) (2012) 35 -- 44, special
+  Issue on New Trends in Data Mining.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.knosys.2011.01.015}
+  {\path{doi:http://dx.doi.org/10.1016/j.knosys.2011.01.015}}.
+
+\bibitem{KamsuFoguem20131034}
+B.~Kamsu-Foguem, F.~Rigal, F.~Mauget,
+  \href{http://www.sciencedirect.com/science/article/pii/S0957417412010007}{Mining
+  association rules for the quality improvement of the production process},
+  Expert Systems with Applications 40~(4) (2013) 1034 -- 1045.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.eswa.2012.08.039}
+  {\path{doi:http://dx.doi.org/10.1016/j.eswa.2012.08.039}}.
+
+\bibitem{Nahar20131086}
+J.~Nahar, T.~Imam, K.~S. Tickle, Y.-P.~P. Chen,
+  \href{http://www.sciencedirect.com/science/article/pii/S095741741200989X}{Association
+  rule mining to detect factors which contribute to heart disease in males and
+  females}, Expert Systems with Applications 40~(4) (2013) 1086 -- 1093.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.eswa.2012.08.028}
+  {\path{doi:http://dx.doi.org/10.1016/j.eswa.2012.08.028}}.
+
+\bibitem{Tstat}
+A.~Finamore, M.~Mellia, M.~Meo, M.~Munaf\`o, D.~Rossi, Experiences of internet
+  traffic monitoring with tstat, IEEE Network 25~(3) (2011) 8--14.
+
+\bibitem{netflow}
+B.~Claise, Cisco systems netflow services export version 9. rfc 3954
+  (informational) (2004).
+
+\bibitem{trustcom2013}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, L.~Grimaudo,
+  \href{http://dx.doi.org/10.1109/TrustCom.2013.153}{Searum: A cloud-based
+  service for association rule mining}, in: Proceedings of the 2013 12th IEEE
+  International Conference on Trust, Security and Privacy in Computing and
+  Communications, TRUSTCOM '13, IEEE Computer Society, Washington, DC, USA,
+  2013, pp. 1283--1290.
+\newblock \href {http://dx.doi.org/10.1109/TrustCom.2013.153}
+  {\path{doi:10.1109/TrustCom.2013.153}}.
+
+\bibitem{fontas_AR}
+D.~Brauckhoff, X.~Dimitropoulos, A.~Wagner, K.~Salamatian, Anomaly extraction
+  in backbone networks using association rules, Networking, IEEE/ACM
+  Transactions on 20~(6) (2012) 1788--1799.
+\newblock \href {http://dx.doi.org/10.1109/TNET.2012.2187306}
+  {\path{doi:10.1109/TNET.2012.2187306}}.
+
+\bibitem{Netmine}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, V.~D'Elia,
+  \href{http://dx.doi.org/10.1016/j.comnet.2008.12.011}{Characterizing network
+  traffic by means of the netmine framework}, Comput. Netw. 53~(6) (2009)
+  774--789.
+\newblock \href {http://dx.doi.org/10.1016/j.comnet.2008.12.011}
+  {\path{doi:10.1016/j.comnet.2008.12.011}}.
+
+\end{thebibliography}
