@@ -15,6 +15,7 @@ DistEclat and BigFIM.
 %pruning rules in specific use cases. This pruning,
 %so far related to the post processing phase, would avoid the processing of
 %useless data.
+
 Further developments of the algorithm can be related to the analysis of the trade-off between the benefits of the scalability and the ones related to the local state. 
 In addition, future works could analyze the introduction of better load balancing mechanisms. The increasing $max\_exp$ parameter introduced by the self-tuning strategies leads to a degradation of the load balancing between the parallel tasks of the job. As shown in Table~\ref{load balance breast}, higher $max\_exp$ values decrease load balancing (i.e. only few tasks running), wasting the resources assigned to the tasks that are already complete.
 Forcing the synchronization phase after a fixed period of time would limit the amount of time in which the resources are not completely exploited. From the algorithmic point of view, this is not a loss, since the tables are expanded in a depth-first fashion. The last tables, hence, are the ones with highest probability to be pruned. This future development, therefore, would analyze the choice of the \textit{time-out} which forces the synchronization phase.

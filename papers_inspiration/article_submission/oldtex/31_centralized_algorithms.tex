@@ -1,0 +1,47 @@
+\subsection{Centralized algorithms}
+\label{centralized}
+The search space exploration strategies of the distributed approaches are often inspired by the solutions adopted by the centralized approaches.
+Hence, this section shortly introduces the main strategies of the centralized itemset mining algorithms. This introduction is useful to better understand the algorithmic choices behind the distributed algorithms.
+
+The frequent itemset mining task is challenging in terms of execution time and memory consumption because the size of the search space is exponential with the number of items of the input dataset~\cite{goethals2003survey}.
+Two main search space exploration strategies have been proposed: 
+(i) level-wise or breadth-first exploration of the candidate itemsets in the lattice and 
+(ii) depth-first exploration of the lattice.
+
+The most popular representative of the breadth-first strategy is Apriori~\cite{apriori}. Starting from single items, it iteratively generates and counts the support of the candidate itemsets of size $k+1$ from the frequent itemsets of size $k$. At each iteration $k$, the supports of the candidate itemsets of length $k$ are counted by performing a new scan of the input dataset.
+The search space is pruned by exploiting the downward-closure property, which guarantees that all the supersets of an infrequent itemset are infrequent
+too. Specifically, the downward-closure property allows pruning the set of candidate itemsets of length $k+1$ by considering the 
+frequent itemsets of length $k$.
+The Apriori algorithm is significantly affected by the density of the dataset.
+The higher the density of the dataset, the higher the number of frequent itemsets and hence the amount of candidate 
+itemset stored in main memory. The problem becomes unfeasible when the number of candidate itemsets exceeds the size of the main memory.
+
+
+More efficient and scalable solutions exploit the depth-first visit of the search space. 
+FP-Growth~\cite{Han00}, which uses a prefix-tree-based main memory compressed representation of the input dataset, is the most popular depth-first based approach. 
+The algorithm is based on a recursive visit of the tree-based representation of the dataset with a
+``divide and conquer'' approach. In the first phase the support of each single item is
+counted and only the frequent items are stored in the ``header table''. This information allows pruning the search space by avoiding the analysis of the itemsets extending infrequent items. Then, the FP-tree, that is a compact representation of the dataset, is built exploiting 
+the header table and the input dataset. Specifically, each transaction is included in the FP-tree by adding or
+extending a path on the tree, exploiting common prefixes. 
+Once the FP-tree associated with the input dataset is built, FP-growth recursively splits the itemset mining problem 
+by generating conditional FP-trees and visiting them.  Given an arbitrary prefix $p$, where $p$ is a set of items, the conditional FP-tree with respect to 
+$p$, also called projected dataset with respect to $p$, is substantially the compact representation of the transactions containing  $p$. Each conditional FP-tree contains all the knowledge needed to extract all the frequent itemsets extending its prefix $p$. FP-growth decomposes the initial problem by generating one conditional FP-tree for each itemt $i$ and invoking
+the itemset mining procedure on each of them, in a recursive depth-first fashion. 
+
+
+FP-growth suits well dense datasets, because they can be effectively and compactly represented by means of the FP-tree data structure. Differently, with sparse datasets, the compressions benefits of the FP-tree are reduced because there will be a higher number of branches \cite{SurveyHan2007} (i.e., a large number of subproblems to generate and results to merge).
+
+Another very popular depth-first approach is the Eclat algorithm~\cite{Zaki97newalgorithms}.
+It performs the mining from a vertical
+transposition of the dataset. In the vertical format, each transaction includes an item
+and the transaction identifiers ($tid$) in which it appears ($tidlist$).
+After the initial dataset
+transposition, the search space is explored in a depth-first manner similar to
+FP-growth. The algorithm is based on equivalence classes (groups of candidate itemsets
+sharing a common prefix),  which allows smartly merging tidlists to select frequent itemsets. 
+Prefix-based equivalence classes are mined independently, in a ``divide and conquer'' strategy, still
+taking advantage of the downward closure property.
+Eclat is relatively robust to dense datasets. It is less effective with sparse distributions, because the depth-first search strategy may require
+generating and testing more (infrequent) candidate itemsets with respect to Apriori-like algorithms~\cite{vu2012mining}.
+

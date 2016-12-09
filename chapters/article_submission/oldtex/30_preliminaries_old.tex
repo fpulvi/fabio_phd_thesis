@@ -1,0 +1,124 @@
+
+\begin{figure}[!t]
+%\renewcommand{\arraystretch}{1.3}
+%\centerline
+
+{\subfloat[Horizontal representation of $\mathcal{D}$]{
+\label{horizontalexampledataset}
+\begin{tabular}{|c|l|}
+
+\hline
+\multicolumn{2}{|c|}{$\mathcal{D}$}\\
+\hline
+\hline
+	tid & items \\
+\hline
+	1 & a,b,c,l,o,s,v \\
+\hline
+	2 & a,d,e,h,l,p,r,v \\
+\hline
+	3 & a,c,e,h,o,q,t,v \\
+\hline
+	4 & a,e,f,h,p,r,v \\
+\hline
+	5 & a,b,d,f,g,l,q,s,t \\
+\hline
+\end{tabular}}}%
+\hfil
+{\subfloat[Vertical representation of $\mathcal{D}$]{
+\label{TTexampledataset}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{Vertical Representation}\\
+\hline
+\hline
+	item & tidlist \\ \hline
+	a & 1,2,3,4,5 \\ \hline
+	b & 1,5 \\ \hline
+	c & 1,3 \\ \hline
+	d & 2,5 \\ \hline
+	e & 2,3,4 \\ \hline
+	f & 4,5 \\ \hline
+	g & 5 \\ \hline
+	h & 2,3,4 \\ \hline
+	l & 1,2,5 \\ \hline
+	o & 1,3 \\ \hline
+	p & 2,4 \\ \hline
+	q & 3,5 \\ \hline
+	r & 2,4 \\ \hline
+	s & 1,5 \\ \hline
+	t & 3.5 \\ \hline
+	v & 1,2,3,4 \\ \hline
+\end{tabular}}}%
+
+\caption{Running example dataset $\mathcal{D}$}
+\label{exampledataset}
+\end{figure}
+In this section, a basic introduction to frequent itemset mining will
+be given to the readers.
+Let $\mathcal{I}$ be a set of items. A transactional dataset $\mathcal{D}$
+consists of a set of transactions $\{t_1, \dots, t_n\}$.
+Each transaction $t_i\in \mathcal{D}$ is a collection of items
+(i.e., $t_i\subseteq \mathcal{I}$)
+and it is identified by a transaction identifier ($tid_i$).
+Figure~\ref{horizontalexampledataset} reports an example of a transactional
+dataset with 5 transactions.
+
+% %The dataset reported in Figure~\ref{horizontalexampledataset} is used as a
+% running example through the paper.
+% %
+% %An itemset $I$ is defined as a set of items (i.e., $I\subseteq\mathcal{I}$) and
+% it is characterized by a tidlist and a support value.
+% %The tidlist of an itemset $I$, denoted by $tidlist(I)$, is defined as the set
+% of tids of the transactions in $\mathcal{D}$ containing $I$,
+% %while the support of $I$ in $\mathcal{D}$, denoted by $sup(I)$, is defined as
+% the ratio between the number of transactions in $\mathcal{D}$ containing $I$
+% %and the total number of transactions in $\mathcal{D}$ (i.e.,
+% $|tidlist(I)|/|\mathcal{D}|$).
+% %For instance, the support of the itemset \textit{\{aco\}} in
+% %the running example dataset $\mathcal{D}$ is 2/5 and its tidlist is $\{1,3\}$.
+% %An itemset $I$ is considered frequent if its support is greater than a
+% user-provided minimum support threshold $minsup$.
+
+An itemset $I$ is defined as a set of items (i.e., $I\subseteq\mathcal{I}$)
+and it is characterized by a support value, which is denoted by $sup(I)$ and
+defined as the ratio between the number of transactions in $\mathcal{D}$
+containing $I$ and the total number of transactions in $\mathcal{D}$.
+%(i.e., $|tidlist(I)|/|\mathcal{D}|$).
+In the example dataset in Figure~\ref{horizontalexampledataset}, for instance,
+the support of the itemset \textit{\{aco\}} is 2/5. . This value represents the frequency of occurrence of the itemset in the dataset.
+
+Given a transactional dataset $\mathcal{D}$ and a minimum support
+threshold $minsup$, the Frequent Itemset Mining \cite{KumarBook} problem
+consists in extracting the complete set of frequent itemsets
+from $\mathcal{D}$.
+
+
+
+Many subsets of frequent itemsets exist.
+In this paper, we focus on closed itemsets.
+Closed itemsets~\cite{ClosedPasquier1999} are a
+particular and valuable subset of frequent itemsets, being
+a concise but complete representation of frequent itemsets. 
+Precisely, an itemset $I$ is closed if none of its supersets (i.e. the set of itemsets which include $I$) has the same support count as $I$.
+
+%If an itemset is frequent, all of its subsets are frequent for the \textit{monotonic property}.
+%For the same rule, if an items or an itemset is not frequent, none of its supersets are frequent. In addition, an items
+% or itemset $I$ is closed in  $\mathcal{D}$ if there exists no superset that has the same support count as  $I$.\\
+
+A transactional dataset can also be represented in a vertical format, which is
+usually a more effective representation for datasets characterised by an average
+number of items per transaction orders of magnitudes larger than the number of
+transactions.
+In this representation, each
+row consists of an item $i$ and the list of transactions in which it appears,
+also called $tidlist(\{i\})$.
+For instance, the tidlist of the itemset \textit{\{aco\}} in
+the example dataset $\mathcal{D}$ is $\{1,3\}$.
+Figure~\ref{TTexampledataset} reports the transposed representation of the
+running example reported in Figure~\ref{horizontalexampledataset}. The main
+advantage of the vertical format is the possibility to obtain the tidlist of
+an itemset just intersecting the tidlists of the included items, without the
+need of a full scan of the dataset.
+
+

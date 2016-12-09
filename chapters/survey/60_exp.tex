@@ -1,15 +1,28 @@
+%\textbf{After the extensive algorithms description, we have seen how all the algorithms mirror different algorithmic strategies and data structures. Therefore, it is sensed to have some performances expectations related to the algorithmic choices behind the implementations. Starting from the FP-growth based implementations, we expect those to be very performant and reliable solutions. Its FP-tree structure should guarantee robustness to increasing density of data related to low minsup values or high transaction length. 
+%Because of the algorithmic design of DistEclat, its performance behavior could be double-faced. We expect memory issues due to the preliminary phase, in which it is assumed that all the tidlists should be stored in all the nodes. At the same time, if the problem suits the first phase, which in case of success is very fast, we expect a further performance boost from the depth-first architecture of the second phase. 
+%Different considerations holds for BigFIM. While it shares with DistEclat the second depth-first fashioned phase, the first one can easily be the bottleneck of the whole mining. Precisely, the first phase is burdened by iteration overheads, due the iterative nature of Apriori, but also high reading and communication costs \footnote{To force a certain number of mapper, the implementation of BigFIM assumes some data to travel through the network, not relying on data locality. Therefore, in the case of BigFIM, data reading cost are very connected to communication costs. We have seen that this additional exchange phase impacts the performance of the single iteration by over the 50\% of the execution time.}. At the same time, it suffers of the Apriori weakness to dense data distributions, enhanced by low minsup values.\\
+%We cannot ignore critical aspects in distributed environments such as load balancing and communication costs. As already mentioned, BigFIM and DistEclat were the algorithms whose design takes more into account this aspects. DistEclat, at the cost of undermining its robustness, is an attempt to save as much as possible in terms of reading phases. BigFIM, on the contrary, strongly relies on disk for its Apriori iterations, delivering more robustness than DistEclat. Above all, the most important benefit of their two-phases architecture is the load balancing that they should be able to achieve in the second phase, i.e. when the depth-first exploration could easily be unbalanced. 
+%The two FP-growth based implementations design did not focus so much on these aspects, even if, as we will see in Section~\ref{load_exp}), and
+%(iii)~communication costs (Section~\ref{communication_costs}), MLlib PFP results as the more balanced algorithm while Mahout PFP the best in terms of communication costs. \\
+%However, trying to avoid questioning choices which could sound strictly related to the technical implementations, it is very interesting to understand how communication costs and load balancing impact the performances in distributed frequent itemset mining domain.
+%Unfortunately, the implementation of the YAFIM algorithm is not available.
+%Therefore, YAFIM is not included in this experimental comparison.
+%The target of experimental analysis is to extensively evaluate the behaviors of the algorithms. Specifically, it focuses on the impact of algorithmic choices against factors more related to the distributed environment. In the sake of completeness, the analysis will take into account different data distributions and use cases. An additional take-away of this analysis will be a set of hints and suggestions for the users, highlighting pros and cons in relation to the use cases. (Section~\ref{lesson}).
+%}\\
 
 In this section, the results of the experimental comparison are presented.
-The purpose of the experiments is to compare the behaviours of the algorithms
-and their distributed implementations,
-by considering  different data distributions and use cases, and to highlight
-pros and cons of each algorithm.
-Specifically, experiments analyze the algorithms in terms of
-(i)~efficiency (i.e., execution time) under different conditions
+The behaviors of the algorithm reference implementations are compared
+by considering different data distributions and use cases. 
+The experimental evaluation aims at understanding the relations between 
+the algorithm performance 
+% (in terms of execution time, communication costs, load balancing) % commentato perché lo diciamo subito dopo
+and its parallelization strategies. 
+Algorithm performance are evaluated in terms of
+(i)~efficiency (i.e., execution time and scalability) under different conditions
 (Sections~\ref{minsup_exp}-\ref{usecases}),
 (ii)~load balancing (Section~\ref{load_exp}), and
 (iii)~communication costs (Section~\ref{communication_costs}).
-Finally, Section~\ref{lesson} presents a summary of the ``lessons learned''.
+
 %by providing some hints about the most suitable algorithm(s) depending
 %on the use case/data distribution.
 
@@ -30,17 +43,15 @@ Finally, Section~\ref{lesson} presents a summary of the ``lessons learned''.
 % % on an incremental time period. Finally, all the approaches are evaluated
 % % analysing the load balance and the communication cost on the different tasks.
 
-We evaluated the implementations of four of the algorithms described
-in Section~\ref{algorithms}.
-Specifically, we considered
-the Parallel FP-Growth implementations
-of Mahout 0.9 (called Mahout PFP)~\cite{Mahout}
-and MLlib for Spark 1.3.0 (called MLlib PFP)~\cite{MLLib},
-the June 2015 implementation of BigFIM~\cite{Bigfim_github},
-and the version of DistEclat downloaded from \cite{Bigfim_github}
-on September 2015.
-Unfortunately, the implementation of the YAFIM algorithm is not available.
-Therefore, YAFIM is not included in this experimental comparison.
+\subsection{Experimental setup}
+The experimental evaluation includes the following four algorithms, 
+which are described in Section~\ref{algorithms}:
+\begin{itemize}
+\item the Parallel FP-Growth implementation provided in Mahout 0.9 (named Mahout PFP in the following)~\cite{Mahout},
+\item the Parallel FP-Growth implementation provided in MLlib for Spark 1.3.0 (named MLlib PFP in the following)~\cite{MLLib},
+\item the June 2015 implementation of BigFIM~\cite{Bigfim_github},
+\item the version of DistEclat downloaded from \cite{Bigfim_github} on September 2015.
+\end{itemize}
 
 % %The Parallel FP-Growth implementations are the ones delivered along with Mahout
 % 0.9 and Apache MLlib of Spark 1.3.0, respectively based on Apache Hadoop and
@@ -57,16 +68,17 @@ while MLlib PFP extracts all the frequent itemsets.
 To perform a fair comparison, Mahout PFP is forced to output all the closed
 itemsets.
 Since the extraction of the complete set of frequent itemsets is usually
-more resource intensive than dealing with only the set of frequent closed
+more resource-intensive than dealing with only the set of frequent closed
 itemsets\footnote{We recall that the complete set of frequent itemsets can be
 obtained expanding and combining the closed itemsets by means of a
 post-processing step.},
 the execution times of Mahout PFP, BigFIM and DistEclat may increase with respect
 to MLlib PFP.
-In our experiments, we took care to verify that
-the numbers of frequent itemsets and closed itemsets are the same.
+However, in our experiments, the numbers of frequent itemsets and closed itemsets are in the same order of magnitude.
 Therefore, the disadvantages related to the more intensive task performed
 by MLlib are mitigated.
+
+
 %However, for all the performed experiments, the number of frequent itemsets and
 %closed itemsets is so similar that the
 %difference is negligible and it does not affect our results.
@@ -84,35 +96,43 @@ by MLlib are mitigated.
 %subsection, is strongly mitigated by the utilization of a more modern framework
 %such as Spark.
 
-We defined a common set of default parameter values for all experiments,
-different settings are explicitly indicated.
-The default setting of each algorithm was chosen by taking into consideration
+We defined a common set of default parameter values for all experiments.
+Specific experiments with different settings are explicitly indicated.
+The default setting of each algorithm was chosen by taking into account
 the physical characteristics of the Hadoop cluster,
 to allow each approach to exploit the hardware and software configuration at its best.
-The following default configuration settings for the four algorithms
-have been considered.
+
+% The following default configuration settings for the four algorithms
+% have been considered.
+\begin{itemize}
+\item
 For Mahout PFP, the default value of $k$ is set to the lowest value forcing
-Mahout PFP to mine all frequent closed itemsets for each dataset and $minsup$,
-while for MLlib PFP the number of partitions is set to 6,000.
+Mahout PFP to mine all frequent closed itemsets.
+\item
+For MLlib PFP the number of partitions is set to 6,000.
 This value has shown to be the best tradeoff among performance
 and the capacity to complete the task without memory issues.
-In particular, with lower values the increase in performance is limited whereas
-some algorithms cannot scale to very long transactions or very low $minsup$.
+In particular, with lower values of the the number of partitions MLlib PFP
+cannot scale to very long transactions or very low $minsup$.
 Higher values, instead, do not lead to better scalability, while affecting performance.
-Finally, the default value
-of the prefix parameter of both BigFIM and DistEclat is set to 2,
-as the result of the following strategy:
-with a value of 1,
-BigFIM and DistEclat become too similar, since their only difference is in the
-first phase of the mining process.
-On the contrary, with prefix lengths higher than 2,
-many experiments complete the extraction in the first phase,
-without execution of the second phase.
+\item
+The default value
+of the prefix length parameter of both BigFIM and DistEclat is set to 2, which achieves a good tradeoff 
+among efficiency and scalability of the two approaches.
 
-We did not define a default value of $minsup$,
-which is a common parameter of
-all algorithms, because it is highly related to the data distribution and the
-use case, so this value is discussed in each set of experiments.
+%as the result of the following strategy:
+%with a value of 1,
+%BigFIM and DistEclat become too similar, since their only difference is in the
+%first phase of the mining process.
+%On the contrary, with prefix lengths higher than 2,
+%many experiments complete the extraction in the first phase,
+%without execution of the second phase.
+
+\item We did not define a default value of $minsup$,
+which is a common parameter of all algorithms, 
+because it is highly related to the data distribution and the use case, 
+so this parameter value is specifically discussed in each set of experiments.
+\end{itemize}
 
 % Since our aim is to describe the behaviour of the different
 % approaches in different use cases to compare them, for each experiment we tried
@@ -131,8 +151,7 @@ use case, so this value is discussed in each set of experiments.
 
 We considered both synthetic and real datasets.
 The synthetic ones have been
-generated by means of the IBM dataset generator~\cite{Quest}, a very well
-known generator that is commonly used for performance benchmarking in the
+generated by means of the IBM dataset generator~\cite{Quest}, commonly used for performance benchmarking in the
 itemset mining context.
 We tuned the following parameters of the IBM dataset generator to analyze
 the impact of different data distributions on the performance of the
@@ -141,11 +160,11 @@ T~=~average size of transactions,
 P~=~average length of maximal patterns,
 I~=~number of different items,
 C~=~correlation grade among patterns, and
-D~=~number of transactions).
+D~=~number of transactions.
 The full list of synthetic datasets is reported in Table~\ref{datasets_transactions},
 where the name of each dataset consists of pairs $<$parameter,value$>$.
-Finally, the two real datasets have been used to simulate real life use cases,
-they are described in Section~\ref{usecases}.
+Finally, two real datasets have been used to simulate real-life use cases.
+They are described in Section~\ref{usecases}.
 % %The datasets used for the benchmarks are both synthetic and real. The synthetic
 % ones have been obtained with the IBM dataset generator~\cite{Quest}, a very well
 % spread generator, very common for performance benchmarking. Specifically, the
@@ -156,11 +175,11 @@ they are described in Section~\ref{usecases}.
 % different average transaction length. Finally, the datasets in
 % Table~\ref{datasets_real} are real dataset used to simulate real life use cases.
 
-All the experiments were performed on a cluster of 5 nodes running the Cloudera
+All the experiments, except the speedup analysis, 
+were performed on a cluster of 5 nodes running the Cloudera
 Distribution of Apache Hadoop (CDH5.3.1)~\cite{cloudera}.
 Each cluster node is a 2.67 GHz six-core Intel(R) Xeon(R) X5650 machine
-with 32~Gigabytes of main memory, SATA 7200-rpm hard disks, and
-running Ubuntu 12.04 server with the 3.5.0-23-generic kernel.
+with 32~Gigabytes of main memory and SATA 7200-rpm hard disks.
 The dimension of Yarn containers is set to 6~GB. This value leads to a
 full exploitation of the resources of our hardware, representing a good
 tradeoff between the amount of memory assigned to each task and the
@@ -169,37 +188,21 @@ Lower values would have increased the level of parallelism at the expense
 of the task completion, whereas higher values would have affected
 the parallelism, with very few distributed tasks.
 
+For the speedup experiments we used a larger cluster of 30 nodes\footnote{http://bigdata.polito.it} 
+with 2.5 TB of total RAM and 324 processing cores provided by Intel CPUs E5-2620 at 2.6GHz, 
+running the same Cloudera Distribution of Apache Hadoop (CDH5.3.1)~\cite{cloudera}. 
+
+From a practical point of view, all the implementations revealed to be quite easy to deploy and use. 
+Actually, the only requirement for all the implementations to be run was the Hadoop/Spark installation 
+(from a single machine scenario to a large cluster). 
+Only the MLlib PFP implementation requires few additional steps and some coding skills, since it is delivered as a library: 
+users must develop their own class and compile it.
 
 
 \subsection{Impact of the minsup support threshold}
 \label{minsup_exp}
-The minimum support threshold ($minsup$) has a high impact on the complexity of
-the itemset mining task. Specifically, the lower the value of $minsup$, the
-higher the execution time of the algorithm. In this section, we analyze how this
-parameter impacts on the execution time of the each algorithm and implementation.
 
-
-%\begin{table*}[h!]
-%\begin{center}
-%\caption{Synthetic datasets used for different number of transactions}
-%\label{datasets_transactions}
-%\begin{tabular}{|c|c|c|c|c|}
-%\hline
-%{\bf ID }& {\bf IBM Generator} &  {\bf \# different } & {\bf  \# items  } & {\bf size} \\
-%{\bf  }& {\bf  parameters } &  {\bf items  } & {\bf per } & {\bf (GB) } \\
-%{\bf  } & {\bf } & {\bf } & {\bf  transaction } & {\bf } \\ \hline
-% \hline
-%1 & T10P5I100kC0.25D10000k &  18001 & 10.16827 &  0527 \\ \hline
-%2 & T10P5I100kC0.25D50000k &  18015 & 10.16853 & 3043 \\ \hline
-%3 & T10P5I100kC0.25D100000k &  18016 & 10.16862 & 6087 \\ \hline
-%4 & T10P5I100kC0.25D500000k &  18017 & 10.16858 &  30433 \\ \hline
-%5 & T10P5I100kC0.25D1000000k &  18017 & 10.16859 &  60866 \\ \hline
-%\end{tabular}
-%\end{center}
-%\end{table*}
-
-
-\begin{table*}[h!]
+\begin{table*}[t]
 \scriptsize
 \begin{center}
 \caption{Synthetic datasets}
@@ -229,8 +232,38 @@ parameter impacts on the execution time of the each algorithm and implementation
 \end{table*}
 
 
+
+
+The minimum support threshold ($minsup$) has a high impact on the complexity of
+the itemset mining task. 
+%Specifically, the lower the value of $minsup$, the higher the execution time of the algorithm. 
+%In this section, we analyze how this
+%parameter impacts on the execution time of the each algorithm and implementation.
+
+
+%\begin{table*}[h!]
+%\begin{center}
+%\caption{Synthetic datasets used for different number of transactions}
+%\label{datasets_transactions}
+%\begin{tabular}{|c|c|c|c|c|}
+%\hline
+%{\bf ID }& {\bf IBM Generator} &  {\bf \# different } & {\bf  \# items  } & {\bf size} \\
+%{\bf  }& {\bf  parameters } &  {\bf items  } & {\bf per } & {\bf (GB) } \\
+%{\bf  } & {\bf } & {\bf } & {\bf  transaction } & {\bf } \\ \hline
+% \hline
+%1 & T10P5I100kC0.25D10000k &  18001 & 10.16827 &  0527 \\ \hline
+%2 & T10P5I100kC0.25D50000k &  18015 & 10.16853 & 3043 \\ \hline
+%3 & T10P5I100kC0.25D100000k &  18016 & 10.16862 & 6087 \\ \hline
+%4 & T10P5I100kC0.25D500000k &  18017 & 10.16858 &  30433 \\ \hline
+%5 & T10P5I100kC0.25D1000000k &  18017 & 10.16859 &  60866 \\ \hline
+%\end{tabular}
+%\end{center}
+%\end{table*}
+
+
+
 \begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/minsup_1_log.png}
+\includegraphics[width=5in]{immagini/minsup_1_log.eps}
 \caption{Execution time for different $minsup$ values
 (Dataset~\#1), average transaction length~10.}
 \label{minsup_1}
@@ -238,7 +271,7 @@ parameter impacts on the execution time of the each algorithm and implementation
 
 
 %\begin{figure}[!t]
-%\includegraphics[width=5in]{chapters/survey/immagini/minsup_2.png}
+%\includegraphics[width=5in]{immagini/minsup_2.eps}
 %\caption{Detail of the chart in Figure~\ref{minsup_1} for high $minsup$ values (Dataset~\#1).
 %[@FABIO3: da rimuovere, figura precedente ha scala logaritmica.]}
 %\label{minsup_2}
@@ -246,7 +279,7 @@ parameter impacts on the execution time of the each algorithm and implementation
 
 
 \begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/minsup_3_log.png}
+\includegraphics[width=5in]{immagini/minsup_3_log.eps}
 \caption{Execution time for different $minsup$ values
 (Dataset~\#3), average transaction length~30.}
 \label{minsup_3}
@@ -254,45 +287,43 @@ parameter impacts on the execution time of the each algorithm and implementation
 
 
 
-To avoid the bias due to a specific data distribution,
-experiments have been executed on two different datasets:
-Dataset~\#1 and Dataset~\#3.
-They both share the same average length of maximal patterns (5),
+To avoid the bias due to a specific single data distribution,
+two different datasets have been considered:
+Dataset~\#1 and Dataset~\#3 (Table~\ref{datasets_transactions}).
+They share the same average maximal pattern length (5),
 the number of different items (100 thousands),
 the correlation grade among patterns (0.25), and
 the number of transactions (10 millions).
 The difference is in the average transaction length:
-10 items for Dataset~\#1 and 30 items for Dataset~\#3
-(see Table~\ref{datasets_transactions}).
-Being constant the rest of the characteristics,
+10 items for Dataset~\#1 and 30 items for Dataset~\#3.
+Being the other characteristics constant,
 longer transactions lead to a higher dataset density,
 which results into a larger number of frequent itemsets.
-Furthermore, we can test the performance degradation
-when dealing with datasets with a highest number of dimensions.
+%Furthermore, we can test the performance degradation
+%when dealing with high-dimensional datasets.
 
 
-
-Figure~\ref{minsup_1} reports the execution time of the itemset mining
-algorithms when varying the $minsup$ threshold from 0.002\% to 0.4\% and
+Figure~\ref{minsup_1} reports the execution time of the algorithms when varying 
+the $minsup$ threshold from 0.002\% to 0.4\% and
 considering Dataset~\#1. DistEclat is the fastest algorithm for all the
 considered $minsup$ values. However, the improvement with respect to the
 other algorithms depends on the value of $minsup$.
+%When $minsup$ is greater than or equal to 0.2\%, all the implementations show
+%similar performance, with BigFIM and DistEclat being slightly faster than
+%Mahout PFP and MLlib PFP.
 When $minsup$ is greater than or equal to 0.2\%, all the implementations show
-similar performance, with BigFIM and DistEclat being slightly faster than
-Mahout PFP and MLlib PFP.
-The performance gap largely increases
-with $minsup$ values lower than 0.05\%:
-Mahout PFP becomes orders of magnitude slower than both
-DistEclat and MLlib PFP.
+similar performances.
+The performance gap largely increases with $minsup$ values lower than 0.05\%.
+%Mahout PFP becomes orders of magnitude slower than both
+%DistEclat and MLlib PFP. 
 BigFIM is as fast as DistEclat when $minsup$ is higher than 0.1\%, but below
-this threshold BigFIM runs out of memory during the
-$k$-Frequent Itemset generation phase, specifically when generating 2-FIs.
-MLlib PFP is generally slower than Mahout PFP,
-becoming faster only for $minsup$ values below 0.05\%.
-Based on this first set of experiments, DistEclat seems to be the
-most appropriate choice, with excellent results when very low values of $minsup$ are considered,
-followed by MLlib PFP, which can reach very low $minsup$ values with
-good performance, at the expense of slightly slower performance for higher $minsup$ values.
+this threshold BigFIM runs out of memory during the extraction of 2-itemsets.
+%MLlib PFP is generally slower than Mahout PFP,
+%becoming faster only for $minsup$ values below 0.05\%.
+%Based on this first set of experiments, DistEclat seems to be the
+%most appropriate choice, with excellent results when very low values of $minsup$ are considered,
+%followed by MLlib PFP, which can reach very low $minsup$ values with
+%good performance, at the expense of slightly slower performance for higher $minsup$ values.
 
 % %In this set of experiments, different values of minimum support threshold are
 % used to extract the frequent itemsets. The input datasets used are two, with two
@@ -310,9 +341,9 @@ good performance, at the expense of slightly slower performance for higher $mins
 % % %The experiment demostrates that DistEclat and MLlib PFP are the most reliable
 % % algorithms when the minsup values start to be very low.
 
-In the second set of experiments, we analyze the execution time of
+In the second set of experiments, we analyzed the execution time of
 the algorithms for different minimum support values on Dataset~\#3,
-which is characterised by a higher average transaction length
+which is characterized by a higher average transaction length
 (3 times longer than Dataset~\#1),
 and a larger data size on disk (4 times bigger),
 with the same number of transactions (10 millions).
@@ -321,37 +352,17 @@ $minsup$ values lower than 0.01\% were
 not considered in this set of experiments,
 as this has proven to be a limit for most algorithms
 due to memory exhaustion or too long experimental duration (days).
-Results are reported in Figure~\ref{minsup_3}:
-DistEclat runs immediately out of memory
-because of the size of the input dataset,
-which is transposed in a vertical format during the first phase:
-the longer transactions prevent it from completing such step.
+Results are reported in Figure~\ref{minsup_3}.
+%DistEclat runs immediately out of memory
+%because of the size of the input dataset,
+%which is transposed in a vertical format during the first phase:
+%the longer transactions prevent it from completing such step.
 MLlib PFP is much slower than Mahout PFP for most $minsup$ values (0.7\% and below),
 and BigFIM, as in the previous experiment,
 achieves top-level performance, but cannot scale to low $minsup$ values
 (the lowest is 0.3\%),
-due to memory constraints during the $k$-FI generation phase.
-Mahout PFP and MLlib PFP are the only algorithms
-to complete the mining tasks for all $minsup$ values.
-Precisely,
-Mahout PFP is the most suitable technique
-when dealing with minsup values over 0.05\%,
-with a perfomance 6 to 8 times faster than the MLlib sibling.
-However, with lower $minsup$ values,
-Spark MLlib becomes the fastest approach with an order of magnitude gap.
-We identified the cause of the different performance
-between the two PFP implementations
-in the different pruning strategies.
-The algorithms which extract closed itemsets, such as Mahout PFP,
-can apply more effective pruning techniques
-that are not applicable when all frequent itemsets must be extracted,
-which is the case for MLlib PFP.
-%their different mining phases: even if both of them extracts the same set of itemset in this specific use cases, the extraction process is different because MLlib PFP extracts all the frequent itemsets. Mahout PFP, instead, extracts only the closed ones\footnote{The differences are not reported in the paper.}.
-%the Spark implementation extracts all the frequent itemsets and then selects the closed ones,
-%while the Hadoop implementation directly extracts only the closed frequent itemsets.
-
-
-Overall,
+due to memory constraints during the $k$-itemset generation phase. Finally, DistEclat was not able to run because the size of the initial tidlists was already too big.\\
+Overall, as expected,
 DistEclat is the fastest approach when it does not run out of memory.
 Mahout PFP is the most reliable implementation across almost all $minsup$ values,
 even if it is not always the fastest,
@@ -361,7 +372,37 @@ as it is constantly able to complete all the tasks in a reasonable time.
 %the 2nd fastest approach
 %and it is able to reach the 1st or 2nd lowest $minsup$ values.
 Finally, BigFIM does not present advantages over the other approaches,
-being unable to reach low $minsup$ values and to provide fast executions.
+being unable to reach low $minsup$ values and to provide fast executions. \\
+%\textbf{Discussion:} As expected, the first phase of BigFIM is fundamental for its performance. 
+%It represents the failure point when the number of candidate itemsets is too large to be stored in the main memory of the mappers. 
+%At the same time, thanks to the better load balancing, given by the split of the mining in two phases balanced phases, BigFIM is able to achieve overall competitive performances (when it does not run out of memory in the first phase). Further details about load balancing behaviour can be found in Subsection \ref{load_exp}. While the failures related to mining tasks characterized by deep search space exploration was expected, 
+%because of the weakness of breadth-first approach with respect to data density, for the same reasons, the good performances in terms of execution time were less expected. Probably, the competitive performances were caused by the better load balancing in the search space exploration partitioning.\\DistEclat runs easily out of memory because of the size of the input dataset,
+%which is transposed in a vertical format during the first phase. 
+%The longer tidlists prevent it from completing such step. Even for this algorithm, the first phase is critical. The assumption of storing almost all the input dataset in all the nodes, at the aim of saving reading phases and communication costs, revealed to be not suitable for a problem characterized by a deep search space exploration.\\
+%Mahout PFP and MLlib PFP are the only algorithms
+%to complete the mining tasks for all $minsup$ values.
+%Precisely,
+%Mahout PFP is the most suitable technique
+%when dealing with minsup values over 0.05\%,
+%with a perfomance 6 to 8 times faster than the MLlib sibling.
+%However, with lower $minsup$ values,
+%Spark MLlib becomes the fastest approach with an order of magnitude gap.
+%We identified the cause of the different performance
+%between the two PFP implementations
+%in the different pruning strategies.
+%The algorithms which extract closed itemsets, such as Mahout PFP,
+%can apply more effective pruning techniques
+%that are not applicable when all frequent itemsets must be extracted,
+%which is the case for MLlib PFP.
+%When the problem becomes deeper and more challenging, beyond the engineering differences between the two implementations, the better load balancing of the MLlib PFP makes it faster.
+
+%their different mining phases: even if both of them extracts the same set of itemset in this specific use cases, the extraction process is different because MLlib PFP extracts all the frequent itemsets. Mahout PFP, instead, extracts only the closed ones\footnote{The differences are not reported in the paper.}.
+%the Spark implementation extracts all the frequent itemsets and then selects the closed ones,
+%while the Hadoop implementation directly extracts only the closed frequent itemsets.
+
+
+
+
 
 % %Indeed, we can say that DistEclat and MLLib are the best approaches for
 % different $minsup$ values analyses but are strongly affected, respectively, by
@@ -468,15 +509,29 @@ being unable to reach low $minsup$ values and to provide fast executions.
 \subsection{Impact of the average transaction length}
 \label{attributes_exp}
 
-This section compares the execution times of the selected approaches
-on datasets with different average transaction lengths,
-from 10 to 100 items per transaction,
-and fixed values of 10 million transactions, and 1\% $minsup$.
+\begin{figure}[!t]
+\includegraphics[width=5in]{immagini/attributes.eps}
+\caption{Execution time with different average transaction lengths % with a minsup value of 1\%
+(Datasets \#1--10, $minsup$ 1\%).}
+\label{attributes}
+\end{figure}
+
+\begin{figure}[!t]
+\includegraphics[width=5in]{immagini/attributes_deeper.eps}
+\caption{Execution time with different average transaction lengths %with a minsup value of 0.1\%
+(Datasets \#1--10, $minsup$ 0.1\%).}
+\label{attributes_deeper}
+\end{figure}
+
+We analyzed the effect of different average transaction lengths,
+from 10 to 100 items per transaction.
+We fixed the number of transactions to 10 millions.
 To this aim, Datasets \#1--10 were used (see Table~\ref{datasets_transactions}).
-Longer transactions often lead to more dense datasets and a larger number of longer frequent itemsets.
+Longer transactions often lead to more dense datasets and a larger number of long frequent itemsets.
 This generally corresponds to more computationally intensive tasks.
-The execution times obtained are reported in Figure~\ref{attributes}.
-BigFIM and DistEclat execution times for transaction length of 10 and 20 are not reported because, for these configurations, not enough 3-itemsets are extracted.
+The execution times obtained are reported in Figure~\ref{attributes} and Figure~\ref{attributes_deeper}, with a respective {\it minsup} value of 1\% and 0.1\%.
+In the experiment of Figure~\ref{attributes}, BigFIM and DistEclat execution times for transaction length of 10 and 20 are not reported because, for these configurations, no 3-itemsets are extracted and hence the two algorithms crashed\footnote{Due to the absence of a specific test, BigFIM and DistEclat crash
+if no itemsets longer than the value of the prefix length parameter are mined.}.
 For higher transaction lengths, DistEclat is not included since it runs out of memory
 for values beyond 20 items per transaction.
 The other algorithms have similar execution times for short transactions,
@@ -484,14 +539,20 @@ up to 30 items.
 For longer transactions, a clear trend is shown:
 (i) MLlib PFP is much slower than the others
 and it is not able to scale for longer transactions,
-as its execution times abruptly increase until it runs out of memory
-beyond 60 items per transaction;
+as its execution times abruptly increase until it runs out of memory;
 (ii) Mahout PFP and BigFIM have a similar trend until 70 items per transactions,
-when Mahout PFP becomes slower than BigFIM.
-Despite the Apriori-based initial phase,
-BigFIM proved to be the best scaling approach for very long transactions.
-The FP-growth based approaches, instead,
-are affected by the increasing length of the transactions.
+when Mahout PFP becomes slower than BigFIM.\\
+The experiments of Figure~\ref{attributes_deeper}, shows a very similar trend, with exception that also BigFIM is not able to run.\\
+Overall, despite the Apriori-based initial phase,
+BigFIM proved to be the best scaling approach for very long transactions and a relatively high minsup. When the minsup is decreased only Mahout PFP 
+is able to cope with the complexity of the task.\\
+%\textbf{Discussion:} As expected (see Figure~\ref{attributes_deeper}), for more dense data distributions the number of candidate itemsets increases and BigFIM runs out of memory due to its initial Apriori phase. 
+%A similar motivation holds for DistEclat failures, due to its requirement to store all the (longer) tidlists in all the nodes.
+%The FP-growth based approaches are affected by the increasing length of the transactions. However, their depth-first structure revealed to be the best exploration strategy in such an environment (i.e. high number of attributes). 
+%DistEclat leverages a depth-first exploration strategy as well, however it assumes that all the tidlists should be stored in all the commodity cluster nodes, which is challenging if considering the further memory requirements due to the search space exploration. 
+%The difference gap between the two PFP implementations might be related to the different pruning strategies.
+
+
 %Despite the Apriori-based initial phase, BigFIM shows to be the mo
 %PFP is not optmized to address long transactions due to its FP-tree structure,
 %whereas BigFIM is able to address denser data distributions and a large
@@ -548,15 +609,10 @@ are affected by the increasing length of the transactions.
 % %of outputs, even if, in this specific case, the number of frequent itemsets
 % matches the number of closed ones.
 
-\begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/attributes.png}
-\caption{Execution time with different average transaction lengths
-(Datasets \#1--10, $minsup$ 1\%).}
-\label{attributes}
-\end{figure}
+
 
 % \begin{figure}[!t]
-% \includegraphics[width=5in]{chapters/survey/immagini/attributes_2.png}
+% \includegraphics[width=5in]{immagini/attributes_2.eps}
 % \caption{Execution time with different average transaction lengths,
 % and $minsup$ values 0.01\% and 0.05\%.}
 % \label{attributes_2}
@@ -661,38 +717,38 @@ are affected by the increasing length of the transactions.
 \label{transaction_exp}
 
 \begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/transactions_log.png}
+\includegraphics[width=5in]{immagini/transactions_log.eps}
 \caption{Execution time with different numbers of transactions
  (Datasets \#1, \#11--14,
- $minsup$~0.4\%,
- average transaction length~10).}
+ $minsup$~0.4\%).}
 \label{transactions}
 \end{figure}
 
-This section evaluates the effect of varying the number of transactions,
-i.e., increasing the dataset size without changing intrinsic data characteristics,
-such as the transaction length or the data distribution.
-To this aim, Datasets \#1, \#11--14 have been used
+We evaluated the effect of varying the number of transactions,
+i.e., the dataset size, without changing intrinsic data characteristics (e.g., 
+transaction length or data distribution).
+The experiments have been performed on Datasets \#1, \#11--14 have been used
 (see Table~\ref{datasets_transactions}),
 which have a number of transactions
 ranging from 10 millions to 1 billion.
-The average transaction length is fixed to 10, and the $minsup$ is 0.4\%,
+The $minsup$ is set to 0.4\%,
 which is the highest value for which the mining leverages both the two phases of
-BigFIM and DistEclat, and it corresponds to the highest value used
+BigFIM, and it corresponds to the highest value used
 in the experiments of Section~\ref{minsup_exp}.
+Since in the experiment the relative minsup threshold is fixed, from the mining point of view, the search space exploration is similar and not particularly challenging, as shown in Section~\ref{minsup_exp}. What really affects this experiment is the algorithms reliability dealing with such amount of data.
 
 As shown in Figure~\ref{transactions}, all the considered algorithms scale
-linearly with respect to the dataset cardinality, with BigFIM being the slowest,
+almost linearly with respect to the dataset cardinality, with BigFIM being the slowest,
 closely followed by Mahout PFP,
 and with MLlib PFP being by far the fastest approach,
-with execution times reduced by almost an order of magnitude.
-BigFIM is paying the iterative disk reading activities
-during its initial Apriori phase.
-PFP implementations, instead, read from the disk only twice.
-Finally, DistEclat fails under its assumption that the entire dataset should
+with execution times reduced by almost an order of magnitude. 
+PFP implementations are faster than BigFIM because they read from the disk the input dataset only twice. 
+BigFIM pays the iterative disk reading activities during its initial Apriori phase when the number of records
+of the input dataset increases.
+Finally, DistEclat fails under its assumption that the tidlists of the entire dataset should
 be stored in each node, and it is not able to complete the extraction beyond
 10 million transactions.
-
+%This experiment, because of the size of the involved input dataset, should be very related to the behavior in terms of communication costs of the algorithms. As we will detail in Subsection~\ref{communication_costs}, Mahout PFP implemention is, by far, the algorithm assuming less data across the network. However, in this experiment, the performance of Mahout PFP are not the best-in-class. For the same reason, even the gap with the performances of BigFIM is not that large (since the communication costs balance differs, instead, by a factor larger than four).
 %\begin{table*}[h!]
 %\begin{center}
 %\caption{Experimental result summary for number of transactions impact, Section~\ref{transaction_exp}}
@@ -714,6 +770,83 @@ be stored in each node, and it is not able to complete the extraction beyond
 
 
 
+
+
+
+\subsection{Scalability in terms of parallelization degree}
+\label{nr_machines}
+
+
+
+\begin{figure*}[!t]
+\begin{center}
+\includegraphics[width=5in]{immagini/machines_big.eps}
+\caption{Speedup with different parallelization degrees (Dataset \#14,
+ $minsup$~0.4\%)}
+\label{nr_machines_speedup}
+\end{center}
+\end{figure*}
+
+
+%\begin{figure*}[!t]
+%\begin{center}
+%\includegraphics[width=5in]{immagini/machines_2.eps}
+%\caption{Normalized execution time with different number of machines  (Dataset \#1,
+% $minsup$~0.11\%,
+% average transaction length~10) \textbf{Qui BigFIM va proprio male, mi chiedo se sia il caso di eliminare questo esperimento (ma perderemmo disteclat)}}
+%\label{nr_machines_2}
+%\end{center}
+%\end{figure*}
+
+We analyzed the speedup by running the same mining problem with increasing numbers of parallel tasks.
+The dataset selection and the $minsup$ parameter choice are difficult 
+since we need to identify a mining problem satisfying two conditions:
+(i) allowing all the executions to complete with any number of parallel tasks, 
+and, at the same time, 
+(ii) being very demanding so that the distributed framework is actually exploited. 
+We selected $minsup$ 0.4\% and Dataset \#14 (see Table~\ref{datasets_transactions}) 
+to be light enough for condition (i) and demanding enough for condition (ii).
+
+Figure~\ref{nr_machines_speedup} shows the speedup results. 
+A parallelization degree equal to 1 corresponds to the minimal computational resource setting, i.e., the configuration with only two parallel independent tasks.
+Its execution time is the reference with respect to which the speedup is computed. 
+Specifically, the speedup of a configuration with a parallelization degree equal to $p$ is computed as 
+
+$$speedup(paral\_degree=p)=\frac{Exec\_Time(paral\_degree=1)}{Exec\_Time(paral\_degree=p)}$$. 
+
+Ideally, the speedup should be equal to the parallelization degree $p$ itself, i.e., 
+increasing the number of resources (parallel tasks) of a factor $p$, should lead to a speedup equal to $p$.
+%In Figure~\ref{nr_machines_speedup}, the execution time of the basic configuration are divided by the ones related to the higher degree of parallelization to obtain the speedup values.
+ % (Figure~\ref{nr_machines_1}). 
+%Since the problem was already too challenging for a single task, we have started from 2. In Figure~\ref{nr_machines_1} and Figure~\ref{nr_machines_speedup} are shown the performance of the algorithms leveraging different parallelization degree values.
+% In In Figure~\ref{nr_machines_1}, the execution times are normalized with respect with the execution time obtained with the time obtained with the base number of machines (i.e. 2).
+% ( $T_{old}/T_{new}$ ).
+%for different multiplicative factors of computation improvement (since the basic parallelization degree is 2, the number of independent tasks in the x axis can be obtained by multiplying times 2)     \footnote{Please note that the Mahout-PFP curve in Figure~\ref{nr_machines_1} appears shifted with respect to the others because of the following reason. This specifical implementation does not allow to control the numbers of mappers involved in the computation, therefore we had to change input chunk size. This value allowed us to force a fixed set of possible configurations. }. 
+
+In this experiment, it is clear that the FP-Growth-based implementations provide a better speedup. 
+BigFIM, on the contrary, is not able to leverage a number of parallel tasks higher than 6.
+% However, only MLlib PFP has a speedup that is close to the ideal one.
+Because of the size of the dataset, DistEclat is not able to perform the mining. 
+%In the previous experiments, it has demonstrated to be reliable only with mining requiring less than few minutes \footnote{Considering just the experiments in which all the algorithms complete the mining}. Repeating the same kind of scalability experiment for a mining of few minutes is not sensed because the parallelization overheads likely dominate the computation.\\
+%
+%Since DistEclat is not able to run this experiment, we used a smaller input file (Dataset \#1) and an even lower minsup value (0.11\%) (Figure~\ref{nr_machines_2}). Even in this case, the Breadth-first approaches (DistEclat) showed a very good scalability. BigFIM demonstrated again to have serious problems of scalability. In this experiment, in fact, the problem configuration is such that the best execution times is provided with the smaller number of computing nodes. Actually, the mining phase is quite fast (about 6 minutes), with a concrete possibility, hence, to be dominated by distribution overheads, especially with Apriori iterative nature. However, a slightly deeper minsup value leads to memory issue.\\
+%\textbf{Discussion:}
+%Based on the results it is clear that many of the considered algorithms are not able to properly exploit the parallelism provided by distributed frameworks. The reason 
+%is probably given by the fact that they are not able to split the initial problem in a number of subproblems equal to the number of available parallel 
+%tasks, or, when they are able to do so, the overhead given by the instance of the subtasks is greater than the advantages given by the parallel execution 
+%of the subtasks/subproblems. 
+%MLlib PFP has demonstrated to be the best approach, probably because of a finest granularity in the projection of the FP-trees than the other FP-growth-based approaches (the more are the independent subproblems generated, the better could be distributed to a high number of nodes). 
+%Based on the results it is clear that many of the considered algorithms are not able to properly exploit the parallelism provided by Hadoop. The reason 
+%is probably given by the fact that they are on able to split the initial problem in a number of subproblems equal to the number of available parallel 
+%tasks, or when they are able to do it, the overhead given by the instance of the subtasks is greater than the advantages given by the parallel execution 
+%of the subtasks/subproblems. MLlib PFP has demonstrated to be the best approach, probably because of a finest granularity in the projection of the FP-trees than the other FP-growth-based approaches (the more are the independent subproblems generated, the better could be distributed to a high number of nodes). 
+
+
+
+
+%In this Section, as predictable, it is clear that the benefits of the parallelization is strongly mitigate after few tens of tasks. MLlib PFP has demonstrated to be the best approach, probably because a finest granularity in the projection of the FP-trees than the other approaches tree structures (the more are the independent structures to be mined, the better could be distributed to a high number of nodes). 
+%The motivations behind this difficulties are related to the Frequent itemset mining problem, which is hardly parallelizzable. The partitions to which the problem is divided into often overlap. This leads to an overall load which is higher than load of an hypothetical centralized execution. For this reason, when the exploration of the search space deepen, the overlapping of the subproblems increases and the performances do not scale as desirable. 
+%\textbf{(ANCHE QUI FORSE POTREMMO ENFATIZZARE IL FATTO CHE PURTROPPO IN QUESTO DOMINIO SI SCALA DAVVERO POCO. NON CONTINUARE A GUADAGNARE ALL'INFINITO E' LA NORMA, MA QUI ANCHE PROBLEMI MOLTO GRANDI SI FERMANO DOPO QUALCHE DECINE DI MACCHINE. CI POTREMMO ALLACCIARE ALLE RIFLESSIONI FINALI IN CUI DICIAMO CHE SI VEDE CHE QUESTI SONO PORTING E NESSUNO E' STATO DAVVERO PROGETTATO PER ANDARE DIRETTAMENTE PARALLELO.}
 
 
 \subsection{Real use cases}
@@ -750,8 +883,7 @@ are reported in Table~\ref{datasets_real}.
 \subsubsection{URL tagging}
 \label{delicious_exp}
 
-In this experiment, we evaluate the selected algorithms in a real-life use case
-by using the Delicious dataset~\cite{wetzker2008analyzing}, which is a
+We evaluated the selected algorithms on the Delicious dataset~\cite{wetzker2008analyzing}, which is a
 collection of web tags.
 Each record represents the tag assigned by a user to a URL and it consists of
 4 attributes:
@@ -763,13 +895,13 @@ The transactional representation of the Delicious dataset includes
 one transaction for each record, where each transaction is a set of four pairs
 (attribute, value), i.e., one pair for each attribute.
 The dataset stores more than 3 years of web tags.
-The dataset is very sparse because it has a huge number of different URLs
+It is very sparse because of the huge number of different URLs
 and tags.
 Additional characteristics of the dataset are reported
 in Table~\ref{delicious_itemsets}.
 
 This experiment simulates the environment of a service provider that
-periodically analyses the web tag data to extract frequent patterns: they
+periodically analyzes the web tag data to extract frequent patterns: they
 represent the most frequent correlations among tags, URLs, users, and dates.
 Many different use cases can fit this description:
 tag prediction, topic classification, trend evolution, etc.
@@ -787,9 +919,7 @@ However, too high $minsup$ values would discard longer itemsets,
 which are more meaningful
 as they better highlight more complex correlations
 among the different attributes and values.
-Furthermore, we wanted to obtain at least 3-itemsets to assess
-the BigFIM two phases, without reducing it to a pure DistEclat.
-As a result of these constraints and of the high sparsity of the dataset,
+Because of the high sparsity of the dataset,
 we identified the setting $minsup$=0.01\% as the best tradeoff.
 
 \begin{table}[h]
@@ -817,7 +947,7 @@ with $minsup$~0.01\%.}
 \end{table}
 
 \begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/delicious.png}
+\includegraphics[width=5in]{immagini/delicious.eps}
 \caption{Execution time for different periods of time on the Delicious dataset
 ($minsup$=0.01\%)}
 \label{delicious}
@@ -832,20 +962,19 @@ while the execution times of the
 different algorithms are shown in Figure~\ref{delicious}.
 
 
-MLlib consistently proves to be the fastest approach, with DistEclat following.
-However, while DistEclat is slightly faster than MLlib only with the first, smallest dataset
+MLlib PFP consistently proves to be the fastest approach, with DistEclat following.
+However, while DistEclat is slightly faster than MLlib PFP only with the first, smallest dataset
 (up to Dec 2003, with 150 thousands transactions), when the dataset size increases,
-DistEclat execution times do not scale, and it eventually fails for the final
+DistEclat execution time does not scale. DistEclat eventually fails for the final
 40-million-transaction dataset of Dec 2005, due to memory exhaustion.
-BigFIM and Mahout PFP consistently provide 2 to 3 times longer execution times.
+BigFIM and Mahout PFP consistently provide 2 to 3 times higher execution times.
 Apart from DistEclat, all algorithms complete the task with similar performance
 despite increasing the dataset cardinality from 150 thousand transactions to 41 millions,
 thanks to the constant relative $minsup$ threshold
 which reduces the number of frequent itemsets
 for decreasing density of the dataset.
-To sum up, MLlib is the best choice for short transactions
-(this dataset length is 4),
-independently of the dataset cardinality and density.
+Hence, MLlib PFP is the best choice for this dataset characterized by short transactions
+(the transaction length is 4).
 
 
 % %Therefore, we extracted the frequent itemset related to an incremental period
@@ -904,13 +1033,13 @@ independently of the dataset cardinality and density.
 
 
 \begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/number_flows.png}
+\includegraphics[width=5in]{immagini/number_flows.eps}
 \caption{Number of flows for each hour of the day.}
 \label{number_flows}
 \end{figure}
 
 \begin{figure}[!t]
-\includegraphics[width=5in]{chapters/survey/immagini/net_logs_log.png}
+\includegraphics[width=5in]{immagini/net_logs_log.eps}
 \caption{Execution time of different hours of the day.
 (dataset 31, $minsup$=1\%)}
 \label{net}
@@ -956,7 +1085,7 @@ with $minsup$~0.1\%.}
 \end{center}
 \end{table}
 
-This use case evaluates the approaches in a network environment by
+This use case entails the analysis of a network environment by
 using a network traffic log dataset, where each transaction represents a TCP flow.
 A network flow is a bidirectional communication between a client and a server.
 The dataset has been gathered through Tstat~\cite{Tstat,Tstat2}, a popular
@@ -967,8 +1096,7 @@ of a nation-wide Internet Service Provider in Italy.
 Each transaction of the dataset is associated with
 a flow and consists of pairs $(flow~feature, value)$. These features can be
 categorical (e.g., TCP Port, Window Scale) or numerical (e.g., RTT,
-Number of packets, Number of bytes). We applied a proper preprocessing step in
-which numerical attributes have been discretized by using the same
+Number of packets, Number of bytes). Numerical attributes have been discretized by using the same
 approach adopted in~\cite{ApilettiBCCG13}.
 Finally, we have divided the set of flows (i.e., the set of transactions)
 in 1-hour slots, generating 24 sub-datasets.
@@ -980,12 +1108,9 @@ analysis to shape the hourly network traffic.
 Hence, we evaluated the performance of the four algorithms,
 comparing their execution time, on the 24 hourly sub-datasets.
 For all the 24 experiments $minsup$ was set to 1\%, which was
-the tradeoff value allowing all the algorithms to complete the extraction,
-leveraging both the mining phases of BigFIM and DistEclat,
-and extracting a reasonable number of frequent itemsets
-(details in Table~\ref{netlog_itemsets}).
+the tradeoff value allowing all the algorithms to complete the extraction.
 
-Results are reported in Figure~\ref{net}, where the performance of the
+The results are reported in Figure~\ref{net}, where the performance of the
 different approaches show a clear trend: DistEclat always achieves the
 lowest execution time, followed by MLlib PFP and BigFIM.
 Mahout PFP is the slowest.
@@ -1003,23 +1128,23 @@ use case for DistEclat, which strongly exploits in-memory computation.
 
 \begin{figure*}[!t]
 \begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/load_balance_big.png}
+\includegraphics[width=5in]{immagini/load_balance_big_2.eps}
 \caption{Normalized execution time of the most unbalanced tasks.}
 \label{load_balance_big}
 \end{center}
 \end{figure*}
 
-\begin{figure*}[!t]
-\begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/load_balance_disteclat.png}
-\caption{Normalized execution time of the most unbalanced tasks of DistEclat.}
-\label{load_balance_disteclat}
-\end{center}
-\end{figure*}
+%\begin{figure*}[!t]
+%\begin{center}
+%\includegraphics[width=5in]{immagini/load_balance_disteclat.eps}
+%\caption{Normalized execution time of the most unbalanced tasks of DistEclat.}
+%\label{load_balance_disteclat}
+%\end{center}
+%\end{figure*}
 
-In this section, experiments address the evaluation of the load balancing
-strategies of the different approaches, an often underestimated issue
-in the distributed data mining bibliography (see Section~\ref{criteria}).
+%In this section, experiments address the evaluation of the load balancing
+%strategies of the different approaches, an often underestimated issue
+%in the distributed data mining bibliography (see Section~\ref{criteria}).
 % %The reason is related to the trend to implement in distributed environment
 % families of algorithms which were not designed to be distributed.
 % %%An example of a bad load balance is what shown in subSection
@@ -1028,7 +1153,7 @@ in the distributed data mining bibliography (see Section~\ref{criteria}).
 % process. On the other hand, approaches such as BigFIM or DistEclat were
 % developed taking into account load balance.
 
-Experiments measure the load balancing on a 1-hour-long subset of the
+We analyzed load balancing on a 1-hour-long subset of the
 network log dataset (Table~\ref{datasets_real}) with a fixed $minsup$ of 1\%.
 We consider the most unbalanced jobs of each algorithm
 and compare the execution times of the fastest and the slowest tasks.
@@ -1041,36 +1166,36 @@ MLlib PFP achieves the best load balancing, with comparable
 execution times for all tasks throughout all nodes,
 whose difference is in the order of 10\%.
 Mahout PFP, instead, shows the worst load balancing issues,
-with differences as high as 90\%.
+with differences as high as 90\%. The difference between MLlib PFP and Mahout PFP can be correlated to the 
+granularity of the subproblems. The smaller the subproblems, the better the load balancing
+because their execution times are more similar. MLlib PFP allows specifying the number of partitions, i.e., of subproblems, which obviously impacts on the 
+granularity of each subproblem. Hence, setting opportunely this parameter, a good load balancing result is achieved. Differently, 
+Mahout PFP automatically sets the number of subproblems and the current heuristic used to set it does not seem to work well on the considered datasets
+(unbalanced subproblems are generated).
 
 We included BigFIM and DistEclat with 2 different
 first-phase prefix sizes.
-For BigFIM, the experiment confirms that a configuration with longer prefixes
+For these algorithms, the experiment confirms that a configuration with longer prefixes
 leads to a more balanced mining tasks than a configuration with short-sized prefixes,
 as mentioned in Subsection~\ref{bigfim}.
-Regarding DistEclat, instead, the behavior is the opposite,
-but the values are misleading: considering only the second phase of DistEclat,
-where the trees are mined, as shown in Figure~\ref{load_balance_disteclat},
-the longer the prefixes, the more balanced the mining tasks.
-Hence, DistEclat shows a medium-balanced overall behavior with 1-sized prefixes
-(50\% difference between fastest and slowest tasks),
-a good load balancing for the second phase with 2-sized prefixes (30\% difference),
-and a bad load balancing for the first phase, which affects the overall behavior,
-leading to a final 60\% difference, due to the distribution of the prefixes to
-the different nodes, their expansion and pruning.
-% %
-% %(NUOVA PER PAOLO) We have also taken into account an experimental evaluation of
-% communication cost, fundamental in such a distributed environment. However, it
-% is a very hard evaluation: data about the actual quantity of data is not
-% accurate in the resource manager. Even if measuring the ``shuffle read''
-% statistics, they don't actually distinguish what was already in the local node
-% and what was obtained through the network. Finally, even the data among the
-% Spark and the Hadoop distribution are not consistent so they are very hard to
-% compare.
+%
+%For BigFIM, the experiment confirms that a configuration with longer prefixes
+%leads to a more balanced mining tasks than a configuration with short-sized prefixes,
+%as mentioned in Subsection~\ref{bigfim}.
+%Regarding DistEclat, instead, the behavior is the opposite,
+%but the values are misleading: considering only the second phase of DistEclat,
+%where the trees are mined, as shown in Figure~\ref{load_balance_disteclat},
+%the longer the prefixes, the more balanced the mining tasks.
+%Hence, DistEclat shows a medium-balanced overall behavior with 1-sized prefixes
+%(50\% difference between fastest and slowest tasks),
+%a good load balancing for the second phase with 2-sized prefixes (30\% difference),
+%and a bad load balancing for the first phase, which affects the overall behavior,
+%leading to a final 60\% difference, due to the distribution of the prefixes to
+%the different nodes, their expansion and pruning.\\
 
 
 
-
+%\textbf{Discussion:} Given the results of this experiment, the main motivation behind the good performances of BigFIM across all the previous experiments, despite its first phase, is its load balancing, especially with respect to Mahout PFP. As already mentioned, unfortunately, the way used to achieve this good load balancing is critical, because it exposes the algorithm to the cons of an Apriori-like approach (i.e. higher reading and communication costs and weakness with respect to dense problems). 
 
 
 \subsection{Communication costs}
@@ -1078,7 +1203,7 @@ the different nodes, their expansion and pruning.
 
 \begin{figure*}[!t]
 \begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/comm_costs.png}
+\includegraphics[width=5in]{immagini/comm_costs.eps}
 \caption{Communication costs and performance for each algorithm,
 Datasets~\#1, $minsup$~0.1\%.
 The graph reports an average between transmitted and reveiced data.}
@@ -1104,228 +1229,282 @@ The graph reports an average between transmitted and reveiced data.}
 %\end{center}
 %\end{table*}
 
-\begin{figure*}[!t]
-\begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/comm_costs_bigfim.png}
-\caption{Communication costs of BigFIM, Datasets~\#1, $minsup$~0.1\%.
-The graph reports both transmitted and reveiced data.}
-\label{comm_costs_bigfim}
-\end{center}
-\end{figure*}
-
-\begin{figure*}[!t]
-\begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/comm_costs_disteclat.png}
-\caption{Communication costs of DistEclat, Datasets~\#1, $minsup$~0.1\%.
-The graph reports both transmitted and reveiced data.}
-\label{comm_costs_disteclat}
-\end{center}
-\end{figure*}
-
-\begin{figure*}[!t]
-\begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/comm_costs_mllib.png}
-\caption{Communication costs of MLlib PFP, Datasets~\#1, $minsup$~0.1\%.
-The graph reports both transmitted and reveiced data.}
-\label{comm_costs_mllib}
-\end{center}
-\end{figure*}
-
-\begin{figure*}[!t]
-\begin{center}
-\includegraphics[width=5in]{chapters/survey/immagini/comm_costs_pfp.png}
-\caption{Communication costs of Mahout PFP, Datasets~\#1, $minsup$~0.1\%.
-The graph reports both transmitted and reveiced data.
-}
-\label{comm_costs_pfp}
-\end{center}
-\end{figure*}
-
-
+%\begin{figure*}[!t]
+%\begin{center}
+%\includegraphics[width=5in]{immagini/comm_costs_bigfim.eps}
+%\caption{Communication costs of BigFIM, Datasets~\#1, $minsup$~0.1\%.
+%The graph reports both transmitted and reveiced data.}
+%\label{comm_costs_bigfim}
+%\end{center}
+%\end{figure*}
+%
+%\begin{figure*}[!t]
+%\begin{center}
+%\includegraphics[width=5in]{immagini/comm_costs_disteclat.eps}
+%\caption{Communication costs of DistEclat, Datasets~\#1, $minsup$~0.1\%.
+%The graph reports both transmitted and reveiced data.}
+%\label{comm_costs_disteclat}
+%\end{center}
+%\end{figure*}
+%
+%\begin{figure*}[!t]
+%\begin{center}
+%\includegraphics[width=5in]{immagini/comm_costs_mllib.eps}
+%\caption{Communication costs of MLlib PFP, Datasets~\#1, $minsup$~0.1\%.
+%The graph reports both transmitted and reveiced data.}
+%\label{comm_costs_mllib}
+%\end{center}
+%\end{figure*}
+%
+%\begin{figure*}[!t]
+%\begin{center}
+%\includegraphics[width=5in]{immagini/comm_costs_pfp.eps}
+%\caption{Communication costs of Mahout PFP, Datasets~\#1, $minsup$~0.1\%.
+%The graph reports both transmitted and reveiced data.
+%}
+%\label{comm_costs_pfp}
+%\end{center}
+%\end{figure*}
 
 
-Finally, this section presents the experiments addressing the evaluation of
-the communication costs.
-Specifically, we measure the amount of data transmitted and received
+
+
+To evaluate the communication cost, we measure the amount of data transmitted and received
 through the nodes network interfaces. This information has been retrieved
 by means of the utilities provided by the Cloudera Manager tool.
 
-Experiments have been performed on Dataset~\#1 with a fixed $minsup$ value of 0.1\%,
+The experiments have been performed on Dataset~\#1 with a fixed $minsup$ value of 0.1\%,
 which was the lowest value for which all algorithms completed the extraction.
-
 Figure~\ref{comm_costs} reports, for each algorithm, the average value
 among transmitted and received traffic, compared to the total execution time.
-Firstly, the two measures are not correlated:
+Firstly, the two measures do not seem to be correlated:
 higher communication costs are associated with low execution times
 for BigFIM and DistEclat, whereas MLlib reports both measures with high values.
 Mahout PFP has a communication cost 4 to 5 times lower than all the others,
 which exchange an average of 2~Gigabytes of data.
 Mahout PFP average communication cost is around 0.5~Gigabytes,
 which is approximately the dataset size.
+The difference between DistEclat and BigFIM is not large because with only 2-length prefixes just an extra iteration is done by BigFIM.
 Even though Mahout PFP is the most communication-cost optimized implementation,
 the very low amount of data sent through the network is related
 to the adoption of compression techniques, which lead to higher execution times.
-To address this issue,
-we measured the communication costs of the first phase of BigFIM and Mahout PFP
-in word-count toy application. BigFIM generates into the network an
-amount of data more than 5 times larger than Mahout PFP.
-However, at the same time, the execution time of BigFIM initial phase is
-almost 3 times faster than those of Mahout PFP.
+%To address this issue,
+%we measured the communication costs of the first phase of BigFIM and Mahout PFP
+%in word-count toy application. 
+%BigFIM generates into the network an
+%amount of data more than 5 times larger than Mahout PFP.
+%However, at the same time, the execution time of BigFIM initial phase is
+%almost 3 times faster than those of Mahout PFP.
 
-Investigating deeper into the specific algorithm communication-cost analisys,   
-Figures~\ref{comm_costs_bigfim},~\ref{comm_costs_disteclat},~\ref{comm_costs_pfp},~\ref{comm_costs_mllib}
-show the data exchanged throughout the whole execution time
-of each algorithm.
-
-BigFIM and DistEclat, in
-Figure~\ref{comm_costs_bigfim},~\ref{comm_costs_disteclat}, have a similar
-behaviour, with the communication costs grouped into two main phases.
-The first phase is related to the prefix extraction,
-while the second one matches the prefix preparation and prefix tree mining.
-BigFIM saturates the network link capacity (25~Megabytes/s, corresponding to
-a 100~Mbit/s full duplex Ethernet interface) during the second phase peak
-at minute 7 for both sent and received data,
-whereas DistEclat reaches such point during the first phase at minute 3,
-in trasmitted data only.
-BigFIM is also continuously exchanging data through the network during the
-mining process, whereas DistEclat pauses the network data exchange at minute 6.
-% %The choice of doing the main tasks of each job (prefix mining and prefix
-% expansion) in the map phase, without a full exploitation of data locality,
-% strongly affects communication costs. On the other hand, for instance, Mahout
-% PFP first phase, in which the header table is obtained through a basic
-% WordCount, each mapper exploits data locality working on its shard of the
-% dataset.
-Also the MLlib PFP implementation (Figure~\ref{comm_costs_mllib})
-presents two phases: differently from BigFIM and DistEclat, the middle ``pause'',
-dividing the first shuffling phase and the second materialization phase,
-is very long and lasts from minute 4 to minute 11,
-it is immediately followed by a peak reaching the network capacity
-at minute 12.
-Mahout PFP communication costs, instead, (Figure~\ref{comm_costs_pfp})
-consists of three phases:
-the first is related to the counting part,
-the second one corresponds to the mining phase,
-while the last one is related to the aggregation of the results.
-The peak in network data exchange is as low as 5~Mbytes/s.
+%\textbf{Discussion: }These results are consistent with the aformentioned direction. Load Balancing and Communication costs, the main issues in distributed algorithm environment, in this specific scenario do not have the same impact. On the contrary, while the communication costs analysis could be misleading if compared with wall-clock time performances, the behavior of the algorithms in terms of load balancing respect the execution time ranking. We specifically mean MLlib PFP, often the most performant approach, and Mahout PFP, in some experiments unexpectedly outperformed by algorithms theoretically slower. 
 
 
 
+\subsection{Discussion}
+\input{69_discussionexp.tex}
+
+%\textbf{Discussion (Fabio: Recap di tutte le discussion precedenti che sono state commentate)}
 %
-% %However, interestingly, the behaviour does not affect the execution time of
-% this mining experiment, in which the considered implementation is outperformed
-% by BigFIM and DistEclat as shown in Table~\ref{time_comm_costs}. The reason is
-% partially related to an unfair load balancing, sinche the longest mining task
-% lasts more than three times the execution time of the fastest ones.
+%In Section~\ref{minsup_exp}, measuring the impact of \textbf{minsup threshold}, we have seen that, as expected, the first phase of BigFIM is fundamental for its scalability. 
+%It represents the failure point when the number of candidate itemsets is too large to be stored in the main memory of the mappers. 
+%At the same time, thanks to the better load balancing, given by the split of the mining in two balanced phases, BigFIM is able to achieve overall competitive performances (when it does not run out of memory in the first phase). While the failures related to mining tasks characterized by deep search space exploration was expected, because of the weakness of breadth-first approach with respect to data density, for the same reasons, the good performances of BigFIM in terms of execution time were less expected. Probably, the competitive performances were caused by the better load balancing in the search space exploration partitioning.
+%
+%DistEclat runs easily out of memory because of the size of the input dataset,
+%which is transposed in a vertical format during the first phase. 
+%The longer tidlists prevent it from completing such step. Even for this algorithm, the first phase is critical. The assumption of storing almost all the input dataset in all the nodes, at the aim of saving reading phases and communication costs, revealed to be not suitable for a problem characterized by a deep search space exploration.
+%
+%Mahout PFP and MLlib PFP are the only algorithms
+%to complete the mining tasks for all $minsup$ values.
+%Precisely, Mahout PFP is the most suitable technique
+%when dealing with minsup values over 0.05\%,
+%with a performance 6 to 8 times faster than the MLlib sibling.
+%However, with lower $minsup$ values,
+%Spark MLlib becomes the fastest approach with an order of magnitude gap.
+%We identified the cause of the different performance
+%between the two PFP implementations
+%in the different pruning strategies.
+%The algorithms which extract closed itemsets, such as Mahout PFP,
+%can apply more effective pruning techniques
+%that are not applicable when all frequent itemsets must be extracted,
+%which is the case for MLlib PFP.
+%When the problem becomes deeper and more challenging, beyond the engineering differences between the two implementations, the better load balancing of the MLlib PFP makes it faster.
+%
+%In Section~\ref{attributes_exp}, instead, we have measured the impact of \textbf{the length of the transactions} on the mining performances. As expected (see Figure~\ref{attributes_deeper}), for more dense data distributions the number of candidate itemsets increases and BigFIM runs out of memory due to its initial Apriori phase. 
+%A similar motivation holds for DistEclat failures, due to its requirement to store all the (longer) tidlists in all the nodes.
+%The FP-growth based approaches are affected by the increasing length of the transactions. However, their depth-first structure revealed to be the best exploration strategy in such an environment (i.e. high number of attributes). 
+%DistEclat leverages a depth-first exploration strategy as well, however it assumes that all the tidlists should be stored in all the commodity cluster nodes, which is challenging if considering the further memory requirements due to the search space exploration. 
+%
+%In Section~\ref{nr_machines} the \textbf{speedup} achieved by the algorithms with different \textbf{degrees of parallelization} is evaluated. Based on the results it is clear that many of the considered algorithms are not able to properly exploit the parallelism provided by distributed frameworks. The reason 
+%is probably given by the fact that they are not able to split the initial problem in a number of subproblems equal to the number of available parallel 
+%tasks, or, when they are able to do so, the overhead given by the instance of the subtasks is greater than the advantages given by the parallel execution 
+%of the subtasks/subproblems.
+%
+%\textbf{Load balance}, one the most important distributed features, is evaluated in Section~\ref{load_exp}.
+% Given the results of this experiment, the main motivation behind the good performances of BigFIM across all the previous experiments, despite its first phase, is its load balancing, especially with respect to Mahout PFP. 
+%As already mentioned, unfortunately, the way used to achieve this good load balancing is critical, because it exposes the algorithm to the cons of an Apriori-like approach (i.e. higher reading and communication costs and weakness with respect to dense problems). 
+%
+%Finally, Section~\ref{communication_costs}, analyzes the \textbf{communications costs} related to the mining, in terms of data transmitted in the commodity cluster network. These results suggest that Load Balancing and Communication costs, the main issues in distributed algorithm environment, in this specific scenario do not have the same impact. On the contrary, while the communication costs analysis could be misleading if compared with wall-clock time performances, the behavior of the algorithms in terms of load balancing respects the execution time ranking. For instance, Mahout PFP, in some experiments is unexpectedly outperformed by algorithms with higher communication costs. 
+%
 
 
 
 
-\section{Lessons learned}
-\label{lesson}
-
-
-
-The reported experiments provide a wide view of the different behaviours of the
-algorithms, dealing with diverse types of problems.
-With this section, we aim at supporting the reader
-in a conscious choice of the most suitable approach,
-depending on the use case at hand.
-Pursuing this target, we measured the real-life performance
-of the openly-available frequent-pattern mining implementations
-for the most popular distributed platforms (i.e., Hadoop and Spark).
-They have been tested on many different datasets
-characterised by different values of
-minimum support ($minsup$),
-transaction length (dimensionality),
-number of transactions (cardinality),
-and dataset density,
-besides two real-life use cases.
-Perfomance in terms of execution time, load balancing, and communication cost
-have been evaluated:
-a one-table summary of the results is reported in Table~\ref{all_resume}.
-As a result of the described experience,
-the following general suggestions emerge:
-
-\begin{itemize}
- \item
- Without prior knowledge of dataset density, dimensionality
- (average transaction length), and cardinality (number of transactions),
- \textbf{Mahout PFP} is the algorithm that best guarantees
- the mining task completion,
- at the expense of longer execution times.
- Mahout PFP is the only algorithm able to always reach the experimental limits.
- Furthermore, it exchanges very few data across the network of the cluster.
- \item
- When the dataset size is small with respect to the available memory,
- \textbf{DistEclat} has proven to be among the fastest approaches,
- and also to be able to reach the lowest experimental $minsup$ values.
- DistEclat experiments showed that it cannot scale for large or
- high-dimensional datasets, but when it can complete the itemset extraction,
- it is very fast.
- \item
- On most real-world use cases, with limited dimensionality
- (up to 60 items per transaction on average), \textbf{MLlib PFP}
- has proven to be the most reasonable tradeoff choice,
- with fast execution times and optimal scalability to very large datasets.
- \item
- Finally, for datasets with a high number of dimensions, \textbf{BigFIM} resulted
- the fastest approach,
- but it cannot cope with $minsup$ values as low as the others.
-\end{itemize}
-
-\begin{table*}[h!]
-\scriptsize
-\begin{center}
-\caption{
-Summary of the limits identified by the experimental evaluation of the
-algorithms (lowest $minsup$, maximum transaction length,
-largest dataset cardinality).
-The faster algorithm for each experiment is marked in bold.
-}
-\label{all_resume}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-& Section \ref{minsup_exp} & Section \ref{minsup_exp} & Section \ref{attributes_exp}& Section  \ref{transaction_exp} \\ \hline
-% & Transaction & Transaction& Minsup value: 1\% & Minsup value 0.4 \% \\
-% &  length: 10 & length: 30 &  &  \\ \hline
-% & 10M transactions & 10M transactions &  10M transactions &  Transaction length 10 \\ \hline
-% & Dataset \#1 & Dataset &  Dataset &  Dataset \\ \hline
-           & $minsup$ & $minsup$ & transaction  & millions of   \\
-           &          &          & length       & transactions  \\ \hline
-Mahout PFP & 0.002\% & 0.01\%    & 100          & 100 		\\ \hline
-MLlib PFP  & 0.002\% & \textbf{0.01\%}   & 60		& \textbf{100} 	\\ \hline
-BigFIM     & 0.1\%   & 0.3\%     & \textbf{100} 	& 100 		\\ \hline
-DistEclat  & \textbf{0.002\%}& - 	 & - 		& 1 		\\ \hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-%\begin{table*}[h!]
-%\begin{center}
-%\caption{Experimental result summary.
-%\textbf{@FABIO8: qui secondo me devi fare una colonna per ogni subsection sperimentale,
-%es. colonna ``valore minimo di $minsup$, Section X.Y'' e riporti i valori limite,
-%ecc. con le altre subsection... cos\`i invece non mi piace, non \`e immediato
-%da capire... e poi magari metterei un asterisco sul metodo pi\`u veloce
-%(o i due pi\`u veloci se sono molto simili) in ogni colonna.
-%Se non \`e chiaro ci sentiamo.}
-%}
-%\label{all_resume}
-%\begin{tabular}{|c|c|c|c|c|}
-%\hline
-%           & Transaction & Transaction& Minsup value: 1\% & Minsup value 0.4 \% \\
-%  &  length: 10 & length: 30 &  &  \\ \hline
-%            & 10M transactions & 10M transactions &  10M transactions &  Transaction length 10 \\ \hline
-%Algorithm  & Lowest minsup:                           & Lowest minsup:                             & Max. transaction           & Max. number of   \\
-%  &                       &                             &  length:           & transactions (millions):   \\ \hline
-%Mahout PFP & 0.002 \%                                  & 0.01 \%                                   & 100                                  & 100                                         \\ \hline
-%MLlib PFP  & 0.002 \%                                  & 0.01 \%                                   & 60                                   & 100                                         \\ \hline
-%BigFIM     & 0.1 \%                                    & 0.3 \%                                    & 100                                  & 100                                         \\ \hline
-%DistEclat  & 0.002 \%                                  & -                                         & -                                    & 1                                           \\ \hline
-%\end{tabular}
-%\end{center}
-%\end{table*}
-
-
-
-
+%%\\
+%\textbf{fabio: eliminerei da qui in poi}
+%Investigating deeper into the specific algorithm communication-cost analisys,
+%Figures~\ref{comm_costs_bigfim},~\ref{comm_costs_disteclat},~\ref{comm_costs_mllib},~\ref{comm_costs_pfp}
+%show the data exchanged throughout the whole execution time
+%of each algorithm.
+%
+%BigFIM and DistEclat, in
+%Figure~\ref{comm_costs_bigfim},~\ref{comm_costs_disteclat}, have a similar
+%behaviour, with the communication costs grouped into two main phases.
+%The first phase is related to the prefix extraction,
+%while the second one matches the prefix preparation and prefix tree mining.
+%BigFIM saturates the network link capacity (25~Megabytes/s, corresponding to
+%a 100~Mbit/s full duplex Ethernet interface) during the second phase peak
+%at minute 7 for both sent and received data,
+%whereas DistEclat reaches such point during the first phase at minute 3,
+%in trasmitted data only.
+%BigFIM is also continuously exchanging data through the network during the
+%mining process, whereas DistEclat pauses the network data exchange at minute 6.
+%% %The choice of doing the main tasks of each job (prefix mining and prefix
+%% expansion) in the map phase, without a full exploitation of data locality,
+%% strongly affects communication costs. On the other hand, for instance, Mahout
+%% PFP first phase, in which the header table is obtained through a basic
+%% WordCount, each mapper exploits data locality working on its shard of the
+%% dataset.
+%Also the MLlib PFP implementation (Figure~\ref{comm_costs_mllib})
+%presents two phases: differently from BigFIM and DistEclat, the middle ``pause'',
+%dividing the first shuffling phase and the second materialization phase,
+%is very long and lasts from minute 4 to minute 11,
+%it is immediately followed by a peak reaching the network capacity
+%at minute 12.
+%Mahout PFP communication costs, instead, (Figure~\ref{comm_costs_pfp})
+%consists of three phases:
+%the first is related to the counting part,
+%the second one corresponds to the mining phase,
+%while the last one is related to the aggregation of the results.
+%The peak in network data exchange is as low as 5~Mbytes/s.
+%
+%
+%
+%%
+%% %However, interestingly, the behaviour does not affect the execution time of
+%% this mining experiment, in which the considered implementation is outperformed
+%% by BigFIM and DistEclat as shown in Table~\ref{time_comm_costs}. The reason is
+%% partially related to an unfair load balancing, sinche the longest mining task
+%% lasts more than three times the execution time of the fastest ones.
+%
+%
+%%
+%%
+%%\section{Lessons learned FABIO: LE  METTEREI DOPO LE OPEN ISSUES}
+%%\label{lesson}
+%%
+%%\textbf{Da Modificare: - modificare alcuni risultati legati a bigfim;  - aggiungere per il secondo reviewer le istruzioni su quanto sia facile utilizzarli; -esplicitare meglio i failures scenario visto che li ha richiesti}
+%%
+%%The reported experiments provide a wide view of the different behaviours of the
+%%algorithms, dealing with diverse types of problems.
+%%With this section, we aim at supporting the reader
+%%in a conscious choice of the most suitable approach,
+%%depending on the use case at hand.
+%%Pursuing this target, we measured the real-life performance
+%%of the openly-available frequent-pattern mining implementations
+%%for the most popular distributed platforms (i.e., Hadoop and Spark).
+%%They have been tested on many different datasets
+%%characterised by different values of
+%%minimum support ($minsup$),
+%%transaction length (dimensionality),
+%%number of transactions (cardinality),
+%%and dataset density,
+%%besides two real-life use cases.
+%%Perfomance in terms of execution time, load balancing, and communication cost
+%%have been evaluated:
+%%a one-table summary of the results is reported in Table~\ref{all_resume}.
+%%As a result of the described experience,
+%%the following general suggestions emerge:
+%%
+%%\begin{itemize}
+%% \item
+%% Without prior knowledge of dataset density, dimensionality
+%% (average transaction length), and cardinality (number of transactions),
+%% \textbf{Mahout PFP} is the algorithm that best guarantees
+%% the mining task completion,
+%% at the expense of longer execution times.
+%% Mahout PFP is the only algorithm able to always reach the experimental limits.
+%% Furthermore, it exchanges very few data across the network of the cluster.
+%% \item
+%% When the dataset size is small with respect to the available memory,
+%% \textbf{DistEclat} has proven to be among the fastest approaches,
+%% and also to be able to reach the lowest experimental $minsup$ values.
+%% DistEclat experiments showed that it cannot scale for large or
+%% high-dimensional datasets, but when it can complete the itemset extraction,
+%% it is very fast.
+%% \item
+%% On most real-world use cases, with limited dimensionality
+%% (up to 60 items per transaction on average), \textbf{MLlib PFP}
+%% has proven to be the most reasonable tradeoff choice,
+%% with fast execution times and optimal scalability to very large datasets.
+%% \item
+%% Finally, for high-dimensional datasets, \textbf{BigFIM} resulted
+%% the fastest approach,
+%% but it cannot cope with $minsup$ values as low as the others.
+%%\end{itemize}
+%%
+%%\begin{table*}[h!]
+%%\scriptsize
+%%\begin{center}
+%%\caption{
+%%Summary of the limits identified by the experimental evaluation of the
+%%algorithms (lowest $minsup$, maximum transaction length,
+%%largest dataset cardinality).
+%%The faster algorithm for each experiment is marked in bold.
+%%}
+%%\label{all_resume}
+%%\begin{tabular}{|c|c|c|c|c|}
+%%\hline
+%%& Section \ref{minsup_exp} & Section \ref{minsup_exp} & Section \ref{attributes_exp}& Section  \ref{transaction_exp} \\ \hline
+%%% & Transaction & Transaction& Minsup value: 1\% & Minsup value 0.4 \% \\
+%%% &  length: 10 & length: 30 &  &  \\ \hline
+%%% & 10M transactions & 10M transactions &  10M transactions &  Transaction length 10 \\ \hline
+%%% & Dataset \#1 & Dataset &  Dataset &  Dataset \\ \hline
+%%           & $minsup$ & $minsup$ & transaction  & millions of   \\
+%%           &          &          & length       & transactions  \\ \hline
+%%Mahout PFP & 0.002\% & 0.01\%    & 100          & 100 		\\ \hline
+%%MLlib PFP  & 0.002\% & \textbf{0.01\%}   & 60		& \textbf{100} 	\\ \hline
+%%BigFIM     & 0.1\%   & 0.3\%     & \textbf{100} 	& 100 		\\ \hline
+%%DistEclat  & \textbf{0.002\%}& - 	 & - 		& 1 		\\ \hline
+%%\end{tabular}
+%%\end{center}
+%%\end{table*}
+%%
+%%%\begin{table*}[h!]
+%%%\begin{center}
+%%%\caption{Experimental result summary.
+%%%\textbf{@FABIO8: qui secondo me devi fare una colonna per ogni subsection sperimentale,
+%%%es. colonna ``valore minimo di $minsup$, Section X.Y'' e riporti i valori limite,
+%%%ecc. con le altre subsection... cos\`i invece non mi piace, non \`e immediato
+%%%da capire... e poi magari metterei un asterisco sul metodo pi\`u veloce
+%%%(o i due pi\`u veloci se sono molto simili) in ogni colonna.
+%%%Se non \`e chiaro ci sentiamo.}
+%%%}
+%%%\label{all_resume}
+%%%\begin{tabular}{|c|c|c|c|c|}
+%%%\hline
+%%%           & Transaction & Transaction& Minsup value: 1\% & Minsup value 0.4 \% \\
+%%%  &  length: 10 & length: 30 &  &  \\ \hline
+%%%            & 10M transactions & 10M transactions &  10M transactions &  Transaction length 10 \\ \hline
+%%%Algorithm  & Lowest minsup:                           & Lowest minsup:                             & Max. transaction           & Max. number of   \\
+%%%  &                       &                             &  length:           & transactions (millions):   \\ \hline
+%%%Mahout PFP & 0.002 \%                                  & 0.01 \%                                   & 100                                  & 100                                         \\ \hline
+%%%MLlib PFP  & 0.002 \%                                  & 0.01 \%                                   & 60                                   & 100                                         \\ \hline
+%%%BigFIM     & 0.1 \%                                    & 0.3 \%                                    & 100                                  & 100                                         \\ \hline
+%%%DistEclat  & 0.002 \%                                  & -                                         & -                                    & 1                                           \\ \hline
+%%%\end{tabular}
+%%%\end{center}
+%%%\end{table*}
+%
+%
+%
+%

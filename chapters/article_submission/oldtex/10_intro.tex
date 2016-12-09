@@ -1,0 +1,157 @@
+In recent years, the increasing availability of huge amounts of data has changed the importance of
+data analytic systems for Big Data and the interest towards data mining, an important set of techniques useful to extract effective and usable knowledge
+from data.
+On the one hand, the Big Data analytics scenario is very challenging for researchers. Indeed, 
+the application of traditional data mining techniques to big
+volumes of data is not straightforward and 
+some of the most popular techniques had to be redesigned from
+scratch to fit the new environment.
+On the other hand, companies are
+interested in the strategic benefits that Big Data could deliver.
+Data mining, together with machine learning~\cite{DBLP:journals/bdr/Al-JarrahYMKT15}, is the main research area on which Big Data analytics
+rely. It includes (i) clustering
+algorithms to discover hidden structures in unlabeled
+data~\cite{Xu_2005SurveyClustering}, (ii) frequent itemsets mining and association
+rule mining techniques to discover interesting correlations and
+dependencies~\cite{Han_2007SurveyFIM}, and (iii) supervised algorithms 
+to infer models from labeled datasets and use them to predict the label of new data~\cite{AggarwalBookClassification}.
+
+Several traditional centralized mining algorithms have been proposed. They are very efficient when the datasets can be completely loaded in 
+main memory. However, they cannot cope with Big Data, because they are not designed for a parallel and distributed environment.  
+The recent shift towards horizontal scalability has highlighted the need of
+distributed/parallelized data mining algorithms able to exploit the available hardware resources and 
+distributed computing frameworks (e.g., Apache Hadoop~\cite{HDFS}, Apache Spark~\cite{Zaharia_spark}).
+In this survey, we focus on distributed/parallel itemset mining algorithms in the Big Data context because they
+represent exploratory approaches widely used to discover frequent co-occurrences from the data. 
+These algorithms have been widely exploited in different
+application domains (e.g., network traffic data~\cite{ApilettiBCCG13},
+healthcare~\cite{META-TIST-2015}, biological data~\cite{DBLP:conf/sigmod/CongXPTY04}, energy
+data~\cite{NostroENDM2016_senzacrossref}, images~\cite{zaianeimage},  open
+linked data~\cite{BCOpenLinkedData}, document and data summarization~\cite{BaralisCFG15,DBLP:journals/cg/LopesPPM07,Mampaey:2011:TMI:2020408.2020499}).
+
+The parallelization of the frequent itemset mining problem in a distributed environment by means of the MapReduce programming paradigm and a Big Data framework
+is not an easy task. The main challenge is devising a smart partitioning of the problem in independent subproblems, each one based on a subset of the data, to exploit the computation power of a cluster of servers in parallel. In the following, we will describe how this problem has been addressed so far and which are pros and cons of the current parallel algorithms by taking into consideration load balancing and communication costs, which are two very important issues in the distributed domain. 
+They are strictly related to the adopted parallelization strategy and usually represent the main bottlenecks of parallel algorithms.
+
+The contributions of this survey are the followings. 
+
+\begin{itemize}
+\item A theoretical analysis of the algorithmic choices that have been proposed to address the itemset mining problem 
+in the Big Data context, with the analysis of their expected impact on main memory usage, load balancing, and communication costs. 
+
+\item An extensive evaluation campaign to assess the reliability of our expectations.
+Precisely, we ran more than 300 experiments on 14 synthetic datasets and 2 real datasets to evaluate the execution time, load balancing, and communication costs
+of five state-of-the-art parallel itemset mining implementations. 
+
+\item The identification of strengths and weaknesses of the algorithms 
+with respect to 
+the input dataset features (e.g., data distribution, average  transaction length, number of records), 
+and specific parameter settings. 
+
+\item The discussion of promising open research directions for the parallelization of the itemset mining problem.
+
+\end{itemize}
+
+This paper is organized as follow. Section~\ref{bigdata} briefly introduces the
+Hadoop and Spark frameworks,  while Section~\ref{Preliminaries} introduces the
+background about the itemset mining problem, providing the main definitions and a brief description of the state-of-the-art centralized itemset mining algorithms. 
+Section~\ref{parallelization} describes the algorithmic strategies adopted so far to partition and parallelize the frequent itemset mining problem by means of the MapReduce paradigm, while 
+Section~\ref{algorithms} describes the state-of-the-art distributed algorithms and their implementations.
+In Section~\ref{experimental} we benchmark the selected algorithms with a large set of experiments on both real and synthetic datasets.
+Section~\ref{lesson} summarizes the concrete and practical lessons learned from our evaluation analysis, while Section~\ref{openissues} discusses the open issues raised by the experimental validation of the theoretical analysis, highlighting some possible research directions to support a more effective and efficient data mining process on Big Data collections. 
+%Finally, Section~\ref{conclusion} draws conclusions.
+
+%\textbf{The problem of distributed frequent itemset mining is a two-fold problem. It has to deal with the challenges related to the itemset mining itself (search space exploration). However, it belongs also to the domain of distributed algorithms. This domain is strongly characterized by fundamental aspects which cannot be ignored in the design of the algorithm. The most important challenge is the partitioning of the problem. Since the main ratio behind the leverage of distributed frameworks is to exploit the computation power of more machines, it is crucial to smartly partition the problem. Some problems are easily separable into a number of small parallel tasks; this happens when the results of the computation does not relies on a full knowledge of the input dataset or on a centralized state. Unfortunately, this is not the case of most of data mining problems and, specifically, frequent itemset mining. The search space exploration, indeed, is not easily divisible into independent tasks and some trade-off are required. 
+%In addition, also Load Balancing and Communication Costs are very important issues in the distributed domain. They are strictly related to the parallelization strategy and, in general, easily represent the main bottleneck on parallel algorithms performances.
+%The main target of this work is to discuss and analyze the different algorithmic choices behind the set of selected algorithms. 
+%This analysis takes into account features related to the centralized domain (i.e. search space exploration strategies and the related most suitable data distribution) and the distributed one (i.e. parallelization strategies and the related consequences on load balancing and communication costs issues).  
+%We selected the five algorithms to perform the itemset mining discovery on distributed environment. 	These
+%algorithms (i.e., Mahout PFP~\cite{Mahout}, Mllib PFP~\cite{MLLib},
+%BigFIM~\cite{bigfim}, DistEclat~\cite{bigfim}, YAFIM~\cite{YAFIM}) cover the
+%different search space strategies adopted in the centralized architecture to
+%efficiently address the mining activity by effectively dealing with different
+%data distribution.}
+%\textbf{
+%After the theoretical analysis, the results of an extensive set of experiments are shown and discussed. Precisely, we run more than 300 experiments on 14 synthetic datasets and 2 real datasets to
+%evaluate the algorithm performance, load balancing and communication cost as
+%well. The results are deeply analyzed to understand when the performances match the expectations related to the theoretical analysis and motivate the reasons behind unexpected behaviors.
+%Specifically, as shown in Table~\ref{survey_recap}, which summarizes the aspects included into the analysis, the discussion takes into account the impact on the performance of centralized algorithmic choices and the pro/cons related to the handling of Load Balancing and Communication costs. 
+%The experimental validation of the theoretical analysis have also two secondary take aways:
+%\begin{enumerate}
+%\item As predictable, it arises numerous open questions. For instance, analyzing the not reliable performance of approaches giving a lot of importance to communication costs, we wonder if, in the specific frequent itemset domain, these costs are a price worth be paying in the sake of robustness. In a similar way, we understood how a better load balancing could mitigate the disadvantages related to a less suitable, related to the specific use case, search space exploration strategy. For these reasons, the analysis represents a valuable contribution in the identification of promising open directions.
+%\item From the performance point of view, as exhaustively shown in Section~\ref{experimental}, no algorithm is universally superior. Each of the algorithms, mirroring their algorithmic design choices, could represent an optimal solution in some use cases. For this reason, the algorithm selection for a given analytics case study is usually manually performed based on analyst expertise and it is very time
+%consuming. The results obtained in the experiments are very useful to help the analyst in the algorithm selection process. Therefore, one of the takeaways of this work is the discussion of the lessons learned to share general advices gained from the experience of performing the in-depth comparative analysis.
+%\end{enumerate}
+%This paper is organized as follow. Section~\ref{bigdata} briefly introduces the
+%Hadoop and Spark frameworks while Section~\ref{criteria} presents the
+%evaluation criteria considered in this study. Section~\ref{Preliminaries} briefly recalls the
+%frequent itemset mining problem, introducing the main algorithmic approaches of the domain.  Section~\ref{parallelization} introduces the strategies adopted to partition and parallelize the problem of frequent itemset mining. Section~\ref{algorithms} discusses
+%the selected algorithms, while in
+%Section~\ref{experimental} we benchmark the algorithms with a large set of
+%experiments on both real and synthetic datasets.
+%Section~\ref{openissues} discusses the open questions and issues raised by the experimental validation of the theoretical analysis, highlighting some possible research directions to
+%be addressed to support a more effective and efficient data mining process on
+%big data collections
+%Section~\ref{lesson} summarizes the more concrete lessons learned from our evaluation
+%analysis. Finally, Section~\ref{conclusion} provides a brief summary of this
+%review.}
+
+
+
+%Although different algorithms have been proposed to perform the computationally
+%intensive frequent itemset mining task, also in the distributed frameworks, no
+%algorithm is universally superior. Several aspects influence which algorithm
+%performs best, including input data cardinality and data distribution, adopted
+%strategies to process the data into independent tasks, strategies to reduce the
+%communication costs. The algorithm selection for a given analytics case study is
+%usually manually performed based on analyst expertise and it is very time
+%consuming. To help the analyst in the algorithm selection process, here we
+%present an experimental comparison of different scalable itemset mining
+%algorithms. Specifically, as summarized in Table \ref{survey_recap}, the
+%contribution of this review includes:
+%\begin{itemize}
+%\item The discussion of the state-of-the-art itemset mining algorithms dealing
+%with huge data collections to analyze how technological development efficiently
+%support the continuous design of more scalable and more efficient algorithms. We
+%selected the most two widespread and recent distributed frameworks as
+%Hadoop~\cite{HDFS}, Apache Spark~\cite{Zaharia_spark} to set the experimental
+%scenario. We selected the five algorithms
+%%, released as open source code, 
+%to
+%perform the itemset mining discovery on distributed environment. 	These
+%algorithms (i.e., Mahout PFP~\cite{Mahout}, Mllib PFP~\cite{MLLib},
+%BigFIM~\cite{bigfim}, DistEclat~\cite{bigfim}, YAFIM~\cite{YAFIM}) cover the
+%different search space strategies adopted in the centralized architecture to
+%efficiently address the mining activity by effectively dealing with different
+%data distribution.
+%\item
+%The definition of four evaluation criteria to characterize both  the algorithmic
+%strategies and the distributed implementation as well.
+%\item
+%A detailed comparative analysis of the selected, running on either Spark or
+%Hadoop framework, with a thoroughly discussion on interesting results got by
+%performing a large set of experiments on real and synthetic datasets.
+%Specifically, we run more than 250 experiments on 14 synthetic datasets and 2 real datasets to
+%evaluate the algorithm performance, load balancing and communication cost as
+%well.
+%\item
+%The discussion of the lessons learned to share general advices gained from the
+%experience of performing the in-depth comparative analysis.
+%\item
+%The discussion of some open issues that should be addressed to support a more
+%effective and efficient data mining process on very large datasets.
+%\end{itemize}
+%
+%This paper is organized as follow. Section~\ref{bigdata} briefly introduces the
+%Hadoop and Spark frameworks. Section~\ref{Preliminaries} briefly recalls the
+%frequent itemset mining problem, while Section~\ref{criteria} presents the
+%evaluation criteria considered in this study. Section~\ref{algorithms} discussed
+%the selected algorithms, while in
+%Section~\ref{experimental} we benchmark the algorithms with a large set of
+%experiments on both real and synthetic datasets.
+%Section~\ref{lesson} summarizes the lessons learned from our evaluation
+%analysis, while Section~\ref{openissues} discusses some research directions to
+%be addressed to support a more effective and efficient data mining process on
+%big data collections. Section~\ref{conclusion} provides a brief summary of this
+%revies.
+

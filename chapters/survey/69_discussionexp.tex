@@ -1,0 +1,76 @@
+
+Experiments confirm that performance of the data-split-based algorithms
+(i.e., BigFIM in its first phase) is highly affected by the number of candidate itemsets, 
+which must be stored in the temporary main memory of each task. 
+Specifically, BigFIM crashes during its Apriori-based phase when low $minsup$ values or dense datasets are considered,
+due to the large number of generated candidate itemsets. 
+This issue does not affect the approaches based on the search split strategy (Mahout PFP and MLlib PFP), 
+since they do not need to store candidate itemsets as an intermediate result.
+Hence, Mahout PFP and MLlib PFP proved to be more suitable than BigFIM to process large dataset sizes, high-density datasets, and low $minsup$ thresholds. 
+DistEclat deserves a separate consideration: even if it is based on the search space approach, 
+it often runs out of memory,
+because in its initial job it needs to store the $tidlists$ of all frequent items in main memory 
+and this operation becomes easily unfeasible when large or dense datasets are considered. 
+%Hence, DistEclat is exploitable only when relatively small datasets are considered and in that condition it is also the faster algorithm.
+
+Experiments also highlight the predominant importance of load balancing in the itemset mining problem, 
+in particular when comparing BigFIM to Mahout PFP. 
+Since the initial mining phase of BigFIM is based on the data split parallelization approach,
+it reads many times the input dataset (differently than Mahout PFP).
+Moreover, BigFIM is also characterized by greater communication costs than Mahout PFP. 
+These two factors should impact significantly on the execution time of BigFIM. 
+Instead, 
+not only the execution time of BigFIM is comparable with that of Mahout PFP 
+with 1000-million record datasets (Figure~\ref{transactions}),
+but BigFIM is also even faster than Mahout PFP in specific cases, e.g., 
+with datasets with an average number of items per transaction greater than 70 (Figure~\ref{attributes}).
+The rationale of 	such results is the better load balancing of BigFIM with respect to Mahout PFP. 
+Results highlight that load balancing seems to be predominant than the number of dataset reads (I/O costs) and communication costs in the parallelization of the itemset mining problem.
+
+
+
+
+
+%\textbf{DA RIMUOVERE, confermato (Daniele). Discussion (Versione preparata da Fabio. Da Eliminare una volta verificato che non ci sia qualche parte interessante che non ho riportato nella nuova versione}
+%
+%In Section~\ref{minsup_exp}, measuring the impact of \textbf{minsup threshold}, we have seen that, as expected, the first phase of BigFIM is fundamental for its scalability. 
+%It represents the failure point when the number of candidate itemsets is too large to be stored in the main memory of the mappers. 
+%At the same time, thanks to the better load balancing, given by the split of the mining in two balanced phases, BigFIM is able to achieve overall competitive performances (when it does not run out of memory in the first phase). While the failures related to mining tasks characterized by deep search space exploration was expected, because of the weakness of breadth-first approach with respect to data density, for the same reasons, the good performances of BigFIM in terms of execution time were less expected. Probably, the competitive performances were caused by the better load balancing in the search space exploration partitioning.
+%
+%DistEclat runs easily out of memory because of the size of the input dataset,
+%which is transposed in a vertical format during the first phase. 
+%The longer tidlists prevent it from completing such step. Even for this algorithm, the first phase is critical. The assumption of storing almost all the input dataset in all the nodes, at the aim of saving reading phases and communication costs, revealed to be not suitable for a problem characterized by a deep search space exploration.
+%
+%Mahout PFP and MLlib PFP are the only algorithms
+%to complete the mining tasks for all $minsup$ values.
+%Precisely, Mahout PFP is the most suitable technique
+%when dealing with minsup values over 0.05\%,
+%with a performance 6 to 8 times faster than the MLlib sibling.
+%However, with lower $minsup$ values,
+%Spark MLlib becomes the fastest approach with an order of magnitude gap.
+%We identified the cause of the different performance
+%between the two PFP implementations
+%in the different pruning strategies.
+%The algorithms which extract closed itemsets, such as Mahout PFP,
+%can apply more effective pruning techniques
+%that are not applicable when all frequent itemsets must be extracted,
+%which is the case for MLlib PFP.
+%When the problem becomes deeper and more challenging, beyond the engineering differences between the two implementations, the better load balancing of the MLlib PFP makes it faster.
+%
+%In Section~\ref{attributes_exp}, instead, we have measured the impact of \textbf{the length of the transactions} on the mining performances. As expected (see Figure~\ref{attributes_deeper}), for more dense data distributions the number of candidate itemsets increases and BigFIM runs out of memory due to its initial Apriori phase. 
+%A similar motivation holds for DistEclat failures, due to its requirement to store all the (longer) tidlists in all the nodes.
+%The FP-growth based approaches are affected by the increasing length of the transactions. However, their depth-first structure revealed to be the best exploration strategy in such an environment (i.e. high number of attributes). 
+%DistEclat leverages a depth-first exploration strategy as well, however it assumes that all the tidlists should be stored in all the commodity cluster nodes, which is challenging if considering the further memory requirements due to the search space exploration. 
+%
+%In Section~\ref{nr_machines} the \textbf{speedup} achieved by the algorithms with different \textbf{degrees of parallelization} is evaluated. Based on the results it is clear that many of the considered algorithms are not able to properly exploit the parallelism provided by distributed frameworks. The reason 
+%is probably given by the fact that they are not able to split the initial problem in a number of subproblems equal to the number of available parallel 
+%tasks, or, when they are able to do so, the overhead given by the instance of the subtasks is greater than the advantages given by the parallel execution 
+%of the subtasks/subproblems.
+%
+%\textbf{Load balance}, one the most important distributed features, is evaluated in Section~\ref{load_exp}.
+% Given the results of this experiment, the main motivation behind the good performances of BigFIM across all the previous experiments, despite its first phase, is its load balancing, especially with respect to Mahout PFP. 
+%As already mentioned, unfortunately, the way used to achieve this good load balancing is critical, because it exposes the algorithm to the cons of an Apriori-like approach (i.e. higher reading and communication costs and weakness with respect to dense problems). 
+%
+%Finally, Section~\ref{communication_costs}, analyzes the \textbf{communications costs} related to the mining, in terms of data transmitted in the commodity cluster network. These results suggest that Load Balancing and Communication costs, the main issues in distributed algorithm environment, in this specific scenario do not have the same impact. On the contrary, while the communication costs analysis could be misleading if compared with wall-clock time performances, the behavior of the algorithms in terms of load balancing respects the execution time ranking. For instance, Mahout PFP, in some experiments is unexpectedly outperformed by algorithms with higher communication costs. 
+%
+%

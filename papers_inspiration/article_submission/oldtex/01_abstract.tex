@@ -1,0 +1,50 @@
+Itemset mining is a well-known exploratory data mining technique used to
+discover interesting correlations hidden in a data collection. Since it supports
+different targeted analyses, it is profitably exploited in a wide range of
+different domains, ranging from network traffic data to medical records. With
+the increasing amount of generated data, different scalable algorithms have been
+developed, exploiting the advantages of distributed computing
+frameworks, such as Apache Hadoop and Spark.
+
+
+This paper reviews scalable algorithms addressing the frequent itemset mining 
+problem in the Big Data frameworks through both theoretical and experimental 
+comparative analyses. 
+Since the itemset mining task is computationally expensive, its distribution and 
+parallelization strategies heavily affect memory usage, load balancing, 
+and communication costs.  
+A detailed discussion of the algorithmic choices of the  
+distributed methods for frequent itemset mining is followed by an experimental 
+analysis comparing the performance of state-of-the-art distributed implementations on both 
+synthetic and real datasets. 
+The strengths and weaknesses of the algorithms are
+thoroughly discussed with respect 
+to the dataset features (e.g., data distribution, average 
+transaction length, number of records), 
+and specific parameter settings. 
+Finally, based on theoretical and experimental analyses, open 
+research directions for the parallelization of the itemset mining problem 
+are presented.
+
+
+%Itemset mining is a well-known exploratory data mining technique used to
+%discover interesting correlations hidden in a data collection. Since it supports
+%different targeted analyses, it is profitably exploited in a wide range of
+%different domains, ranging from network traffic data to medical records. With
+%the increasing amount of generated data, different scalable algorithms have been
+%developed, exploiting the computational advantages of distributed computing
+%frameworks, as Apache Hadoop MapReduce and Apache Spark. However, in most cases
+%no algorithm is universally superior. Several aspects influence which algorithm
+%performs best, including input data cardinality and data distribution, and the
+%algorithm selection is usually manually performed based on analyst expertise.
+%
+%This paper presents an experimental study to compare the performance of some
+%state-of-the-art implementations of itemset mining algorithms to guide the
+%analyst in selecting the most suitable approach based on the outlined lesson
+%learned. Load balancing and communication costs will be included in
+%the analysis dimensions, in order to build a structured comparison through both
+%data mining and distributed environments criteria. Many real and synthetic
+%datasets have been considered in the comparison.
+%Eventually, no algorithm proves to be universally superior
+%and performance is heavily influenced by both
+%data distribution and input parameter setting.

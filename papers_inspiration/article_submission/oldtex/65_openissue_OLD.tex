@@ -1,0 +1,80 @@
+
+Following the analysis of the state-of-the-art in frequent itemset mining
+algorithms for distributed computing frameworks, and the in-depth experimental
+evaluation discussed in Section~\ref{experimental},
+we can deduce that different efficient and scalable
+algorithms have been designed and developed during the last years.
+The review followed a structured analysis. After a theoretical description of the algorithmic design choices
+in terms of exploration and distribution of the search space, we introduced two aspects more related to distributed environment, such as Load Balancing and Communication costs. After this initial theoretical phase, we have largely put to the test all the algorithms in several possible use cases, leveraging both synthetic and real datasets. Indeed, the experiments results, in some cases, did not achieve the expectations related to theoretical analysis. These events allowed us to better understand  the impact of the aforementioned aspects on the final performances and, in general, on distributed frequent itemset mining domain.
+
+This type of analysis, which is, to our knowledge, unique in the state of the art, allowed us to extract very interesting take-aways and open questions. 
+
+
+
+
+
+\textbf{Load Balancing.}
+Let us focus on the critical load balancing aspect of the design of the distributed algorithms. In this review we have seen that, even if the strategies of parallelization are different, strictly dependent on the search space exploration, they share the common idea to split a \textit{big} problem (which cannot be solved by a single machine) to a set of \textit{smaller} problems (this idea, of course, characterizes the whole domain of distributed algorithms). This set of sub-problems are, by definition, easier to be processed in the single node of a commodity cluster of machines. However, the sub-problems can be easily characterized by different sizes, leading to load unbalance in the commodity cluster. Mostly, the largest sub-problems can be still too complex to be analyzed in a single task. This is the reason behind the negative performance or the memory issues in the experiments. 
+Hence, while the analyzes have evidenced how reading phases or communication costs, critical bottlenecks in distributed algorithm domains, can be a price worth paying in the sake of reliability and robustness, the same does not hold for load balancing. On the contrary, in this domain (i.e. frequent itemset mining) this feature is even more fundamental. 
+BigFIM and DistEclat design has particularly taken into account the importance of load balancing, splitting the mining in two phases and exploring different solutions for prefixes distribution. Probably, the better load balancing made BigFIM, based on a breadth-first approach, filling the gap with the more performant depth-first exploration strategies. 
+As mentioned, in \cite{bigfim}, they have tried to explore different strategies for prefixes distribution, ending up with a Round Robin assignment. We do think that this is a very interesting direction which worth to be deepened. One straightforward development could be the utilization of prefixes of different length. 
+
+\textbf{Communication Costs.}
+The campaign of experiments has evidenced the unreliability of approaches designed to optimize reading phases and communications costs in the sake of performances like DistEclat, which is very fast but also very sensitive to memory failures. Especially when the mining is characterized by low minsup values or a high number of items, the problem revealed to be very challenging for this type of design. 
+At the same time, the experiments confirm that a smart behavior in terms of communication and reading costs does not lead apriori to the best performances in this domain. We have demonstrated that the reading phases and communication costs are not such an influential factor (Subsection~\ref{transaction_exp}). Above all, in Subsection~\ref{communication_costs} we have seen how a wise management of the communication costs does not lead to the best execution times. 
+From these results an open question arises. In Frequent Itemset Mining domain the input datasets are easily much smaller than the data structures the algorithms should keep in memory. In this environment, even the mining of a small-sized dataset could lead to unfeasible processing and memory costs. In such a domain, we question if avoiding additional reading phases or communication costs at the cost of undermining the robustness of the approach is a valid research direction in frequent itemset mining algorithm design. 
+Additionally, in a similar way to \cite{sarma2013upper} it could be very interesting for the community to conduct a similar analysis, i.e. analyzing the trade-off between Communication and Reading costs and the "degree of parallelism", meant as the load assigned to a single task, in the very specific context of Frequent Itemset Mining.
+
+
+
+%However, despite the technological advancements, there is still room for
+%improvements. Specifically,
+%some open problems, summarized below, should be addressed to support
+%a more effective and efficient data mining process on Big Data collections.
+
+\textbf{Algorithm selection.}
+Many algorithms have been proposed in literature
+to efficiently extract correlations among data in the form of frequent itemsets,
+as discussed in this review.
+However, to apply one of the above algorithms for the analysis of a given
+dataset, the analyst needs to identify
+the best algorithm suitable for her use case,
+able to efficiently deal with the
+underlying data characteristics.
+The selection process is mainly based on the analyst expertise and must be
+handpicked for a given dataset.
+Thus, innovative and effective techniques that can intelligently and
+automatically support the analyst in the identification of the best algorithm
+for the current use case analysis are needed.
+
+\textbf{Parameter setting.}
+The performance of the available algorithms to extract frequent
+itemsets depends on the choice of the input parameters, like the support
+threshold, which dramatically impacts the execution time based on the data
+distribution characteristics. The optimal trade-off between execution time and
+result accuracy must be manually selected for any given application, based on
+the
+analysts expertise.
+To extract meaningful and interesting itemsets while maintaining the
+number of extracted results within manageable limits, a large number of
+experiments should be performed and the results
+manually evaluated by domain experts.
+The whole process is time consuming and requires a considerable
+amount of effort and skills. Thus, new scalable approaches
+capable of self-configuring to automatically extract actionable
+knowledge from massive data repositories
+are needed.
+
+\textbf{Full exploitation of computational capabilities of distributed
+frameworks.}
+Up to now, data mining algorithms have been mainly designed to be
+optimized when running on centralized architectures.
+Furthermore, recursive primitives cannot be easily translated into
+distributed approaches,
+thus the efficiency of the current distributed
+implementations are limited.
+There is room for novel approaches natively
+designed to be distributed, able to efficiently address the itemset
+mining discovery and to fully exploit computational capabilities of
+distributed frameworks.
+

@@ -1,0 +1,115 @@
+
+
+The reported experiments provide a wide view of the different behaviours of the
+algorithms in various experimental settings.
+With this section, we aim at supporting the reader
+in a conscious choice of the most suitable approach,
+depending on the use case at hand.
+Pursuing this target, we measured the real-life performance
+of the openly-available frequent-pattern mining implementations
+for the most popular distributed platforms (i.e., Hadoop and Spark).
+They have been tested on many different datasets
+characterized by different values of
+minimum support ($minsup$),
+transaction length (dimensionality),
+number of transactions (cardinality),
+and dataset density,
+besides two real-life use cases.
+Performance in terms of execution time, load balancing, and communication cost
+have been evaluated:
+a one-table summary of the results is reported in Table~\ref{all_resume}.
+As a result of the described experience,
+the following general suggestions emerge:
+
+\begin{itemize}
+ \item {\bf High reliability.}
+ Without prior knowledge of dataset density, dimensionality
+ (average transaction length), and cardinality (number of transactions),
+ \textbf{Mahout PFP} is the algorithm that best guarantees
+ the mining task completion,
+ at the expense of longer execution times.
+ Mahout PFP is the only algorithm able to always reach the experimental limits.
+
+
+ \item {\bf High cardinality and low-dimensional data.}
+ On most real-world use cases, with limited dimensionality
+ (up to 60 items per transaction on average), \textbf{MLlib PFP}
+ has proven to be the most reasonable tradeoff choice,
+ with fast execution times and optimal scalability to very large datasets.
+
+ \item {\bf High-dimensional data.}
+ For high-dimensional datasets, \textbf{BigFIM} resulted
+ the fastest approach, but it cannot cope with $minsup$ values as low as the others. In those cases, \textbf{Mahout PFP} represents the only option.
+
+ \item {\bf Limited dataset size.}
+ When the dataset size is small with respect to the available memory,
+ \textbf{DistEclat} has proven to be among the fastest approaches,
+ and also to be able to reach the lowest experimental $minsup$ values.
+ DistEclat experiments showed that it cannot scale for large or
+ high-dimensional datasets, but when it can complete the itemset extraction,
+ it is very fast.
+
+\end{itemize}
+
+%From an even more practical point of view, all the implementations revealed to be quite easy to deploy and use. 
+%Actually, the only requirement for all the implementations to be run was the Hadoop/Spark installation 
+%(from a single machine scenario to a large cluster). 
+%Only the MLlib PFP implementation requires few additional steps, since it is delivered as a library requiring some coding skills: 
+%the users should develop their own class and compile it.
+
+\begin{table*}[h!]
+\scriptsize
+\begin{center}
+\caption{
+Summary of the limits identified by the experimental evaluation of the
+algorithms (lowest $minsup$, maximum transaction length,
+largest dataset cardinality).
+The faster algorithm for each experiment is marked in bold.
+}
+\label{all_resume}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& Section \ref{minsup_exp} & Section \ref{minsup_exp} & Section \ref{attributes_exp}& Section  \ref{transaction_exp} \\ \hline
+% & Transaction & Transaction& Minsup value: 1\% & Minsup value 0.4 \% \\
+% &  length: 10 & length: 30 &  &  \\ \hline
+% & 10M transactions & 10M transactions &  10M transactions &  Transaction length 10 \\ \hline
+% & Dataset \#1 & Dataset &  Dataset &  Dataset \\ \hline
+           & $minsup$ & $minsup$ & transaction  & millions of   \\
+           &          &          & length       & transactions  \\ \hline
+Mahout PFP & 0.002\% & 0.01\%    & \textbf{100 (0.1\%)}          & 100 		\\ \hline
+MLlib PFP  & 0.002\% & \textbf{0.01\%}   & 60		& \textbf{100} 	\\ \hline
+BigFIM     & 0.1\%   & 0.3\%     & 100 (1\%) 	& 100 		\\ \hline
+DistEclat  & \textbf{0.002\%}& - 	 & - 		& 1 		\\ \hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+%\begin{table*}[h!]
+%\begin{center}
+%\caption{Experimental result summary.
+%\textbf{@FABIO8: qui secondo me devi fare una colonna per ogni subsection sperimentale,
+%es. colonna ``valore minimo di $minsup$, Section X.Y'' e riporti i valori limite,
+%ecc. con le altre subsection... cos\`i invece non mi piace, non \`e immediato
+%da capire... e poi magari metterei un asterisco sul metodo pi\`u veloce
+%(o i due pi\`u veloci se sono molto simili) in ogni colonna.
+%Se non \`e chiaro ci sentiamo.}
+%}
+%\label{all_resume}
+%\begin{tabular}{|c|c|c|c|c|}
+%\hline
+%           & Transaction & Transaction& Minsup value: 1\% & Minsup value 0.4 \% \\
+%  &  length: 10 & length: 30 &  &  \\ \hline
+%            & 10M transactions & 10M transactions &  10M transactions &  Transaction length 10 \\ \hline
+%Algorithm  & Lowest minsup:                           & Lowest minsup:                             & Max. transaction           & Max. number of   \\
+%  &                       &                             &  length:           & transactions (millions):   \\ \hline
+%Mahout PFP & 0.002 \%                                  & 0.01 \%                                   & 100                                  & 100                                         \\ \hline
+%MLlib PFP  & 0.002 \%                                  & 0.01 \%                                   & 60                                   & 100                                         \\ \hline
+%BigFIM     & 0.1 \%                                    & 0.3 \%                                    & 100                                  & 100                                         \\ \hline
+%DistEclat  & 0.002 \%                                  & -                                         & -                                    & 1                                           \\ \hline
+%\end{tabular}
+%\end{center}
+%\end{table*}
+
+
+
+

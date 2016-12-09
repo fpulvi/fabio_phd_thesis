@@ -1,0 +1,311 @@
+%\begin{table}[]
+%\scriptsize
+%\centering
+%\caption{Classification.}\label{tab:example1}
+%\begin{tabular}{|c|c|c|c|c|c|}
+%\hline 					& \multicolumn{5}{|c|}{\bf Distributed Algorithm/Implementation} \\
+%\cline{2-6} {\bf Criterion} & {\bf Mahout PFP} & {\bf MLlib PFP} & {\bf Dist-Eclat} & {\bf BigFIM} & {\bf YAFIM} \\
+%\hline
+%\hline
+%Search space & Depth First & Depth First & Depth First & Breadth First & Breadth First \\
+%exploration  & & & & and  & \\
+%strategy     & & & & Depth First & \\
+%\hline
+%Data  			  & Dense & Dense & Dense & Sparse & Sparse \\
+%distribution	  & & & & and  &  \\
+%				  & & & & dense  &  \\
+%\hline
+%Parallelization  & Search space & Search space & Search space & Data split & Data \\
+%strategy         &  		& & & and  & split \\
+%          &  		& & & Search space &  \\
+%          &  		& & & split &  \\
+%\hline
+%Communication  & Yes & Yes & Yes & Yes  &  Yes  \\
+%cost           & & & (trade-off & (trade-off &  \\
+%handling       & & & with load & with load &  \\
+%		       & & & balancing) & balancing) &  \\
+%\hline
+%Load balancing & No & No & Yes & Yes & No \\
+%handling  & & & & &  \\
+%\hline
+%Framework  & Hadoop & Spark & Hadoop & Hadoop &  Spark  \\
+%\hline
+%Underlying centralized  & FP-Growth & FP-Growth & Eclat & Apiori &  Apriori \\
+%algorithm  & & &  & and Eclat &  \\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+
+This section describes the algorithms, and available implementations, representing the state-of-the-art
+solutions in the parallel frequent itemset mining context. We considered the following algorithms:
+PFP~\cite{pfpgrowth},
+BigFIM~\cite{bigfim}, DistEclat~\cite{bigfim},
+and YAFIM~\cite{YAFIM}.
+The only algorithm which is missing a publicly available implementation is YAFIM.
+Among the considered algorithms, YAFIM belongs to the ones based on the data split approach discussed in Section~\ref{parallelization}, 
+while the PFP and DistEclat are based on the search space split approach. Finally, BigFIM mixes the two strategies, aiming at exploiting the pros of them.
+%The classification of the selected algorithms/implementations, based on the identified evaluation criteria, are summarized in Table~\ref{tab:example1}. 
+For PFP we selected two popular implementations: Mahout PFP and MLlib PFP, which are based on Hadoop and Spark, respectively.  
+The description of the four selected algorithms and their implementations are reported in the following subsections.
+
+%\begin{table*}[]
+%\scriptsize
+%\centering
+%\caption{Comparison summary. \textbf{Fabio: Aggiungere Parallelization!}\label{tab:example1}}
+%\begin{tabular}{| c|c|c|c|c|c|c|}
+%\hline {\bf Name} & {\bf Framework} & {\bf Underlying} & {\bf Data} & {\bf Search} & {\bf Comm.} & {\bf Load  }\\
+%& & {\bf centralized} & {\bf distrib.} & {\bf strategy} & {\bf cost handling} & {\bf balance}\\
+%& & {\bf algorithm} &&& & {\bf handling}\\
+%\hline
+%\hline Mahout PFP & Hadoop & FP-Growth & Dense & Depth First & Yes & No\\
+%\hline MLlib PFP & Spark & FP-Growth & Dense & Depth First & Yes & No\\
+%\hline Dist-Eclat & Hadoop & Eclat & Dense & Depth First & Yes & Yes \\
+% &  &  &  &  & (trade-off with &  \\
+% &  &  &  &  & load balancing) &  \\
+%\hline BigFIM & Hadoop & Apriori and & Dense and  & Breadth First & Yes & Yes\\
+%  &  & Eclat & sparse &  and &  (trade-off  with & \\
+%   &  &  &  &Depth First  & load balancing) &  \\
+%\hline YAFIM & Spark & Apriori & Sparse & Breadth First & Yes & No\\
+%\hline
+%\end{tabular}
+%\end{table*}
+
+
+%\begin{table}[]
+%\scriptsize
+%\centering
+%\caption{Comparison summary.}\label{tab:example1}
+%\begin{tabular}{|c|c|c|c|c|c|c|}
+%\hline {\bf Name} & {\bf Framework} & {\bf Underlying} & {\bf Data} & {\bf Search} & {\bf Comm.} & {\bf Load  }\\
+%& & {\bf centralized} & {\bf distrib.} & {\bf strategy} & {\bf cost} & {\bf balance}\\
+%& & {\bf algorithm} &&& {\bf handling}& {\bf handling}\\
+%\hline
+%\hline Mahout PFP & Hadoop & FP-Growth & Dense & Depth First & Yes & No\\
+%\hline MLlib PFP & Spark & FP-Growth & Dense & Depth First & Yes & No\\
+%\hline Dist-Eclat & Hadoop & Eclat & Dense & Depth First & Yes & Yes \\
+% &  &  &  &  & (trade-off with &  \\
+% &  &  &  &  & load balancing) &  \\
+%\hline BigFIM & Hadoop & Apriori and & Dense and  & Breadth First & Yes & Yes\\
+%  &  & Eclat & sparse &  and &  (trade-off  with & \\
+%   &  &  &  &Depth First  & load balancing) &  \\
+%\hline YAFIM & Spark & Apriori & Sparse & Breadth First & Yes & No\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+\subsection{YAFIM}
+{\bf YAFIM}~\cite{YAFIM} is an Apriori distributed implementation developed in Spark.
+%Apriori works well with sparse datasets and it is characterized by a different behavior with respect to Eclat and FP-growth: 
+The iterative nature of the algorithm has always represented a challenge for its application in MapReduce-based Big Data
+frameworks. The reasons are the overhead caused by the launch of new MapReduce
+jobs and the requirement to read the input dataset from disk at each
+iteration. YAFIM exploits Spark RDDs to cope with these issues. Precisely, it
+assumes that all the dataset can be loaded into an RDD to speed up the
+counting operations. Hence, after the first phase in which all the transactions
+are loaded in an RDD, the algorithm starts the iterative Apriori algorithm organizing
+the candidates in a hash tree to speed up the search.
+Being strongly Apriori-based, it inherits the breadth-first strategy to explore and partition
+the search space and the preference towards sparse data distributions.
+YAFIM exploits the Spark ``broadcast variables abstraction'' feature, which allows
+programmers to send subsets of shared data to each slave only once,
+rather than with every job that uses those subset of data. This
+implementation mitigates communication costs (reducing the inter job
+communication), while load balancing is not addressed.
+
+\subsection{Parallel FP-growth (PFP)}
+\label{FP-Growth}
+%FP-growth~\cite{Han00}, as mentioned, is among the most popular approaches for frequent pattern mining.
+%It is based on a transposition of the
+%whole dataset into a main memory compressed representation of the database
+%called FP-tree. The algorithm is based on a recursive visit of the tree with a
+%“divide and conquer”, partitioning-based approach. In the first phase the support of the items is
+%counted to build the ``header table''. Then, the FP-tree is built exploiting the
+%header table and the input dataset: each transaction is included adding or
+%extending a path on the tree, exploiting common prefixes. Finally, for each
+%item, it extracts the frequent itemsets from the item’s conditional FP-tree, in
+%a recursive, depth first fashion. For the nature of the FP-tree, it is very robust to dense datasets. With a sparse dataset, the
+%benefits of the FP-tree transposition would be reduced because there would be a
+%higher number of branches and paths \cite{KumarBook} (i.e. a large number of
+%subproblems to generate and results to merge).
+%It is based on an FP-tree transposition of the transaction dataset and a
+%recursive ``divide and conquer'' visit of the FP-tree. FP-Growth algorithm,
+%instead, exploits a a main memory compressed representation of the database
+%called FP-tree. The algorithm is based on a recursive visit of the tree with a
+%``divide and conquer'' approach. FP-growth first phase consists of counting item
+%support to build the header table. Then, the FP-tree is built exploiting the
+%header table and the input dataset: each transaction is included adding or
+%extending a path on the tree, exploiting common prefixes. Finally, for each
+%item, it extracts the frequent itemsets from the item’s conditional FP-tree, in
+%a recursive, depth first fashion.
+{\bf Parallel FP-growth}~\cite{pfpgrowth}, called PFP, is a distributed implementation of FP-growth
+that exploits the MapReduce paradigm to extract the $k$ most frequent closed
+itemsets. It is included in the Mahout machine learning Library (version 0.9)
+and it is developed on Apache Hadoop. 
+PFP is based on the search space split parallelization strategy reported in Section~\ref{parallelization}. 
+Specifically, the distributed algorithm is based on building independent FP-trees (i.e., projected datasets) that can be processed separately
+over different nodes.
+
+The algorithm consists of 3 MapReduce jobs.\\ 
+\noindent{\it First job}. It builds the Header Table, that is used to select frequent items, in a MapReduce ``Word Count'' manner. \\
+\noindent{\it Second job}. In the second job, the mappers project with respect to group of items (prefixes) all the transactions of the input dataset to generate the local projected contributions to the projected datasets. Then, the reducers aggregate the projections associated with the items of the same group and build independent complete FP-trees from them. Each complete FP-tree is managed by one reducer, which runs a local in main memory FP-growth algorithm on it and extracts the frequent itemsets associated with it.  \\
+\noindent{\it Third job}. Finally, the last MapReduce job selects the top $k$ frequent closed itemsets.
+
+The independent complete FP-trees can have different characteristics and this factor has
+a significant impact on the execution time of the mining tasks. As discussed in Section~\ref{parallelization},
+this factor significantly impacts on load balancing. Specifically,   
+when the independent complete FP-trees have different sizes and characteristics, the tasks are unbalanced because they addresses
+subproblems with different complexities. This problem could be potentially solved by
+splitting complex trees in sub-trees, each one associated with an independent subproblem of the initial one.
+However, defining a metric to split a tree
+in such a way to obtain sub-mining problems that are equivalent in terms of execution time is not easy. In fact, the execution 
+time of the itemset mining process on an FP-Tree is not only related to its size (number of nodes) but also to other characteristics (e.g., number of branches
+and frequency of each node). 
+Depending on the dataset characteristics, the communication costs can be very high, especially when the projected the datasets overlap significantly
+because in that case the overlapping part of the data is sent multiple times on the network.
+
+Spark PFP~\cite{MLLib} represents a pure transposition of PFP to Spark. It
+is included in MLlib, the Spark machine learning library. The algorithm
+implementation in Spark is very close to the Hadoop sibling. The main difference, in terms of addressed problem, is that 
+MLlib PFP mines all the frequent itemsets, whereas Mahout PFP mines only the top $k$ closed itemsets. 
+%It is characterized by dynamic and smooth
+%handling of the different stages of the algorithm, without a strict division in
+%phases. Its main advantage over the Hadoop sibling is the low I/O cost,
+%potentially leading to a single read of the dataset from disk, by loading the
+%transactions in an RDD and processing the data in main memory, whereas the
+%Hadoop-based implementation of PFP performs many more I/O operations.
+
+Both implementations, being strongly inspired by FP-growth, keep from the
+underlying centralized algorithm the features related to the search space exploration
+(depth-first) and the ability to efficiently mine itemsets from dense datasets.
+
+
+\subsection{DistEclat and BigFIM}
+\label{bigfim}
+DistEclat~\cite{bigfim} is a Hadoop-based frequent itemset mining algorithms inspired 
+by the Eclat algorithm, whereas BigFIM~\cite{bigfim} is a mixed two-phase algorithm that combines an Apriori-based approach with 
+an Eclat-based one.
+
+%Apriori~\cite{Agr94} is a very popular technique. It uses a bottom up approach
+%in which frequent itemset are extended on item at a time (candidate generation)
+%in a level-wise, breadth-first fashion, and groups of candidates are tested against the
+%dataset. The search space is reduced through the downward-closure property,
+%which guarantees that all the supersets of an infrequent itemset are infrequent
+%too. Hence, each iteration consists of two steps: candidate generation and
+%support count. The algorithm ends when no further frequent extension are found.
+%
+%%The data distribution which better fits Apriori is sparse. 
+%For its algorithmic design, the Apriori algorithm is much affected by dataset density.
+%In fact,
+%with dense distribution the average transaction width can be very large, affecting
+%the algorithms complexity. In this case, the candidates length starts to
+%increase, increasing the number of candidates that should be generated, stored
+%in main memory and tested. In general, Apriori is very efficient at
+%the first steps, when the candidates are not long, but starts to be
+%computationally intensive as soon as long candidates have to be kept in memory.
+
+%The Eclat~\cite{Zaki97newalgorithms} algorithm performs the mining from a vertical
+%transposition of the dataset: in this format, each transaction includes an item
+%and the transaction identifiers ($tid$) in which it appears ($tidlist$).
+%After the initial dataset
+%transposition, the search space is explored in a depth-first manner similar to
+%FP-growth. The algorithm is based on equivalence classes (groups of itemsets
+%sharing a common prefix),  which are smartly merged to obtain all the
+%candidates. Prefix-based equivalence classes are mined independently, in a ``divide and conquer' strategy', still
+%taking advantage of downward closure property, even if the depth-first fashion
+%of tree expansion reduces the pruning benefits. The support of a ($k+1$)-candidate
+%is obtained intersecting the $tidlists$ of the $k$-itemsets from which it has been
+%obtained, with no need of rescanning the whole dataset.
+%
+%Eclat architecture makes it robust to dense datasets: the depth-first search strategy may require
+%more infrequent itemsets generated and tested than, for instance, Apriori does.
+%As a result, Eclat efficiency reduces for sparse data with short patterns where
+%most itemsets are infrequent~\cite{vu2012mining}.
+
+{\bf DistEclat} is a frequent itemset miner developed on Apache Hadoop. It exploits
+a parallel version of the Eclat algorithm to extract a superset of closed itemsets
+
+The algorithm mainly consists of two steps. The first step extracts $k$-sized prefixes (i.e., frequent itemsets of length $k$) with respect to which, in
+the second step, the algorithm builds independent projected subtrees, each one associated with an independent subproblem. Even in this case,
+the main idea is to mine these independent trees in different nodes, exploiting the search split parallelization approach discussed in 
+Section~\ref{parallelization}. 
+
+The algorithm is organized in 3 MapReduce jobs. \\ 
+\noindent{\it First job}. In the initial job, a MapReduce job transposes
+the dataset into a vertical representation. \\
+\noindent{\it Second job}. In this MapReduce job, each mapper extracts a subset of the $k$-sized prefixes ($k$-sized itemsets)
+by running Eclat on the frequent items, and the related tidlists, assigned to it. The $k$-sized prefixes and the associated tidlists are then split in groups and assigned to the mappers of the last job.  \\
+\noindent{\it Third job}. Each mapper of the last mapReduce job runs the in main memory version of Eclat 
+on its set of independent prefixes. The final set of frequent itemsets is obtained by merging the outputs of the last job. 
+
+The mining of the frequent itemsets in two different steps (i.e., mining of the itemsets of length $k$ in the second job and mining of the other frequent itemsets in the last job) aims at improving the load balancing of the algorithm. 
+Specifically, the split in two steps allows obtaining simpler sub-problems, which are potentially characterized by similar execution times. Hence, the application is overall well-balanced.
+%Specifically, the assignment of the $k$-sized prefixes before the last phase allows redistributing simplest sub-mining problems among the nodes of the cluster. Without this phase, more complex and unbalanced problems would be assigned to each node.
+
+DistEclat is designed to be very fast but it assumes that all the tidlists of the frequent items should be stored in main memory.
+In the worst case, each mapper needs the complete dataset, in vertical format, to build all the 2-prefixes~\cite{bigfim}. This impacts 
+negatively on the scalability of DistEclat with respect to the dataset size.
+The algorithm inherits from the centralized version the depth-first strategy to
+explore the search space and the preference for dense datasets.
+
+{\bf BigFIM} is an Hadoop-based solution very similar to DistEclat. 
+Analogously to DistEclat, BigFIM is organized in two steps: (i) extraction of the frequent itemsets 
+of length less than or equal to the input parameter $k$ and (ii) execution of Eclat on the sub-problems obtained splitting the search space with respect 
+to the $k$-itemsets. The difference lies in the first step, where BigFIM exploits an Apriori-based algorithm to extract frequent $k$-itemsets, i.e., it adopts the data split parallelization approach (Section~\ref{parallelization}). 
+Even if BigFIM is slower than DistEclat, BigFIM is designed to run on larger datasets.
+%In fact, the parallel Apriori-based algorithm used by BigFIM, based on the first parallelization strategy introduced in Section~\ref{parallelization}, 
+%scales with respect to the number of transactions of the dataset. 
+%However, it supposes that the candidate $k$-sized itemsets can be store in main memory. 
+%Hence, it scales with respect to the number of transactions but not with respect to the number of candidate itemsets and can incur in out of memory problems with dense datasets. 
+The reason is related to the first step in which, exploiting an Apriori-based approach,
+the $k$-prefixes are extracted in a breadth-first fashion.  Consequently, the nodes do not have to keep large tidlists in main memory but only the set of candidate itemsets to be counted. However, this is also the most critical issue of the application of the data split parallelization approach, because, depending on the dataset density, the set of candidate itemsets may not be stored in main memory. 
+
+Because of the two different techniques used by BigFIM in its two main steps (data split and then search space split), 
+in the first step BigFIM achieves the best performance with sparse datasets, while in the second phase it better fits dense data distributions.
+%: overall it does not show a data-distribution preference.
+
+DistEclat and BigFIM are the only algorithms specifically designed for addressing 
+load balancing and communication cost by means of the prefix length parameter $k$. 
+In particular, the choice of the length of the prefixes
+generated during the first step affects both load
+balancing and communication cost. The former would
+improve with a deeper level of the mining phase before the redistribution of the
+prefixes while the latter would benefit from shorter prefixes. 
+Hence, depending on the data distribution and the characteristics of the
+Hadoop cluster, DistEclat and BigFIM can be tuned to optimize load balancing and communication
+cost.
+% BigFIM and DistEclat require additional inputs besides the minsup (Minimum Support),
+% since they work with a customizable length of first-phase prefixes,
+% and this feature could require some iterations to find
+% the best value, depending on the kind of datasets and the cluster configuration.
+% Tuning the prefix length allows BigFIM and DistEclat to handle both
+% communication costs and load balancing.
+
+
+
+
+%\begin{table*}[]
+%\scriptsize
+%\centering
+%\caption{Algorithm analysis \label{tab:example1}}
+%\begin{tabular}{| c|c|c|c|c|c|c|}
+%\hline {\bf Name} & {\bf Framework} & {\bf Underlying algorithm} & {\bf Data distribution} & {\bf Search Strategy} & {\bf Communication cost handling} & {\bf Load balance handling }\\
+%
+%%\hline {\bf Name} & {\bf Framework} & {\bf Underlying} & {\bf Data} & {\bf Search} & {\bf Communication} & {\bf Load  }\\
+%%& & {\bf algorithm} & {\bf distribution} & {\bf Strategy} & {\bf cost handling} & {\bf balance}\\
+%%& & &&& & {\bf handling}\\
+%\hline
+%\hline PFP & Hadoop & FP-Growth & dense & Depth First & Yes & No\\
+%\hline Spark PFP & Spark & FP-Growth & dense & Depth First & Yes & No\\
+%\hline DistEclat & Hadoop & Eclat & dense & Depth First &  Yes (best effort withload balancing) & Yes \\
+%
+%\hline BigFIM & Hadoop & Apriori and  Eclat& Dense and Sparse & Breadth First and& Yes (best effort withload balancing)& Yes\\
+% &&  &  &  Depth First & & \\
+%\hline YAFIM & Spark & Apriori & sparse & Breadth First & Yes & No\\
+%\hline
+%\end{tabular}
+%\end{table*}
+
+

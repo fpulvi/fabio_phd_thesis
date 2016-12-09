@@ -26,6 +26,61 @@ E.~Junqu{\'e}~de Fortuny, D.~Martens, and F.~Provost, ``Predictive modeling
   with big data: is bigger really better?'' \emph{Big Data}, vol.~1, no.~4, pp.
   215--226, 2013.
 
+\bibitem{witten2005data}
+I.~H. Witten and E.~Frank, \emph{Data Mining: Practical machine learning tools
+  and techniques}.\hskip 1em plus 0.5em minus 0.4em\relax Morgan Kaufmann,
+  2005.
+
+\bibitem{apiletti2015review}
+D.~Apiletti, P.~Garza, and F.~Pulvirenti, ``A review of scalable approaches for
+  frequent itemset mining,'' in \emph{East European Conference on Advances in
+  Databases and Information Systems}.\hskip 1em plus 0.5em minus 0.4em\relax
+  Springer International Publishing, 2015, pp. 243--247.
+
+\bibitem{survey_pulvi}
+D.~Apiletti, T.~Baralis, Elena~Cerquitelli, P.~Garza, and F.~Pulvirenti,
+  ``Frequent itemsets mining for big data: an experimental analysis,''
+  \emph{Submitted to Big Data Research - Under Review}.
+
+\bibitem{pampa_v1}
+\BIBentryALTinterwordspacing
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, P.~Garza, P.~Michiardi, and
+  F.~Pulvirenti, ``Pampa-hd: A parallel mapreduce-based frequent pattern miner
+  for high-dimensional data,'' in \emph{IEEE ICDM Workshop on High Dimensional
+  Data Mining (HDM)}, Atlantic City, NJ, USA, 2015. [Online]. Available:
+  \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=7395755}
+\BIBentrySTDinterwordspacing
+
+\bibitem{pampa_pulvi}
+D.~Apiletti, T.~Baralis, Elena~Cerquitelli, P.~Garza, P.~Michiardi, and
+  F.~Pulvirenti, ``A parallel map-reduce algorithm to efficiently support
+  itemset mining on high dimensional data,'' \emph{Submitted to Big Data
+  Research - Under Review}.
+
+\bibitem{baralis2014nemico}
+E.~Baralis, L.~Cagliero, T.~Cerquitelli, S.~Chiusano, P.~Garza, L.~Grimaudo,
+  and F.~Pulvirenti, ``Nemico: Mining network data through cloud-based data
+  mining techniques,'' in \emph{Proceedings of the 2014 IEEE/ACM 7th
+  International Conference on Utility and Cloud Computing}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE Computer Society, 2014, pp. 503--504.
+
+\bibitem{6924449}
+------, ``Misleading generalized itemset mining in the cloud,'' in \emph{2014
+  IEEE International Symposium on Parallel and Distributed Processing with
+  Applications}, Aug 2014, pp. 211--216.
+
+\bibitem{DBLP:conf/sebd/BaralisCCCGPG14}
+E.~Baralis, L.~Cagliero, T.~Cerquitelli, S.~Chiusano, L.~Grimaudo,
+  F.~Pulvirenti, and P.~Garza, ``Mgi-cloud: discovery of misleading generalized
+  itemsets,'' in \emph{22nd Italian Symposium on Advanced Database Systems,
+  {SEBD} 2014, Sorrento Coast, Italy, June 16-18, 2014.}, 2014, pp. 45--52.
+
+\bibitem{apiletti20143}
+D.~Apiletti, E.~Baralis, L.~Cagliero, T.~Cerquitelli, S.~Chiusano, P.~Garza,
+  L.~Grimaudo, and F.~Pulvirenti, ``Network traffic analysis by means of
+  misleading generalized itemsets,'' \emph{BIGDAP 2014 - Big Data and
+  Applications}, p.~39, 2014.
+
 \bibitem{Xu_2005SurveyClustering}
 R.~Xu and D.~Wunsch, II, ``Survey of clustering algorithms,'' \emph{Trans.
   Neur. Netw.}, vol.~16, no.~3, pp. 645--678, May 2005.
@@ -39,9 +94,53 @@ J.~Han, H.~Cheng, D.~Xin, and X.~Yan, ``Frequent pattern mining: Current status
   and future directions,'' \emph{Data Min. Knowl. Discov.}, vol.~15, no.~1, pp.
   55--86, Aug. 2007.
 
+\bibitem{glatz2014visualizing}
+E.~Glatz, S.~Mavromatidis, B.~Ager, and X.~Dimitropoulos, ``Visualizing big
+  network traffic data using frequent pattern mining and hypergraphs,''
+  \emph{Computing}, vol.~96, no.~1, pp. 27--38, 2014.
+
+\bibitem{cagliero2014infrequent}
+L.~Cagliero and P.~Garza, ``Infrequent weighted itemset mining using frequent
+  pattern growth,'' \emph{IEEE transactions on knowledge and data engineering},
+  vol.~26, no.~4, pp. 903--915, 2014.
+
+\bibitem{gupta2011minimally}
+A.~Gupta, A.~Mittal, and A.~Bhattacharya, ``Minimally infrequent itemset mining
+  using pattern-growth paradigm and residual trees,'' in \emph{Proceedings of
+  the 17th International Conference on Management of Data}.\hskip 1em plus
+  0.5em minus 0.4em\relax Computer Society of India, 2011, p.~13.
+
+\bibitem{paredes2012practical}
+I.~Paredes-Oliva, I.~Castell-Uroz, P.~Barlet-Ros, X.~Dimitropoulos, and
+  J.~Sole-Pareta, ``Practical anomaly detection based on classifying frequent
+  traffic patterns,'' in \emph{Computer Communications Workshops (INFOCOM
+  WKSHPS), 2012 IEEE Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2012, pp. 49--54.
+
+\bibitem{brauckhoff2012anomaly}
+D.~Brauckhoff, X.~Dimitropoulos, A.~Wagner, and K.~Salamatian, ``Anomaly
+  extraction in backbone networks using association rules,'' \emph{IEEE/ACM
+  Transactions on Networking (TON)}, vol.~20, no.~6, pp. 1788--1799, 2012.
+
+\bibitem{LiuHM98}
+B.~Liu, W.~Hsu, and Y.~Ma, ``Integrating classification and association rule
+  mining,'' in \emph{KDD '98}, 1998, pp. 80--86.
+
+\bibitem{Venturini2016}
+\BIBentryALTinterwordspacing
+L.~Venturini, P.~Garza, and D.~Apiletti, \emph{BAC: A Bagged Associative
+  Classifier for Big Data Frameworks}.\hskip 1em plus 0.5em minus 0.4em\relax
+  Cham: Springer International Publishing, 2016, pp. 137--146. [Online].
+  Available: \url{http://dx.doi.org/10.1007/978-3-319-44066-8_15}
+\BIBentrySTDinterwordspacing
+
 \bibitem{KumarBook}
 {Pang-Ning T. and Steinbach M. and Kumar V.}, \emph{{Introduction to Data
   Mining}}.\hskip 1em plus 0.5em minus 0.4em\relax {Addison-Wesley}, 2006.
+
+\bibitem{goethals2003survey}
+B.~Goethals, ``Survey on frequent pattern mining,'' \emph{Univ. of Helsinki},
+  2003.
 
 \bibitem{Zaki_Carpenter}
 \BIBentryALTinterwordspacing
@@ -53,15 +152,10 @@ F.~Pan, G.~Cong, A.~K.~H. Tung, J.~Yang, and M.~J. Zaki, ``Carpenter: Finding
   \url{http://doi.acm.org/10.1145/956750.956832}
 \BIBentrySTDinterwordspacing
 
-\bibitem{ApilettiBCCG13}
-D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, and L.~Grimaudo,
-  ``Searum: {A} cloud-based service for association rule mining,'' in
-  \emph{12th {IEEE} International Conference on Trust, Security and Privacy in
-  Computing and Communications, TrustCom 2013 / 11th {IEEE} International
-  Symposium on Parallel and Distributed Processing with Applications, {ISPA-13}
-  / 12th {IEEE} International Conference on Ubiquitous Computing and
-  Communications, IUCC-2013, Melbourne, Australia, July 16-18, 2013}, 2013, pp.
-  1283--1290.
+\bibitem{ghemawat2003google}
+S.~Ghemawat, H.~Gobioff, and S.-T. Leung, ``The google file system,'' in
+  \emph{ACM SIGOPS operating systems review}, vol.~37, no.~5.\hskip 1em plus
+  0.5em minus 0.4em\relax ACM, 2003, pp. 29--43.
 
 \bibitem{HDFS}
 D.~Borthakur, ``The hadoop distributed file system: Architecture and design,''
@@ -126,6 +220,29 @@ M.~P. Forum, ``Mpi: A message-passing interface standard,'' Knoxville, TN, USA,
   \url{https://spark.apache.org/mllib/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Han00}
+J.~Han, J.~Pei, and Y.~Yin, ``Mining frequent patterns without candidate
+  generation,'' in \emph{SIGMOD '00}, 2000, pp. 1--12.
+
+\bibitem{Zaki97newalgorithms}
+M.~J. Zaki, S.~Parthasarathy, M.~Ogihara, and W.~Li, ``New algorithms for fast
+  discovery of association rules,'' in \emph{KDD'97}.\hskip 1em plus 0.5em
+  minus 0.4em\relax AAAI Press, 1997, pp. 283--286.
+
+\bibitem{Agr94}
+R.~Agrawal and R.~Srikant, ``Fast algorithms for mining association rules in
+  large databases,'' in \emph{VLDB '94}, 1994, pp. 487--499.
+
+\bibitem{bigfim}
+S.~Moens, E.~Aksehirli, and B.~Goethals, ``Frequent itemset mining for big
+  data,'' in \emph{SML: BigData 2013 Workshop on Scalable Machine
+  Learning}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013.
+
+\bibitem{ISPA13}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, and L.~Grimaudo,
+  ``Searum: A cloud-based service for association rule mining,'' in
+  \emph{ISPA'13}, 2013, pp. 1283--1290.
+
 \bibitem{META-TIST-2015}
 D.~Antonelli, E.~Baralis, G.~Bruno, L.~Cagliero, T.~Cerquitelli, S.~Chiusano,
   P.~Garza, and N.~A. Mahoto, ``{MeTA: Characterization of Medical Treatments
@@ -184,43 +301,33 @@ M.~Mampaey, N.~Tatti, and J.~Vreeken, ``Tell me what i need to know: Succinctly
   \url{http://doi.acm.org/10.1145/2020408.2020499}
 \BIBentrySTDinterwordspacing
 
-\bibitem{bigfim}
-S.~Moens, E.~Aksehirli, and B.~Goethals, ``Frequent itemset mining for big
-  data,'' in \emph{SML: BigData 2013 Workshop on Scalable Machine
-  Learning}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013.
+\bibitem{vu2012mining}
+L.~Vu and G.~Alaghband, ``Mining frequent patterns based on data
+  characteristics,'' in \emph{Proceedings of 2012 International Conference on
+  Information and Knowledge Engineering}, 2012, pp. 369--375.
 
 \bibitem{YAFIM}
 H.~Qiu, R.~Gu, C.~Yuan, and Y.~Huang, ``{YAFIM}: A parallel frequent itemset
   mining algorithm with spark,'' in \emph{IPDPSW'14}, May 2014, pp. 1664--1671.
 
-\bibitem{goethals2003survey}
-B.~Goethals, ``Survey on frequent pattern mining,'' \emph{Univ. of Helsinki},
-  2003.
+\bibitem{pfpgrowth}
+H.~Li, Y.~Wang, D.~Zhang, M.~Zhang, and E.~Y. Chang, ``{PFP}: parallel
+  fp-growth for query recommendation,'' in \emph{RecSys'08}, 2008, pp.
+  107--114.
 
-\bibitem{Agr94}
-R.~Agrawal and R.~Srikant, ``Fast algorithms for mining association rules in
-  large databases,'' in \emph{VLDB '94}, 1994, pp. 487--499.
-
-\bibitem{afrati2012designing}
-F.~N. Afrati, M.~Balazinska, A.~D. Sarma, B.~Howe, S.~Salihoglu, and J.~D.
-  Ullman, ``Designing good algorithms for mapreduce and beyond,'' in
-  \emph{Proceedings of the Third ACM Symposium on Cloud Computing}.\hskip 1em
-  plus 0.5em minus 0.4em\relax ACM, 2012, p.~26.
-
-\bibitem{leskovec2014mining}
-J.~Leskovec, A.~Rajaraman, and J.~D. Ullman, \emph{Mining of massive
-  datasets}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge University Press,
-  2014.
-
-\bibitem{sarma2013upper}
-A.~D. Sarma, F.~N. Afrati, S.~Salihoglu, and J.~D. Ullman, ``Upper and lower
-  bounds on the cost of a map-reduce computation,'' in \emph{Proceedings of the
-  VLDB Endowment}, vol.~6, no.~4.\hskip 1em plus 0.5em minus 0.4em\relax VLDB
-  Endowment, 2013, pp. 277--288.
+\bibitem{Bigfim_github}
+S.~Moens, E.~Aksehirli, , and B.~Goethals, ``Dist-eclat and bigfim,''
+  \url{https://github.com/ua-adrem/bigfim}, 2013.
 
 \bibitem{Quest}
 N.~Agrawal, T.~Imielinski, and A.~Swami, ``Database mining: A performance
   perspective,'' \emph{In IEEE TKDE}, vol.~5, no.~6, 1993.
+
+\bibitem{cloudera}
+\BIBentryALTinterwordspacing
+``{Cloudera, last Accessed: 16/10/2015}.'' [Online]. Available:
+  \url{http://www.cloudera.com}
+\BIBentrySTDinterwordspacing
 
 \bibitem{wetzker2008analyzing}
 R.~Wetzker, C.~Zimmermann, and C.~Bauckhage, ``Analyzing social bookmarking
@@ -233,72 +340,6 @@ A.~Finamore, M.~Mellia, M.~Meo, M.~Munaf\`o, and D.~Rossi, ``Experiences of
   internet traffic monitoring with tstat,'' \emph{IEEE Network}, vol.~25,
   no.~3, pp. 8--14, 2011.
 
-\bibitem{Han00}
-J.~Han, J.~Pei, and Y.~Yin, ``Mining frequent patterns without candidate
-  generation,'' in \emph{SIGMOD '00}, 2000, pp. 1--12.
-
-\bibitem{pfpgrowth}
-H.~Li, Y.~Wang, D.~Zhang, M.~Zhang, and E.~Y. Chang, ``{PFP}: parallel
-  fp-growth for query recommendation,'' in \emph{RecSys'08}, 2008, pp.
-  107--114.
-
-\bibitem{Zaki97newalgorithms}
-M.~J. Zaki, S.~Parthasarathy, M.~Ogihara, and W.~Li, ``New algorithms for fast
-  discovery of association rules,'' in \emph{KDD'97}.\hskip 1em plus 0.5em
-  minus 0.4em\relax AAAI Press, 1997, pp. 283--286.
-
-\bibitem{vu2012mining}
-L.~Vu and G.~Alaghband, ``Mining frequent patterns based on data
-  characteristics,'' in \emph{Proceedings of 2012 International Conference on
-  Information and Knowledge Engineering}, 2012, pp. 369--375.
-
-\bibitem{qiu2014yafim}
-H.~Qiu, R.~Gu, C.~Yuan, and Y.~Huang, ``Yafim: A parallel frequent itemset
-  mining algorithm with spark,'' in \emph{Parallel \& Distributed Processing
-  Symposium Workshops (IPDPSW), 2014 IEEE International}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2014, pp. 1664--1671.
-
-\bibitem{zhang2015distributed}
-F.~Zhang, M.~Liu, F.~Gui, W.~Shen, A.~Shami, and Y.~Ma, ``A distributed
-  frequent itemset mining algorithm using spark for big data analytics,''
-  \emph{Cluster Computing}, vol.~18, no.~4, pp. 1493--1501, 2015.
-
-\bibitem{liang2015sequence}
-Y.-h. Liang and S.-y. Wu, ``Sequence-growth: A scalable and effective frequent
-  itemset mining algorithm for big data based on mapreduce framework,'' in
-  \emph{2015 IEEE International Congress on Big Data}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2015, pp. 393--400.
-
-\bibitem{riondato2015mining}
-M.~Riondato and E.~Upfal, ``Mining frequent itemsets through progressive
-  sampling with rademacher averages,'' in \emph{Proceedings of the 21th ACM
-  SIGKDD International Conference on Knowledge Discovery and Data
-  Mining}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2015, pp. 1005--1014.
-
-\bibitem{gole2015frequent}
-S.~Gole and B.~Tidke, ``Frequent itemset mining for big data in social media
-  using clustbigfim algorithm,'' in \emph{Pervasive Computing (ICPC), 2015
-  International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
-  2015, pp. 1--6.
-
-\bibitem{Wu2015}
-\BIBentryALTinterwordspacing
-X.~Wu, W.~Fan, J.~Peng, K.~Zhang, and Y.~Yu, ``Iterative sampling based
-  frequent itemset mining for big data,'' \emph{International Journal of
-  Machine Learning and Cybernetics}, vol.~6, no.~6, pp. 875--882, 2015.
-  [Online]. Available: \url{http://dx.doi.org/10.1007/s13042-015-0345-6}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Bigfim_github}
-S.~Moens, E.~Aksehirli, , and B.~Goethals, ``Dist-eclat and bigfim,''
-  \url{https://github.com/ua-adrem/bigfim}, 2013.
-
-\bibitem{cloudera}
-\BIBentryALTinterwordspacing
-``{Cloudera, last Accessed: 16/10/2015}.'' [Online]. Available:
-  \url{http://www.cloudera.com}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Tstat2}
 M.~Mellia, M.~Meo, L.~Muscariello, and D.~Rossi, ``Passive analysis of tcp
   anomalies,'' \emph{Computer Networks}, vol.~52, no.~14, pp. 2663--2676, 2008.
@@ -307,6 +348,16 @@ M.~Mellia, M.~Meo, L.~Muscariello, and D.~Rossi, ``Passive analysis of tcp
 D.~Giordano, S.~Traverso, L.~Grimaudo, M.~Mellia, E.~Baralis, A.~Tongaonkar,
   and S.~Saha, ``Youlighter: An unsupervised methodology to unveil youtube cdn
   changes,'' \emph{arXiv preprint arXiv:1503.05426}, 2015.
+
+\bibitem{ApilettiBCCG13}
+D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, and L.~Grimaudo,
+  ``Searum: {A} cloud-based service for association rule mining,'' in
+  \emph{12th {IEEE} International Conference on Trust, Security and Privacy in
+  Computing and Communications, TrustCom 2013 / 11th {IEEE} International
+  Symposium on Parallel and Distributed Processing with Applications, {ISPA-13}
+  / 12th {IEEE} International Conference on Ubiquitous Computing and
+  Communications, IUCC-2013, Melbourne, Australia, July 16-18, 2013}, 2013, pp.
+  1283--1290.
 
 \bibitem{Jin201559}
 \BIBentryALTinterwordspacing
@@ -341,15 +392,6 @@ M.~Cuturi, ``{UCI} machine learning repository. {PEMS-SF} data set,'' 2011.
 \bibitem{snapnets}
 J.~Leskovec and A.~Krevl, ``{SNAP Datasets}: {Stanford} large network dataset
   collection,'' \url{http://snap.stanford.edu/data}, Jun. 2014.
-
-\bibitem{pampa_v1}
-\BIBentryALTinterwordspacing
-D.~Apiletti, E.~Baralis, T.~Cerquitelli, P.~Garza, P.~Michiardi, and
-  F.~Pulvirenti, ``Pampa-hd: A parallel mapreduce-based frequent pattern miner
-  for high-dimensional data,'' in \emph{IEEE ICDM Workshop on High Dimensional
-  Data Mining (HDM)}, Atlantic City, NJ, USA, 2015. [Online]. Available:
-  \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=7395755}
-\BIBentrySTDinterwordspacing
 
 \bibitem{uci}
 \BIBentryALTinterwordspacing
@@ -441,17 +483,6 @@ Cisco, ``Netflow.'' [Online]. Available:
   Last access: July, 15th 2015}
 \BIBentrySTDinterwordspacing
 
-\bibitem{trustcom2013}
-\BIBentryALTinterwordspacing
-D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, and L.~Grimaudo,
-  ``Searum: A cloud-based service for association rule mining,'' in
-  \emph{Proceedings of the 2013 12th IEEE International Conference on Trust,
-  Security and Privacy in Computing and Communications}, ser. TRUSTCOM
-  '13.\hskip 1em plus 0.5em minus 0.4em\relax Washington, DC, USA: IEEE
-  Computer Society, 2013, pp. 1283--1290. [Online]. Available:
-  \url{http://dx.doi.org/10.1109/TrustCom.2013.153}
-\BIBentrySTDinterwordspacing
-
 \bibitem{fontas_AR}
 D.~Brauckhoff, X.~Dimitropoulos, A.~Wagner, and K.~Salamatian, ``Anomaly
   extraction in backbone networks using association rules,'' \emph{Networking,
@@ -487,25 +518,6 @@ P.-N. Tan, M.~Steinbach, and V.~Kumar, \emph{Introduction to Data Mining,
   (First Edition)}.\hskip 1em plus 0.5em minus 0.4em\relax Addison-Wesley
   Longman Publishing Co., Inc., 2005.
 
-\bibitem{ISPA14}
-E.~Baralis, L.~Cagliero, T.~Cerquitelli, S.~Chiusano, P.~Garza, L.~Grimaudo,
-  and F.~Pulvirenti, ``Misleading generalized itemset mining in the cloud,'' in
-  \emph{ISPA'14}, 2014.
-
-\bibitem{ISPA13}
-D.~Apiletti, E.~Baralis, T.~Cerquitelli, S.~Chiusano, and L.~Grimaudo,
-  ``Searum: A cloud-based service for association rule mining,'' in
-  \emph{ISPA'13}, 2013, pp. 1283--1290.
-
-\bibitem{Dean2008}
-J.~Dean and S.~Ghemawat, ``Mapreduce: simplified data processing on large
-  clusters,'' \emph{Commun. ACM}, vol.~51, no.~1, pp. 107--113, Jan. 2008.
-
-\bibitem{PMINE13}
-E.~Baralis, T.~Cerquitelli, S.~Chiusano, and A.~Grand, ``P-mine: Parallel
-  itemset mining on large datasets,'' in \emph{ICDE Workshops}, 2013, pp.
-  266--271.
-
 \bibitem{Srikant1995}
 R.~Srikant and R.~Agrawal, ``Mining generalized association rules,'' in
   \emph{VLDB 1995}, 1995, pp. 407--419.
@@ -524,6 +536,10 @@ E.~Baralis, L.~Cagliero, T.~Cerquitelli, S.~Chiusano, and P.~Garza, ``Frequent
 L.~Cagliero, T.~Cerquitelli, P.~Garza, and L.~Grimaudo, ``Misleading
   generalized itemset discovery,'' \emph{Expert Syst. Appl.}, vol.~41, no.~4,
   pp. 1400--1410, 2014.
+
+\bibitem{Dean2008}
+J.~Dean and S.~Ghemawat, ``Mapreduce: simplified data processing on large
+  clusters,'' \emph{Commun. ACM}, vol.~51, no.~1, pp. 107--113, Jan. 2008.
 
 \bibitem{Sriphaew2002}
 K.~Sriphaew and T.~Theeramunkong, ``A new method for finding generalized
@@ -559,5 +575,11 @@ M.~Barsky, S.~Kim, T.~Weninger, and J.~Han, ``Mining flipping correlations from
 T.~Wu, Y.~Chen, and J.~Han, ``Re-examination of interestingness measures in
   pattern mining: a unified framework,'' \emph{Data Min. Knowl. Discov.},
   vol.~21, no.~3, pp. 371--397, Nov. 2010.
+
+\bibitem{grimaudo2012hierarchical}
+L.~Grimaudo, M.~Mellia, and E.~Baralis, ``Hierarchical learning for fine
+  grained internet traffic classification,'' in \emph{Wireless Communications
+  and Mobile Computing Conference (IWCMC), 2012 8th International}.\hskip 1em
+  plus 0.5em minus 0.4em\relax IEEE, 2012, pp. 463--468.
 
 \end{thebibliography}

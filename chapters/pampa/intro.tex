@@ -25,11 +25,10 @@ For this reason, we are witnessing the explosion of parallel and distributed
 approaches,
 typically based on distributed frameworks, such as Apache Hadoop~\cite{HDFS}
 and Spark~\cite{Zaharia_spark}.
-Unfortunately, most of the scalable distributed techniques
+As clearly shown in Chapter \ref{survey}, unfortunately, most of the scalable distributed techniques
 for frequent itemset mining have been designed to cope with datasets
 characterized by few items per transaction (low dimensionality, short
-transactions),
-focusing, on the contrary, on very large datasets in terms of number of
+transactions). Their design, on the contrary, focuses on very large datasets in terms of number of
 transactions.
 Currently, only single-machine implementations exist to address very long
 transactions,
@@ -59,7 +58,7 @@ datasets~\cite{snapnets}.
 To effectively deal with those high-dimensional datasets,
 novel and distributed approaches are needed.
 
-This work introduces PaMPa-HD \cite{pampa_v1},
+This work introduces PaMPa-HD \cite{pampa_v1}, \cite{pampa_pulvi},
 a parallel MapReduce-based frequent closed itemset mining algorithm
 for high-dimensional datasets.
 PaMPa-HD relies on the Carpenter algorithm~\cite{Zaki_Carpenter}. 
@@ -71,7 +70,7 @@ in execution time and by supporting lower minimum support threshold.
 
 
 The paper is organized as follows:
-Section~\ref{Preliminaries} introduces the frequent (closed) itemset mining
+Section~\ref{Preliminaries} briefly reintroducess the frequent (closed) itemset mining
 problem,
 Section~\ref{Carpenter algorithm} briefly describes the centralized version
 of Carpenter,
@@ -79,8 +78,9 @@ and Section~\ref{Distributed implementation outline} presents the proposed
 PaMPa-HD algorithm.
 Section~\ref{Experiments} describes the experimental evaluations
 proving the effectiveness of the proposed technique,
-Section~\ref{Related work} presents a brief review of the state of the art,
-and Section~\ref{Applications} discusses possible applications of PaMPa-HD.
-Finally, Section~\ref{Conclusion} introduces future works and conclusions.
+Section~\ref{Applications} discusses possible applications of PaMPa-HD and, finally, Section~\ref{Conclusion} introduces future works and conclusions.
+%Section~\ref{Related work} presents a brief review of the state of the art,
+%and Section~\ref{Applications} discusses possible applications of PaMPa-HD.
+%Finally, Section~\ref{Conclusion} introduces future works and conclusions.
 
 

@@ -5,70 +5,71 @@
 \contentsline {chapter}{List of Figures}{v}{dummy.5}
 \contentsline {chapter}{List of Tables}{vii}{dummy.7}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.9}
-\contentsline {section}{\numberline {1.1}Dissertation plan and research contribution}{2}{section.10}
-\contentsline {subsection}{\numberline {1.1.1}Frequent Itemset Mining for Big Data: an experimental analysis}{3}{subsection.14}
-\contentsline {subsection}{\numberline {1.1.2}A Parallel Map-Reduce Algorithm to Efficiently Support Itemset Mining on High Dimensional Data}{3}{subsection.15}
+\contentsline {section}{\numberline {1.1}Dissertation plan and research contribution}{3}{section.10}
+\contentsline {subsection}{\numberline {1.1.1}Frequent Itemset Mining for Big Data: a comparative analysis}{3}{subsection.14}
+\contentsline {subsection}{\numberline {1.1.2}A Parallel Map-Reduce Algorithm to Efficiently Support Itemset Mining on High Dimensional Data}{4}{subsection.15}
 \contentsline {subsection}{\numberline {1.1.3}Big Data Mining frameworks and Misleading Generalized Itemsets}{4}{subsection.16}
-\contentsline {subsection}{\numberline {1.1.4}Dissertation Plan}{4}{subsection.17}
-\contentsline {chapter}{\numberline {2}Background}{6}{chapter.18}
+\contentsline {subsection}{\numberline {1.1.4}Dissertation Plan}{5}{subsection.17}
+\contentsline {chapter}{\numberline {2}Background and Motivations}{6}{chapter.18}
 \contentsline {section}{\numberline {2.1}Data Mining and Frequent Itemset Mining}{6}{section.19}
 \contentsline {subsection}{\numberline {2.1.1}Frequent Itemset Mining - Preliminaries}{7}{subsection.20}
-\contentsline {section}{\numberline {2.2}Big Data and Distributed Frameworks}{9}{section.24}
-\contentsline {subsection}{\numberline {2.2.1}Hadoop and Spark Machine Learning Libraries}{10}{subsection.25}
-\contentsline {section}{\numberline {2.3}Big Data and FIM}{10}{section.26}
-\contentsline {chapter}{\numberline {3}Frequent Itemset Mining for Big Data: an experimental review}{12}{chapter.27}
-\contentsline {section}{\numberline {3.1}Introduction}{12}{section.28}
-\contentsline {section}{\numberline {3.2}Evaluation criteria}{14}{section.29}
-\contentsline {section}{\numberline {3.3}Selected algorithms}{16}{section.36}
-\contentsline {subsection}{\numberline {3.3.1}FP-Growth based algorithms}{17}{subsection.38}
-\contentsline {subsection}{\numberline {3.3.2}BigFIM and DistEclat}{18}{subsection.39}
-\contentsline {subsection}{\numberline {3.3.3}YAFIM}{20}{subsection.40}
-\contentsline {subsection}{\numberline {3.3.4}Other approaches}{20}{subsection.41}
-\contentsline {section}{\numberline {3.4}Experimental evaluation}{21}{section.42}
-\contentsline {subsection}{\numberline {3.4.1}Impact of the minsup support threshold}{23}{subsection.44}
-\contentsline {subsection}{\numberline {3.4.2}Impact of the average transaction length}{26}{subsection.48}
-\contentsline {subsection}{\numberline {3.4.3}Impact of the number of transactions}{27}{subsection.50}
-\contentsline {subsection}{\numberline {3.4.4}Real use cases}{28}{subsection.52}
-\contentsline {subsubsection}{\numberline {3.4.4.1}URL tagging}{28}{subsubsection.54}
-\contentsline {subsubsection}{\numberline {3.4.4.2}Network traffic flows}{31}{subsubsection.57}
-\contentsline {subsection}{\numberline {3.4.5}Load balancing}{32}{subsection.61}
-\contentsline {subsection}{\numberline {3.4.6}Communication costs}{33}{subsection.64}
-\contentsline {section}{\numberline {3.5}Lessons learned}{37}{section.70}
-\contentsline {section}{\numberline {3.6}Open issues}{38}{section.72}
-\contentsline {section}{\numberline {3.7}Summary}{39}{section.73}
-\contentsline {section}{\numberline {3.8}Relevant Pubblications}{40}{section.74}
-\contentsline {chapter}{\numberline {4}Frequent Itemset Mining for High-Dimensional data}{41}{chapter.75}
-\contentsline {section}{\numberline {4.1}Introduction}{41}{section.76}
-\contentsline {section}{\numberline {4.2}Frequent itemset mining background}{42}{section.78}
-\contentsline {section}{\numberline {4.3}The Carpenter algorithm}{44}{section.83}
-\contentsline {section}{\numberline {4.4}The PaMPa-HD algorithm}{46}{section.90}
-\contentsline {subsection}{\numberline {4.4.1}Implementation details}{50}{subsection.93}
-\contentsline {section}{\numberline {4.5}Experiments}{56}{section.103}
-\contentsline {subsection}{\numberline {4.5.1}Impact of the maximum expansion threshold}{57}{subsection.105}
-\contentsline {subsection}{\numberline {4.5.2}Self-tuning strategies}{60}{subsection.110}
-\contentsline {subsection}{\numberline {4.5.3}Execution time}{63}{subsection.113}
-\contentsline {subsection}{\numberline {4.5.4}Impact of the number of transactions}{65}{subsection.121}
-\contentsline {subsection}{\numberline {4.5.5}Impact of the number of nodes}{66}{subsection.125}
-\contentsline {subsection}{\numberline {4.5.6}Load Balancing and communication costs}{67}{subsection.128}
-\contentsline {section}{\numberline {4.6}Related work}{70}{section.132}
-\contentsline {section}{\numberline {4.7}Applications}{71}{section.133}
-\contentsline {section}{\numberline {4.8}Conclusion}{71}{section.134}
-\contentsline {section}{\numberline {4.9}Relevant pubblications}{72}{section.135}
-\contentsline {chapter}{\numberline {5}Frequent Itemset Mining in Distributed Scalable Frameworks}{73}{chapter.136}
-\contentsline {section}{\numberline {5.1}The {\sc NeMiCo}\ architecture}{74}{section.137}
-\contentsline {subsection}{\numberline {5.1.1}Data acquisition and preprocessing}{75}{subsection.139}
-\contentsline {subsection}{\numberline {5.1.2}Knowledge extraction and exploration}{76}{subsection.140}
-\contentsline {section}{\numberline {5.2}Misleading Generalized Itemsets}{76}{section.141}
-\contentsline {section}{\numberline {5.3}Related work}{77}{section.142}
-\contentsline {section}{\numberline {5.4}Preliminary concepts and problem statement}{78}{section.143}
-\contentsline {section}{\numberline {5.5}The {\sc MGI-Cloud}\ architecture}{80}{section.147}
-\contentsline {subsection}{\numberline {5.5.1}Data retrieval and preparation}{80}{subsection.148}
-\contentsline {subsection}{\numberline {5.5.2}Taxonomy generation}{82}{subsection.149}
-\contentsline {subsection}{\numberline {5.5.3}Level-sharing itemset mining}{83}{subsection.151}
-\contentsline {subsection}{\numberline {5.5.4}MGI extraction}{83}{subsection.152}
-\contentsline {section}{\numberline {5.6}Experiments}{84}{section.153}
-\contentsline {subsection}{\numberline {5.6.1}Characteristics of the mining results}{85}{subsection.154}
-\contentsline {subsection}{\numberline {5.6.2}Result validation}{86}{subsection.157}
-\contentsline {subsection}{\numberline {5.6.3}Scalability with the number of cluster nodes}{87}{subsection.158}
-\contentsline {section}{\numberline {5.7}Conclusions and future perspectives}{88}{section.160}
-\contentsline {chapter}{\numberline {6}Conclusion}{89}{chapter.161}
+\contentsline {section}{\numberline {2.2}Big Data and Distributed Frameworks}{9}{section.26}
+\contentsline {subsection}{\numberline {2.2.1}Hadoop and Spark Machine Learning Libraries}{11}{subsection.27}
+\contentsline {section}{\numberline {2.3}Big Data and FIM (maybe should put this before 2.2)}{11}{section.28}
+\contentsline {chapter}{\numberline {3}Frequent Itemset Mining for Big Data: an experimental review}{14}{chapter.29}
+\contentsline {section}{\numberline {3.1}Introduction}{14}{section.30}
+\contentsline {section}{\numberline {3.2}Centralized algorithms}{16}{section.31}
+\contentsline {section}{\numberline {3.3}Itemset mining parallelization strategies}{17}{section.32}
+\contentsline {section}{\numberline {3.4}Distributed itemset mining algorithms}{22}{section.38}
+\contentsline {subsection}{\numberline {3.4.1}YAFIM}{22}{subsection.39}
+\contentsline {subsection}{\numberline {3.4.2}Parallel FP-growth (PFP)}{23}{subsection.40}
+\contentsline {subsection}{\numberline {3.4.3}DistEclat and BigFIM}{24}{subsection.41}
+\contentsline {section}{\numberline {3.5}Experimental evaluation}{25}{section.42}
+\contentsline {subsection}{\numberline {3.5.1}Experimental setup}{26}{subsection.43}
+\contentsline {subsection}{\numberline {3.5.2}Impact of the minsup support threshold}{28}{subsection.46}
+\contentsline {subsection}{\numberline {3.5.3}Impact of the average transaction length}{30}{subsection.50}
+\contentsline {subsection}{\numberline {3.5.4}Impact of the number of transactions}{31}{subsection.54}
+\contentsline {subsection}{\numberline {3.5.5}Scalability in terms of parallelization degree}{32}{subsection.56}
+\contentsline {subsection}{\numberline {3.5.6}Real use cases}{34}{subsection.58}
+\contentsline {subsubsection}{\numberline {3.5.6.1}URL tagging}{34}{subsubsection.60}
+\contentsline {subsubsection}{\numberline {3.5.6.2}Network traffic flows}{36}{subsubsection.63}
+\contentsline {subsection}{\numberline {3.5.7}Load balancing}{38}{subsection.67}
+\contentsline {subsection}{\numberline {3.5.8}Communication costs}{39}{subsection.69}
+\contentsline {subsection}{\numberline {3.5.9}Discussion}{40}{subsection.71}
+\contentsline {section}{\numberline {3.6}Lessons Learned}{41}{section.72}
+\contentsline {section}{\numberline {3.7}Open research issues}{41}{section.74}
+\contentsline {chapter}{\numberline {4}Frequent Itemset Mining for High-Dimensional data}{43}{chapter.75}
+\contentsline {section}{\numberline {4.1}Introduction}{43}{section.76}
+\contentsline {section}{\numberline {4.2}Frequent itemset mining background}{44}{section.78}
+\contentsline {section}{\numberline {4.3}The Carpenter algorithm}{46}{section.83}
+\contentsline {section}{\numberline {4.4}The PaMPa-HD algorithm}{48}{section.90}
+\contentsline {subsection}{\numberline {4.4.1}Implementation details}{52}{subsection.93}
+\contentsline {section}{\numberline {4.5}Experiments}{58}{section.103}
+\contentsline {subsection}{\numberline {4.5.1}Impact of the maximum expansion threshold}{59}{subsection.105}
+\contentsline {subsection}{\numberline {4.5.2}Self-tuning strategies}{62}{subsection.110}
+\contentsline {subsection}{\numberline {4.5.3}Execution time}{65}{subsection.113}
+\contentsline {subsection}{\numberline {4.5.4}Impact of the number of transactions}{67}{subsection.121}
+\contentsline {subsection}{\numberline {4.5.5}Impact of the number of nodes}{68}{subsection.125}
+\contentsline {subsection}{\numberline {4.5.6}Load Balancing and communication costs}{69}{subsection.128}
+\contentsline {section}{\numberline {4.6}Applications}{72}{section.132}
+\contentsline {section}{\numberline {4.7}Conclusion}{72}{section.133}
+\contentsline {section}{\numberline {4.8}Relevant pubblications}{73}{section.134}
+\contentsline {chapter}{\numberline {5}Frequent Itemset Mining in Distributed Scalable Frameworks}{74}{chapter.135}
+\contentsline {section}{\numberline {5.1}The {\sc NeMiCo}\ architecture}{75}{section.136}
+\contentsline {subsection}{\numberline {5.1.1}Data acquisition and preprocessing}{76}{subsection.138}
+\contentsline {subsection}{\numberline {5.1.2}Knowledge extraction and exploration}{77}{subsection.139}
+\contentsline {section}{\numberline {5.2}Misleading Generalized Itemsets}{77}{section.140}
+\contentsline {section}{\numberline {5.3}Related work}{78}{section.141}
+\contentsline {section}{\numberline {5.4}Preliminary concepts and problem statement}{79}{section.142}
+\contentsline {section}{\numberline {5.5}The {\sc MGI-Cloud}\ architecture}{81}{section.146}
+\contentsline {subsection}{\numberline {5.5.1}Data retrieval and preparation}{81}{subsection.147}
+\contentsline {subsection}{\numberline {5.5.2}Taxonomy generation}{83}{subsection.148}
+\contentsline {subsection}{\numberline {5.5.3}Level-sharing itemset mining}{84}{subsection.150}
+\contentsline {subsection}{\numberline {5.5.4}MGI extraction}{84}{subsection.151}
+\contentsline {section}{\numberline {5.6}Experiments}{85}{section.152}
+\contentsline {subsection}{\numberline {5.6.1}Characteristics of the mining results}{86}{subsection.153}
+\contentsline {subsection}{\numberline {5.6.2}Result validation}{87}{subsection.156}
+\contentsline {subsection}{\numberline {5.6.3}Scalability with the number of cluster nodes}{88}{subsection.157}
+\contentsline {section}{\numberline {5.7}Conclusions and future perspectives}{89}{section.159}
+\contentsline {section}{\numberline {5.8}Relevant Pubblications}{89}{section.160}
+\contentsline {chapter}{\numberline {6}Conclusion}{91}{chapter.161}

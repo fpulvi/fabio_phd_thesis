@@ -235,9 +235,9 @@ MapReduce job in which mappers input is the output of the previous job: it is
 table content,
  the corresponding itemset and the table tidlist. 
 \begin{itemize}
-\item For each table, the mappers output a pair of the form
+\item For each table, the mappers output a pair of the form: \\
 \textless key=itemset; value=tidlist,table\_rows\textgreater  (lines 2 - 5 of Algorithm~\ref{job2}); 
-\item for each itemset, the mappers output a pair in the form \textless
+\item for each itemset, the mappers output a pair in the form: \\ \textless
 key=itemset; value=tidlist,minsup\textgreater (lines 6 - 11 of Algorithm~\ref{job2}).
 \end{itemize}
  The shuffle and sort phase

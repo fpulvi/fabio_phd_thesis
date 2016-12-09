@@ -6,7 +6,7 @@
 %This Chapter of the dissertation will introduce a big data mining framework in which distributed frequent itemset mining algorithms are just one of the possible tools or modules. While in this Chapter the framework will be briefly introduced, in Chapter \ref{mgi}, two use cases of the framework will be evaluated, in which FIM algorithms are leveraged  to mine new type of itemsets. 
 
 This Chapter of the dissertation will introduce (i) a big data mining framework and (ii) its utilization to extract a new type of itemsets, called misleading generalized itemsets.
-The comprehensive framework was initially designed to analyze network traffic logs (textbf{to do: add citazione nemico}) and provide users with a variety of network analytics services. After that, it has been extended to support a new real life scenario (Smart Cities environment) and to focus on a new type of itemset called misleading generalized itemsets {to do: add citazione mgi e mgi polito madrid}
+The comprehensive framework was initially designed to analyze network traffic logs \cite{baralis2014nemico} and provide users with a variety of network analytics services. After that, it has been extended to support a new real life scenario (Smart Cities environment) and to focus on a new type of itemset called misleading generalized itemsets \cite{apiletti20143},\cite{6924449},\cite{DBLP:conf/sebd/BaralisCCCGPG14}.
 The first use case taken into account to evaluate the effectiveness of the framework is related to network traffic analysis. In this field, important issues are communication profiling, anomaly or security threat detection, and recurrent pattern discovery.  
 Traffic analyses are commonly performed on: (i) packet payloads, (ii) traffic metrics, or (iii) some statistical features computed on traffic flows. 
 In the second use case, the proposed framework has been applied to analyze the traffic law infractions committed by 
@@ -132,7 +132,7 @@ Knowledge extraction entails the application of data mining algorithms to find i
 %\textit{Horizontal scalability.} To apply the data mining techniques to petabyte-scale network traffic datasets, \Nemico\ integrates advanced analytics algorithms (e.g., association rule mining) with horizontally scalable approaches, 
 %such as those based on Map Reduce and shared columnar storage backends.
 
-As already mentioned, the current implementation of \Nemico\ comprises Hadoop-based data mining algorithms focused on the extraction of interesting and multiple-level correlations among network data (~\cite{ISPA14}). The next Section will describe the application of such comprehensive framework to the Network traffic and Smart Cities environments.
+As already mentioned, the current implementation of \Nemico\ comprises Hadoop-based data mining algorithms focused on the extraction of interesting and multiple-level correlations among network data ~\cite{6924449}. The next Section will describe the application of such comprehensive framework to the Network traffic and Smart Cities environments.
 
 %**********************************************************
 %\subsection{Knowledge categorization and selection}

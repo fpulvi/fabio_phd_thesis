@@ -1,0 +1,431 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main_fabio.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: biblio.bib
+Repeated entry---line 1605 of file biblio.bib
+ : @inproceedings{Srikant1995
+ :                           ,
+I'm skipping whatever remains of this entry
+Database file #2: biblio_pampa.bib
+Repeated entry---line 1 of file biblio_pampa.bib
+ : @inproceedings{pfpgrowth
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 30 of file biblio_pampa.bib
+ : @article{Mahout
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 49 of file biblio_pampa.bib
+ : @article{MLLib
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 71 of file biblio_pampa.bib
+ : @article{Tstat
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 80 of file biblio_pampa.bib
+ : @article{Tstat2
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 89 of file biblio_pampa.bib
+ : @article{zaianeimage
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 112 of file biblio_pampa.bib
+ : @book{KumarBook
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 283 of file biblio_pampa.bib
+ : @inproceedings{Agr94
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 291 of file biblio_pampa.bib
+ : @inproceedings{Han00
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 299 of file biblio_pampa.bib
+ : @article{Quest
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 315 of file biblio_pampa.bib
+ : @inproceedings{LiuHM98
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 561 of file biblio_pampa.bib
+ : @article{Dean2008
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 601 of file biblio_pampa.bib
+ : @article{HDFS
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 610 of file biblio_pampa.bib
+ : @inproceedings{ArticoloMapReduceGoogle
+ :                                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 638 of file biblio_pampa.bib
+ : @article{MGI
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 653 of file biblio_pampa.bib
+ : @inproceedings{Srikant1995
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 661 of file biblio_pampa.bib
+ : @article{Flipping
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 675 of file biblio_pampa.bib
+ : @article{Han1999
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 686 of file biblio_pampa.bib
+ : @article{Wu2010Interestingness
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 700 of file biblio_pampa.bib
+ : @inproceedings{bigfim
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 740 of file biblio_pampa.bib
+ : @inproceedings{Srikant1995
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 760 of file biblio_pampa.bib
+ : @article{BaralisCCG12
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 782 of file biblio_pampa.bib
+ : @article{ChangeTKDE
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 796 of file biblio_pampa.bib
+ : @article{KunkleZC08
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 812 of file biblio_pampa.bib
+ : @inproceedings{IS2010
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 851 of file biblio_pampa.bib
+ : @inproceedings{Sriphaew2002
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 895 of file biblio_pampa.bib
+ : @inproceedings{Zaharia_spark
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 920 of file biblio_pampa.bib
+ : @inproceedings{Zaki97newalgorithms
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 939 of file biblio_pampa.bib
+ : @inproceedings{YAFIM
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 959 of file biblio_pampa.bib
+ : @inproceedings{Zaki_Carpenter
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 995 of file biblio_pampa.bib
+ : @misc{breast_cancer_dataset
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1018 of file biblio_pampa.bib
+ : @article{fontas_AR
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1031 of file biblio_pampa.bib
+ : @misc{netflow
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1038 of file biblio_pampa.bib
+ : @misc{snapnets
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1046 of file biblio_pampa.bib
+ : @misc{Uci
+ :          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1053 of file biblio_pampa.bib
+ : @misc{PEMSDataset
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1061 of file biblio_pampa.bib
+ : @article{Netmine
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1228 of file biblio_pampa.bib
+ : @article{DBLP:journals/bdr/Al-JarrahYMKT15
+ :                                           ,
+I'm skipping whatever remains of this entry
+Database file #3: biblio_nemico.bib
+Repeated entry---line 21 of file biblio_nemico.bib
+ : @inproceedings{pfpgrowth
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 57 of file biblio_nemico.bib
+ : @article{Mahout
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 77 of file biblio_nemico.bib
+ : @article{Tstat
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 95 of file biblio_nemico.bib
+ : @article{Tstat2
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 113 of file biblio_nemico.bib
+ : @article{zaianeimage
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 159 of file biblio_nemico.bib
+ : @book{KumarBook
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 535 of file biblio_nemico.bib
+ : @inproceedings{Agr94
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 551 of file biblio_nemico.bib
+ : @inproceedings{Han00
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 567 of file biblio_nemico.bib
+ : @article{Quest
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 599 of file biblio_nemico.bib
+ : @inproceedings{LiuHM98
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1091 of file biblio_nemico.bib
+ : @article{Dean2008
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1167 of file biblio_nemico.bib
+ : @article{HDFS
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1185 of file biblio_nemico.bib
+ : @inproceedings{ArticoloMapReduceGoogle
+ :                                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1237 of file biblio_nemico.bib
+ : @article{MGI
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1265 of file biblio_nemico.bib
+ : @article{Flipping
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1293 of file biblio_nemico.bib
+ : @article{Han1999
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1315 of file biblio_nemico.bib
+ : @article{Wu2010Interestingness
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1343 of file biblio_nemico.bib
+ : @inproceedings{bigfim
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1423 of file biblio_nemico.bib
+ : @inproceedings{Srikant1995
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1461 of file biblio_nemico.bib
+ : @article{BaralisCCG12
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1505 of file biblio_nemico.bib
+ : @article{ChangeTKDE
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1533 of file biblio_nemico.bib
+ : @article{KunkleZC08
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1565 of file biblio_nemico.bib
+ : @inproceedings{IS2010
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1641 of file biblio_nemico.bib
+ : @inproceedings{Sriphaew2002
+ :                            ,
+I'm skipping whatever remains of this entry
+Database file #4: biblio_ispa.bib
+Repeated entry---line 1 of file biblio_ispa.bib
+ : @inproceedings{grimaudo2012hierarchical
+ :                                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 21 of file biblio_ispa.bib
+ : @inproceedings{pfpgrowth
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 39 of file biblio_ispa.bib
+ : @article{Mahout
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 59 of file biblio_ispa.bib
+ : @article{Tstat
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 77 of file biblio_ispa.bib
+ : @article{Tstat2
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 95 of file biblio_ispa.bib
+ : @article{zaianeimage
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 141 of file biblio_ispa.bib
+ : @book{KumarBook
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 483 of file biblio_ispa.bib
+ : @inproceedings{Agr94
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 499 of file biblio_ispa.bib
+ : @inproceedings{Han00
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 515 of file biblio_ispa.bib
+ : @article{Quest
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 547 of file biblio_ispa.bib
+ : @inproceedings{LiuHM98
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1039 of file biblio_ispa.bib
+ : @article{Dean2008
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1115 of file biblio_ispa.bib
+ : @article{HDFS
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1133 of file biblio_ispa.bib
+ : @inproceedings{ArticoloMapReduceGoogle
+ :                                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1185 of file biblio_ispa.bib
+ : @article{MGI
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1213 of file biblio_ispa.bib
+ : @article{Flipping
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1241 of file biblio_ispa.bib
+ : @article{Han1999
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1263 of file biblio_ispa.bib
+ : @article{Wu2010Interestingness
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1291 of file biblio_ispa.bib
+ : @inproceedings{bigfim
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1371 of file biblio_ispa.bib
+ : @inproceedings{Srikant1995
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1409 of file biblio_ispa.bib
+ : @article{BaralisCCG12
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1453 of file biblio_ispa.bib
+ : @article{ChangeTKDE
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1481 of file biblio_ispa.bib
+ : @article{KunkleZC08
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1513 of file biblio_ispa.bib
+ : @inproceedings{IS2010
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1589 of file biblio_ispa.bib
+ : @inproceedings{Sriphaew2002
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1639 of file biblio_ispa.bib
+ : @inproceedings{ISPA13
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1665 of file biblio_ispa.bib
+ : @inproceedings{BaralisCCCG13
+ :                             ,
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "DBLP:conf/sebd/BaralisCCCGPG14"
+refers to entry "DBLP:conf/sebd/2014", which doesn't exist
+A bad cross reference---entry "IS2010"
+refers to entry "DBLP:conf/is/2010", which doesn't exist
+Warning--I didn't find a database entry for "SurveyHan2007"
+Warning--I didn't find a database entry for "DBLP:conf/is/2010"
+Warning--I didn't find a database entry for "DBLP:conf/sebd/2014"
+-- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty year in survey_pulvi
+Warning--empty year in pampa_pulvi
+Warning--missing institution in mpi
+Warning--empty journal in citeulike:13636750
+
+Done.
+You've used 96 entries,
+            4024 wiz_defined-function locations,
+            1405 strings with 26908 characters,
+and the built_in function-call counts, 72678 in all, are:
+= -- 5731
+> -- 1869
+< -- 579
++ -- 1010
+- -- 334
+* -- 3511
+:= -- 10755
+add.period$ -- 205
+call.type$ -- 96
+change.case$ -- 97
+chr.to.int$ -- 1344
+cite$ -- 100
+duplicate$ -- 5232
+empty$ -- 5998
+format.name$ -- 412
+if$ -- 16824
+int.to.chr$ -- 0
+int.to.str$ -- 96
+missing$ -- 964
+newline$ -- 373
+num.names$ -- 91
+pop$ -- 2358
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 5608
+stack$ -- 0
+substring$ -- 3231
+swap$ -- 4223
+text.length$ -- 131
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 96
+warning$ -- 4
+while$ -- 313
+width$ -- 98
+write$ -- 987
+(There were 92 error messages)

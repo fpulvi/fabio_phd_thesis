@@ -1,0 +1,254 @@
+%{\bfseries Paolo. Al momento ho spostato e accorciato questa sezione ma io propongo di eliminarla del tutto e eventualmente mettere una sottoparte di questa sezione in "Selected algorithms and implementations". }
+
+
+\begin{table}[]
+\scriptsize
+\centering
+\caption{Overview of evaluation criteria. \label{tab:evalcriteria}}
+\begin{tabular}{| c|c|c|}
+\hline  \textbf{Property of}                                                              & \textbf{Criterion name}                                                                           & \textbf{Domain}                                                                             \\ \hline \hline
+
+\hline
+
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Centralized Domain\\ (Algorithmic strategies)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}The search space\\ exploration strategy\end{tabular} & \begin{tabular}[c]{@{}c@{}}\{Depth First, \\ Breadth First\}\end{tabular} \\ \cline{2-3} 
+                                                                                                      & Data distribution                                                               & \{Dense, Sparse\}                                                         \\ \hline
+\multirow{3}{*}{Distributed Domain}                                                                   & \begin{tabular}[c]{@{}c@{}}Parallelizzation\\ Strategy\end{tabular}             & \begin{tabular}[c]{@{}c@{}}\{Data / Search \\ Space Split \}\end{tabular} \\ \cline{2-3} 
+                                                                                                      & \begin{tabular}[c]{@{}c@{}}Communication Cost\\ Handling\end{tabular}           & \{Yes, No\}                                                               \\ \cline{2-3} 
+                                                                                                      & \begin{tabular}[c]{@{}c@{}}Load Balancing\\ Handling\end{tabular}               & \{Yes, No\}                                                               \\ \hline
+\end{tabular}
+\end{table}
+
+
+One important target of this paper is to build a structured comparison among the state of the art algorithms in the distributed environment.
+For this reason we defined a set of evaluation criteria that can be used to categorize and evaluate the selected algorithms and the related implementations. 
+The two groups of criteria summarized in Table~\ref{tab:evalcriteria} will be considered. 
+
+
+%The target of this review is twofold. Firstly, we conduct a structured theoretical analysis of the most popular frequent itemset miners in distributed environments is conducted. Several aspects are investigated: from the search space exploration strategies to the analysis of how the problem is partitioned to be parallelized. After, an extensive experiment campaign will be leveraged to validate the theoretical analysis, trying to understand the reasons behind unexpected behaviors. Specifically, we will measure the impact of the theoretical algorithms design choices against issues typical of distributed environment such as Load Balancing and Communication Costs. 
+%The theoretical analysis will take into account different features which can be divided in two groups, as summarized in Table~\ref{tab:evalcriteria}.
+
+The first group of criteria, named \textit{algorithmic strategies}, is strictly related to the centralized frequent itemset algorithms from which the distributed implementations are derived. 
+Specifically, we have selected two aspects directly inherited from the underlying centralized approaches that are particularly important also when the distributed itemset mining algorithms are considered.
+
+ 
+
+
+
+%Indeed, the itemset mining algorithms, proposed for the distributed frameworks, are not designed from scratches to be distributed or parallelized. Often, in the analyzed algorithms, the main contribution introduced in the domain is the parallelization of well-known techniques. Thus, the main research efforts are moved from the algorithm design to the transposition of frequent itemset mining problem into the distributed environment, which is not trivial. Indeed, data mining problem are often not easily parallelizable. Specifically, frequent itemset mining assumes a full knowledge of the problem.
+
+%For these reasons, the algorithmic design choices related to issues typical of frequent itemset mining (i.e. search space exploration strategy, data distribution) are strongly inherited from the centralized environment and, consequently, fundamental in the evaluation of the distributed approaches.
+
+%\begin{itemize}
+%
+%\item The distribution
+%of tools or algorithms that were not designed to be distributed (i.e. splitting
+%the computation load into more than one node). In addition, data mining
+%algorithms are often characterized by the need of a full knowledge of the
+%problem or data. In other words, data mining problems are often not
+%"embarrassingly parallelizable". This issue makes the distribution very
+%challenging.
+%
+%\item A well-engineered transposition to distributed frameworks,
+%exploiting the advantages and features of the platforms. For instance,
+%exploiting data locality in MapReduce-based implementations provides a
+%fundamental performance boost. Another example is the optimized ``shuffle \&
+%sort'' phase, which represents the unique phase in which data can be sent to other
+%nodes. Transposing an algorithm into MapReduce can be very challenging because
+%of its limitations, whereas one of the advantages of Apache Spark over Hadoop
+%is a  greater flexibility.
+%
+%\end{itemize}
+%
+%Hence, the underlying centralized algorithms
+%are very important to describe and evaluate the scalable approaches. Some of
+%their features are directly inherited by the distributed algorithms.  
+
+
+%\begin{enumerate}
+%
+%\item \textit{The search space exploration strategy} allows decomposing the mining task into a set of smaller tasks to dramatically reduce the computation cost. Different strategies have been exploited in performing the itemset mining as divide-and-conquer, depth-first methods or level-wise, breadth-first generation methods.  Each strategy can yield good performance when dealing with a given data distribution. Further details can be found in Subsection~\ref{centralized}.
+%
+%\item \textit{The data distribution}. 
+%Each collection of data is characterized by a given distribution varying based on the number of transactions, average transaction length (average number of objects in a given transaction, and the cardinality of different objects). For this reason, datasets are usually characterized by an inherent density which affects the extraction of frequent itemsets.
+%Generally, frequent itemsets execution costs tends to increase with the density of the dataset. However, some design choices make some algorithms more suitable for these cases, being less optimized for sparse distribution (when most of the items are not frequent).
+%
+%
+%%Each collection of data is characterized by a given distribution varying based on the number of transactions, average transaction length (average number of objects in a given transaction, and the cardinality of different objects. Datasets are
+%%usually characterized by an inherent sparseness when a large number of transactions appear with a limited/shorter average transaction length, and a large variety of different objects/items. The sparseness in data distribution
+%%increases with data volume and cardinality of different objects.
+%%Although a formal and universal definition of data distribution is not yet available in the domain of itemset mining, it is well-known that a given algorithm is typically suited for a given data distribution, thus its performance are the best for some datasets or under some input parameter values and the worst in other cases. In general, the execution cost of a given algorithm tends to increase when dealing with dense datasets or large data volume with an inherent sparseness but with low support thresholds. In these both conditions, the mining of frequent itemsets can be very challenging
+% \end{enumerate}
+
+%The performance of the algorithms that adopt a level-wise or breadth-first exploration  (i.e. algorithms that generate candidate itemsets of length $k$ from itemsets of length $k-1$) is negatively affected by a large average transaction width, because more candidate itemsets must be examined~\cite{KumarBook}. Since average transaction width is strongly related to the input data distribution, there exists a relationship between the exploration strategy and the input dataset distribution. For example, Apriori-based algorithms~\cite{Agr94}, detailed in Subsection~\ref{bigfim}, with their breadth-first exploration approach, better fit datasets characterized by
+%sparse distributions, i.e. low correlation among patterns and high item cardinality.
+
+
+
+
+The second set of evaluation criteria is related to the distributed nature of
+the processing. 
+%First of all, it is mandatory to discuss the strategies adopted to adapt the problem or, more specifically, the aforementioned search space exploration strategies, to a distributed environment. Therefore, this work extensively discuss the different manners in which the frequent itemset mining problem can be distributed. 
+The parallelization strategy is one key feature. As mentioned in Section~\ref{parallelization}, the parallelization strategy is strongly connected with the exploration strategy and can impact significantly on the efficiency of the mining algorithm. Two other important features that will be empirically evaluated are  
+the behaviors of the algorithms in terms of load balancing and communication costs.
+%They are often undervalued in the data mining context 
+They represent critical issues with high impacts on the scalability and efficiency of the algorithms and their implementations~\cite{afrati2012designing,leskovec2014mining}.
+
+%\begin{enumerate}
+%
+%\item Communication costs: this issue is often underestimated in distributed
+%algorithms, but they represent the most likely bottleneck of a distributed
+%system~\cite{sarma2013upper}. In the design phase, most of the researchers focus
+%only on the computational costs and the need to split them among the nodes. The
+%result is that a great amount of data is sent through the network, making
+%communication costs much higher than computational costs. The manner in which the problem is partitioned could assume an overlapping of data between the independent parallel tasks, with higher communication overheads.
+%% In addition, as already
+%% mentioned, many data minings algorithms were designed for centralized systems,
+%% ignoring these kinds of factors. However, the data locality paradigm is one of
+%% the reason of the effectiveness of distributed platforms such as Hadoop or
+%% Spark. Thus, the implementations in this review will be evaluated also through
+%% the care or attention devoted to this aspect.
+%
+%\item Load balancing: since one of the main goals of a distributed
+%approach is to decrease the overall execution time, load balancing is required
+%to efficiently reach such objective. An unbalanced load
+%undermines the advantages of a parallel environment: the overall execution time
+%is that of the slowest, most loaded node. In a fully unbalanced environment, the
+%worst case scenario leads to no benefits from parallelization while still
+%incurring all the overheads of coordinating a rather complex distributed system. Even this feature is strongly influenced by the partitioning strategies. For instance, a search space-based partitioning approach could result, depending on the data distribution, in a set of unbalanced task (further details in Section~\ref{parallelization})
+%
+%\end{enumerate}
+%
+%%\textbf{Between the two domains, we should discuss the strategies adopted to adapt a problem or, more specifically, the aforementioned search space exploration strategies, to a distributed environment. Therefore, this work extensively discuss also the different manners in which the frequent itemset mining problem can be distributed. This feature is, as mentioned, exactly between the two domains. In fact, it is strongly connected with the exploration strategy. As we will discuss in Section~\ref{parallelization}, a depth-first exploration mainly fits a search space partitioning. On the other hand, a level-wise exploration of the search space fits a more trivial approach in which each independent task process just a shard of the input data. 
+%%These strategies are also strictly affecting the behaviors in terms of load balancing and communication cost. Indeed, the way of partitioning the problem could assume an overlapping of data between the independent parallel tasks, with higher communication overhead. On the other hand, for instance, a search space-based partitioning approach could result, depending on the data distribution, in a set of unbalanced task (further details in Section~\ref{parallelization})}.
+%
+%A review of the analysis criteria is presented in Table~\ref{tab:evalcriteria}, while Table~\ref{tab:example1} summarizes the analyzed approaches with the respect to the analysis structure.
+%
+%%After a qualitative and theoretical review of the (i) frequent itemset mining problem and search space related algorithmic choices, we will extensively describe the parallelization strategies mostly adopted to convert the frequent itemset mining into a distributed problem. Then, thanks to the introduced insights, we will finally introduce the algorithms in Section~\ref{algorithms}. in Section~\ref{experimental} an experimental
+%%performance evaluation is provided.
+%
+
+
+
+%The main target of this review is to build a structured comparison among the
+%most popular frequent itemset miners in distributed environments.
+%For this reason, we define a set of criteria
+%which can be divided into two groups, summarized in Table~\ref{tab:evalcriteria}.
+%
+%The first group, named \textit{algorithmic strategy}, is strictly related to the centralized frequent itemset algorithms from which the distributed implementations are derived. 
+%Itemset discovery algorithms, proposed for the distributed frameworks, are not designed from scratches to be distributed or parallelized. Often, the main contribution introduced in the domain is the implementation of well-known techniques to distributed environment. Thus, the main research efforts are moved from the algorithm design to the following points:
+%
+%\begin{itemize}
+%
+%\item The distribution
+%of tools or algorithms that were not designed to be distributed (i.e. splitting
+%the computation load into more than one node). In addition, data mining
+%algorithms are often characterized by the need of a full knowledge of the
+%problem or data. In other words, data mining problems are often not
+%"embarrassingly parallelizable". This issue makes the distribution very
+%challenging.
+%
+%\item A well-engineered transposition to distributed frameworks,
+%exploiting the advantages and features of the platforms. For instance,
+%exploiting data locality in MapReduce-based implementations provides a
+%fundamental performance boost. Another example is the optimized ``shuffle \&
+%sort'' phase, which represents the unique phase in which data can be sent to other
+%nodes. Transposing an algorithm into MapReduce can be very challenging because
+%of its limitations, whereas one of the advantages of Apache Spark over Hadoop
+%is a  greater flexibility.
+%
+%\end{itemize}
+%
+%Hence, the underlying centralized algorithms
+%are very important to describe and evaluate the scalable approaches. Some of
+%their features are directly inherited by the distributed algorithms.
+%
+%Specifically, we have selected two criteria, as reported in Table~\ref{tab:evalcriteria}, directly inherited from the underlying centralized approaches, named the candidate itemset generation phase~\cite{goethals2003survey}. 
+%
+%\begin{enumerate}
+%
+%\item \textit{The search space exploration strategy} allows decomposing the mining task into a set of smaller tasks to dramatically reduce the computation cost. Different strategies have been exploited in performing the itemset mining as divide-and-conquer, depth-first methods or level-wise, breadth-first generation methods.  Each strategy can yield good performance when dealing with a given data distribution. 
+%
+%\item \textit{The data distribution}. Each collection of data is characterized by a given distribution varying based on the number of transactions, average transaction length (average number of objects in a given transaction, and the cardinality of different objects. Datasets are
+%usually characterized by an inherent sparseness when a large number of transactions appear with a limited/shorter average transaction length, and a large variety of different objects/items. The sparseness in data distribution
+%increases with data volume and cardinality of different objects.
+%Although a formal and universal definition of data distribution is not yet available in the domain of itemset mining, it is well-known that a given algorithm is typically suited for a given data distribution, thus its performance are the best for some datasets or under some input parameter values and the worst in other cases. In general, the execution cost of a given algorithm tends to increase when dealing with dense datasets or large data volume with an inherent sparseness but with low support thresholds. In these both conditions, a large number of itemsets have to be generated. \end{enumerate}
+%
+%The performance of the algorithms that adopt a level-wise or breadth-first exploration  (i.e. algorithms that generate candidate itemsets of length $k$ from itemsets of length $k-1$) is negatively affected by a large average transaction width, because more candidate itemsets must be examined~\cite{KumarBook}. Since average transaction width is strongly related to the input data distribution, there exists a relationship between the exploration strategy and the input dataset distribution. For example, Apriori-based algorithms~\cite{Agr94}, detailed in Subsection~\ref{bigfim}, with their breadth-first exploration approach, better fit datasets characterized by
+%sparse distributions, i.e. low correlation among patterns and high item cardinality.
+%
+%
+%
+%The second set of evaluation criteria is related to the distributed nature of
+%the processing. They are often undervalued in the data mining context but
+%represent critical
+%issues~\cite{afrati2012designing},~\cite{leskovec2014mining}.
+%
+%\begin{enumerate}
+%
+%\item Communication costs: this issue is often underestimated in distributed
+%algorithms, but they represent the most likely bottleneck of a distributed
+%system~\cite{sarma2013upper}. In the design phase, most of the researchers focus
+%only on the computational costs and the need to split them among the nodes. The
+%result is that a great amount of data is sent through the network, making
+%communication costs much higher than computational costs.
+%% In addition, as already
+%% mentioned, many data minings algorithms were designed for centralized systems,
+%% ignoring these kinds of factors. However, the data locality paradigm is one of
+%% the reason of the effectiveness of distributed platforms such as Hadoop or
+%% Spark. Thus, the implementations in this review will be evaluated also through
+%% the care or attention devoted to this aspect.
+%
+%\item Load balancing: since one of the main goals of a distributed
+%approach is to decrease the overall execution time, load balancing is required
+%to efficiently reach such objective. An unbalanced load
+%undermines the advantages of a parallel environment: the overall execution time
+%is that of the slowest, most loaded node. In a fully unbalanced environment, the
+%worst case scenario leads to no benefits from parallelization while still
+%incurring all the overheads of coordinating a rather complex distributed system.
+%
+%\end{enumerate}
+%
+%A review of the evaluation criteria is presented in
+%Table~\ref{tab:example1}. After a qualitative review of the algorithms in
+%Section~\ref{algorithms}, in Section~\ref{experimental} an experimental
+%performance evaluation is provided.
+%
+%%
+%%\begin{table*}[]
+%%\scriptsize
+%%\centering
+%%\caption{Overview of valution criteria. \label{tab:evalcriteria}}
+%%\begin{tabular}{| c|c|c|c|}
+%%\hline {\bf Class Name} & {\bf Property of} & {\bf Criterion name} & {\bf Domain} \\ \hline
+%%\hline Algorithmic & Centralized  & The search space & $\{$Depth First,  \\
+%%strategy & approaches & exploration strategy & Breadth First $\}$  \\
+%%\hline 
+%%& & Data distribution & $\{$dense, sparse$\}$ \\  \hline
+%%
+%%\hline 
+%%Distributed & Distributed  & Communication & $\{$Yes, No$\}$ \\
+%%processing & approaches & cost handling & \\
+%%\hline 
+%%& & Load balancing & $\{$Yes, No$\}$ \\
+%%& & handling &  \\
+%%\hline 
+%%\end{tabular}
+%%\end{table*}
+%
+%
+%\begin{table*}[]
+%\scriptsize
+%\centering
+%\caption{Overview of valution criteria. \label{tab:evalcriteria}}
+%\begin{tabular}{| c|c|c|c|}
+%\hline \textbf{Class Name}                                                               & \textbf{Property of}                                                              & \textbf{Criterion name}                                                                           & \textbf{Domain}                                                                             \\ \hline \hline
+%\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Algorithmic \\ strategy\end{tabular}}  & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Centralized\\ approaches\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}The search space \\ exploration strategy\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\{ Depth First,\\  Breadth First\}\end{tabular}} \\
+%                                                                                  &                                                                                   &                                                                                                   &                                                                                             \\ \cline{3-4} 
+%                                                                                  &                                                                                   & Data distribution                                                                                 & \{ dense, sparse \}                                                                         \\ \hline
+%\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Distributed\\ processing\end{tabular}} & \multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Distributed\\ approaches\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Communication\\ cost handling\end{tabular}}            & \multirow{2}{*}{\{ Yes, No \}}                                                               \\
+%                                                                                  &                                                                                   &                                                                                                   &                                                                                             \\ \cline{3-4} 
+%                                                                                  &                                                                                   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Load balancing\\ handling\end{tabular}}                & \multirow{2}{*}{\{ Yes, No \}}                                                               \\
+%                                                                                  &                                                                                   &                                                                                                   &                                                                                             \\ \hline
+%\end{tabular}
+%\end{table*}
+

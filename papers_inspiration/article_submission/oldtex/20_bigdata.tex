@@ -1,0 +1,37 @@
+The availability of increasing amounts of data has highlighted the need of distributed algorithms able to scale horizontally.
+To support the design and implementation of these algorithms, the MapReduce~\cite{ArticoloMapReduceGoogle} programming paradigm 
+and the Apache Hadoop~\cite{HDFS} distributed platform have been commonly used in the last decade. 
+In the last couple of years, instead, Apache Spark~\cite{Zaharia_spark}
+has become the favorite distributed platform for large data analytics,
+outperforming Hadoop thanks to its distributed dataset abstraction. 
+
+The success of Hadoop and Spark is mainly due to their data locality paradigm. The basic idea consists in processing data in the same node storing it instead of sending large amounts of data on the network.
+
+Hadoop and Spark support the MapReduce paradigm, a distributed programming model introduced by
+Google~\cite{ArticoloMapReduceGoogle}.
+A MapReduce application consists of two main phases,
+named map and reduce. The map phase applies a map function on the input data and, after processing them, it emits a set of key-value pairs. 
+To parallelize the execution of the map phase, each node of the cluster applies the map function in isolation on a disjoint subset of the input data. 
+Then, the map results are exchanged among the cluster nodes and the reduce phase is run.
+Specifically, the reduce phase considers one unique key at a time and iterates
+through the values that are associated with that key to emit the final results. Also the reduce phase can be parallelized by assigning to each node a subset of keys.
+
+MapReduce-based programs implemented on Hadoop do not fit well iterative processes because 
+each iteration requires a new reading phase from disk.
+This feature is critical when dealing with huge datasets.
+This issue motivated the improvements introduced by Spark, 
+which enables the nodes of the cluster to cache data and intermediate results
+in memory, instead of reloading them from the disk at each iteration. This goal is achieved through
+the introduction of the Resilient Distributed Dataset (RDD) data structure, which is a read-only
+partitioned collection of records distributed across the nodes of the cluster. An RDD, when it is reused multiple times,
+is cached in the main memory of the nodes to avoid the overhead given by multiple reads from disk.
+
+\subsection{Hadoop and Spark Data Mining and Machine Learning Libraries}
+In recent years the success of Hadoop and Spark was supported by the introduction of open
+source data mining and machine learning libraries.
+Mahout~\cite{Mahout} for Hadoop has been one of the most popular
+collection of Machine Learning algorithms, providing distributed implementations of well-known clustering, classification, and itemset mining algorithms.
+All the current implementations are based on MapReduce.
+MADlib~\cite{madlib}, instead, provides a SQL toolkit of algorithms that run over Hadoop. Finally,
+MLLib~\cite{MLLib} is the Machine Learning and data mining library developed on Spark. MLlib allows researchers to exploit Spark special features
+to implement all those applications that can benefit from them, e.g. faster iterative procedures.

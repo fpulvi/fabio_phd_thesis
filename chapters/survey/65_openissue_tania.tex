@@ -1,0 +1,67 @@
+
+%Following the analysis of the state-of-the-art in frequent itemset mining
+%algorithms for distributed computing frameworks, and the in-depth experimental
+%evaluation discussed in Section~\ref{experimental},
+%we can deduce that different efficient and scalable
+%algorithms have been designed and developed during the last years.
+%The review followed a structured analysis. After a theoretical description of the algorithmic design choices
+%in terms of exploration and distribution of the search space, we introduced two aspects more related to distributed environment, such as Load Balancing and Communication costs. After this initial theoretical phase, we have largely put to the test all the algorithms in several possible use cases, leveraging both synthetic and real datasets. Indeed, the experiments results, in some cases, did not achieve the expectations related to theoretical analysis. These events allowed us to better understand  the impact of the aforementioned aspects on the final performances and, in general, on distributed frequent itemset mining domain.
+
+%This type of analysis, which is, to our knowledge, unique in the state of the art, allowed us to extract very interesting take-aways and open questions. 
+
+The comparative study presented in this review highlighted interesting research directions to enhance distributed itemset mining algorithms for Big Data.
+
+
+\textbf{Smarter load balancing techniques.} 
+The experimental evaluation allowed us to show that load balancing issues significantly affect distributed itemset mining performance, more than communication and I/O costs (e.g., reading the dataset many times). 
+Specifically, the different complexity among the task-level sub-problems leads to load unbalance in the cluster 
+(i.e., some sub-problems are more computationally expensive and time consuming than others causing inefficient resource usage).
+%the largest sub-problems could be still too complex to be analyzed in a single task causing worse performance or the bottleneck in memory allocation).
+Load balancing improvements should be addressed in the design of new distributed frequent itemset mining algorithms. 
+In that context, we believe that a new research direction to investigate is the definition of variable-length prefixes, 
+with respect to which the mining sub-problems are defined, 
+hence leading to a more balanced exploration of the search space. 
+
+%\textbf{Innovative scheduling schema.} 
+%{\bf Paolo. Ci\`o che \`e descritto dopo non mi sembra sia un problema di scheduling. Non mi torna. Da discutere.}
+%{\bf Paolo. Questa parte va rivista in base a come Elena sta modificando le lettere. Sar\`a molto piu smorzato nelle lettere e quindi bisogna capire come cambiare questo punto.}
+%The experiments highlighted the unreliability of approaches optimizing reading phases and communications cost in the sake of performance. In the frequent itemset mining domain, the input datasets are often much smaller than the data structures the algorithms should keep in memory. Given this peculiarity, reading costs hardly dominate the overall performance. 
+%The reduction of the communication costs should be addressed in the design of innovative scheduling schema to give a higher priority to appropriate tasks 
+%\textbf{PER FABIO: NON HO CAPITO cosa volevate dire. RIESCI A FINIRE LA FRASE?}
+%\textbf{Fabio: Non sono d'accordo sull'evoluzione di questo paragrafo. Non so se l'hai trovato già così ma secondo me lo scheduling centra poco. La versione che avevo scritto io forse è troppo prolissa. Forse la versione di Elena nella lettera è equilibrata.. te la cito: the experiments highlighted the unreliability of approaches optimizing reading phases and communications cost in the sake of performance. In the frequent itemset mining domain, the input datasets are often much smaller than the data structures the algorithms should keep in memory. Given this peculiarity, reading costs hardly dominate the overall performance. Hence, a higher priority should be given to an appropriate and balanced handling of the inner structures exploited for the itemsets extraction. }
+
+
+
+%However, despite the technological advancements, there is still room for
+%improvements. Specifically,
+%some open problems, summarized below, should be addressed to support
+%a more effective and efficient data mining process on Big Data collections.
+
+
+
+\textbf{Self-tuning itemset mining frameworks.} 
+As discussed in the paper, different algorithms have been proposed in literature
+to discover frequent itemsets. 
+However, the efficient exploitation of each algorithm strongly depends on specific skills and expertise. 
+The analyst is required to select the best method to efficiently deal with the
+underlying data characteristics, 
+and manually configure it 
+(e.g., from input parameters settings, such as the $minsup$ threshold, the $k$ parameter of BigFIM, etc., to distributed frameworks tuning).
+%The optimal trade-off between execution time and
+%result accuracy {\bf Paolo. Cos'è l'accuracy per gli itemset?} must be manually selected for any given application, based on
+%the analysts expertise.
+Thus, state-of-the-art algorithms may become ineffective because of the inefficient hand-picked choices 
+of the inappropriate specific implementations, and cumbersome parameter-configuration sessions.
+The improvements in algorithm usability should be addressed by designing innovative self-tuning itemset mining 
+frameworks, capable of intelligently selecting the most appropriate itemset extraction algorithm 
+and automatically configuring it.
+
+
+
+% \textbf{Full exploitation of computational capabilities of distributed frameworks.}
+% Up to now, data mining algorithms have been mainly designed to be optimized when running on centralized architectures.
+% Furthermore, recursive primitives cannot be easily translated into distributed approaches,
+% thus the efficiency of the current distributed implementations are limited.
+% There is room for novel approaches natively designed to be distributed, able to efficiently address the itemset
+% mining discovery and to fully exploit computational capabilities of distributed frameworks.
+
